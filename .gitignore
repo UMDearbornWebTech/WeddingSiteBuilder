@@ -1,0 +1,7 @@
+*.txt
+*.cache
+*.orig
+*.base
+*.suo
+*.pdb
+packages/*
