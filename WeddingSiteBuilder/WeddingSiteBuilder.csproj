@@ -84,6 +84,7 @@
     <Content Include="Content\Bride-Groom-Silhouette.jpg" />
     <Content Include="Global.asax" />
     <Content Include="index.html" />
+    <Content Include="styles\styles.css" />
     <Content Include="Views\profileupdate.html" />
     <Content Include="Views\register.html" />
     <Content Include="Views\sendviewrsvp.html" />

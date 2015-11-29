@@ -1,0 +1,22 @@
+﻿/* stylessheet1.css */
+
+@media all
+         {
+    .centered-table {
+       margin-left: auto;
+       margin-right: auto;
+    }
+	body	{ text-align:center; font-family: helvetica, arial, sans-serif; font-size:12pt; color: black;}
+	a.nodec  { text-decoration: none;}
+    a:hover  { text-decoration: underline;}
+	ul	{ font-size:10pt; }
+	ol	{ text-decoration: underline; }
+	td, th {border: 1px solid black; padding: 1px; text-align:center}
+	table {border-collapse: collapse; background-color: white;}
+
+}
+
+@media print
+{
+	body { background-color: white; font-size:14pt; color: black;}
+}
