@@ -6,20 +6,39 @@
     <title>Send/Recieve RSVP</title>
 </head>
 <body>
+    <a href="UserTabs.html"> User Tabs</a> > Send & View RSVP
+    <br />
 
-    Name: [ FIELD ]
-    Email: [ FIELD ]
-    Bride or Groom: [drop down or radio button]
-    Relation [] ??? do we need this
-    Count [Drop Down]
+    <form action="sendrsvp.php">
+        Name:<input type="text" name="guestname">
+        <br>
+        Email:<input type="email" name="guestemail">
+        <br>
+        Bride or Groom Guest:<br>
+        <input type="radio" name="guestof" value="Bride" checked>Bride
+        <input type="radio" name="guestof" value="Groom">Groom
+        <input type="radio" name="guestof" value="Both">Both
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
 
+    <table align="center">
+        <tr>
+            <td>Guest Name</td>
+            <td>Email</td>
+            <td>Count</td>
+            <td>Status</td>
+            <td>Re-send invitation</td>
+        </tr>  <!-- add a loop that displays all guests to whom the invitation was already sent -->
+            <tr>
+            <td>Guest 1 Name</td>
+            <td>Guest 1 Email</td>
+            <td>Guest 1 Count</td>
+            <td>Guest 1 Status</td>
+            <td><a href="">re-send</a></td>
+        </tr>
+    </table>
 
-    [Submit Button]
-
-    <p>Table to View Responses</p>
-    |Name| Email | Count | Status(y/n) | Resend|
-
-    [Log out]
 
 </body>
 </html>
