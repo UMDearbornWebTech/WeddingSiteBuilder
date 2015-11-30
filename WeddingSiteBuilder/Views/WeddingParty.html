@@ -2,29 +2,56 @@
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
-    <title>Wedding Venue</title>
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+    <title>Wedding Party</title>
 </head>
 <body>
     <p>Wedding Couple</p>
-    Upload Photo: [Browse Button]
-    Tell us your story: [   ]
+ 
+        Image of the Couple: <input type="file" name="pic" accept="image/*">
+        <input type="submit">
+        <br>   
+    <textarea rows="20" cols="50"> Tell us your story! </textarea>
+    <form action=" ">
+        <p>Wedding Party</p>
+        First name:  <input type="text" name="firstname">
+        <br>
+        Last name:   <input type="text" name="lastname">
+        <br>
+        Bride/Groom Side:
+        <select>
+            <option value="Bride">Bride Side</option>
+            <option value="Grood">Groom Side</option>
+        </select>
+        <br>
+        Relationship:  <input type="text" name="relationship">
+        <br>
+        Role:  <input type="text" name="role">
+        <br>
+        Image: <input type="file" name="pic" accept="image/*">
+        <input type="submit">
+        <br>
+    </form>
 
-    <p>Wedding Party</p>
-    First Name:
-    Last Name:
-    Drop Down: [Bride or Groom side]
-    Relationship:
-    Role:
-    Open Comments Field:
-    Picture
-    [Add]
-
-    Table: (can see everyone that was added)
-
-    [Save] [Preview Site] [Log out]
-
-    [Show the link that can be shared with others] need to discuss how to implement this.
-
-
+        <textarea rows="5" cols="50"> Special Comments.</textarea>
+    <table align="center">
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Side</th>
+            <th>Relationship</th>
+            <th>Role</th>
+            <th>Comments</th>
+        </tr>
+    </table>
+    <!--Need to query database to get information into the table-->
+    <form action=" ">
+        <input type="button" onClick="save();" value="Save">
+        <input type="button" onClick="preview();" value="Preview Site">
+        <input type="button" onClick="logOut();" value="Log Out">
+        <br>
+    </form>
+    
+    [Show the link that can be shared with others] **need to discuss how to implement this**
 </body>
 </html>
