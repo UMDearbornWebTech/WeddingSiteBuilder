@@ -6,19 +6,25 @@
     <title>Registration</title>
 </head>
 <body>
-    <p>Groom or Bride: [DROP DOWN]</p>
-    First Name: [ FIELD ]
-    Last Name: [ FIELD ]
-    Email (user log in): [ FIELD ]
 
-    Bride or Groom: [DROP DOWN]
-    First Name: [ FIELD ]
-    Last Name: [ FIELD ]
-    Email: [ FIELD ]
+    <form action="profileupdate.html">
+        First Name:<input type="text" name="firstname">
+        <br>
+        Last Name:<input type="text" name="firstname">
+        <br />
+        Email (user log on):<input type="email" name="guestemail">
+        <br />
+        I am the...
+        <input type="radio" name="iamthe" value="Bride" checked>Bride
+        <input type="radio" name="iamthe" value="Groom">Groom
+        <br>
+        Password:<input type="password" name="passw">
+        <br />
+        Confirm Password:<input type="password" name="passw">
+              
+        <br><br>
+        <input type="submit" value="Submit">
+    </form>
 
-    Password: [ FIELD ]
-    Confirm Password: [ FIELD ]
-
-    <a href="profileupdate.html">Register Button</a>
 </body>
 </html>
