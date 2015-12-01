@@ -6,19 +6,44 @@
     <title>Update Profile</title>
 </head>
 <body>
-    Groom or Bride: [DROP DOWN]
-    First Name: [ FIELD ]
-    Last Name: [ FIELD ]
-    Email (user log in): [ FIELD ]
+    <h2>Update Couple Profile</h2>
+    <form action="">
+        <br>
+        <select>
+            <option value="Bride">Bride</option>
+            <option value="Grood">Groom</option>
+        </select>
+        <br>
+        First Name: <input type="text" name="FirstName">
+        <br>
+        Last  Name: <input type="text" name="LastName">
+        <br>
+        Email(user login): <input type="text" name="Email">
 
-    Bride or Groom: [DROP DOWN]
-    First Name: [ FIELD ]
-    Last Name: [ FIELD ]
-    Email: [ FIELD ]
-
-    Password: [ FIELD ]
-    Confirm Password: [ FIELD ]
-
-    [Save] [Preview Site] [Log out]
+        <br>
+        <br>
+        <select>
+             <option value="Bride">Bride</option>
+             <option value="Grood">Groom</option>
+        </select>
+        <br>
+        First Name: <input type="text" name="FirstName">
+        <br>
+        Last  Name: <input type="text" name="LastName">
+        <br>
+        Email: <input type="text" name="Email">
+        <br>
+       
+        <br>
+        <p>Create Password</p>
+        Password: <input type="text" name="Password">
+        <br>
+        Confirm Password: <input type="text" name="Password">
+        <br>
+        <input type="button" onClick="save();" value="Save">
+        <input type="button" onClick="preview();" value="Preview Site">
+        <input type="button" onClick="logOut();" value="Log Out">
+        <br>
+        </form>   
 </body>
 </html>
