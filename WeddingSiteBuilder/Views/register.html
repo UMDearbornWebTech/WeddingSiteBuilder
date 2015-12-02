@@ -1,9 +1,17 @@
 ﻿﻿<!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <title>Registration</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
-    <title>Registration</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+    <script type="text/javascript">
+
+        var CallAPI = function(){
+            $.get('api/WeddingCouple/10', function(data){console.log(data);});
+        };
+    </script>
+   
 </head>
 <body>
 
@@ -21,9 +29,9 @@
         Password:<input type="password" name="passw">
         <br />
         Confirm Password:<input type="password" name="passw">
-              
+
         <br><br>
-        <input type="submit" value="Submit">
+        <input type="button" value="Submit" onclick="CallAPI();">
     </form>
 
 </body>
