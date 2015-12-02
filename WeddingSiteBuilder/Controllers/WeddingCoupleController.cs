@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WeddingSiteBuilder.ReadModel;
 
 namespace WeddingSiteBuilder.Controllers
 {
@@ -16,9 +17,22 @@ namespace WeddingSiteBuilder.Controllers
         }
 
         // GET: api/WeddingCouple/5
-        public int Get(int id)
+        public bool Get(int id)
         {
-            return id;
+            int changesSaved = 0;
+            using (var dbContext = new WeddingSiteBuilderEntities())
+            {
+                var wedding = new Wedding()
+                {
+                    WeddingID = id,
+                    CoupleStory = "Oh My So, romantic",
+                    CreateDate = DateTime.Now,
+                    LastUpdated = DateTime.Now
+                };
+                dbContext.Weddings.Add(wedding);
+                changesSaved = dbContext.SaveChanges();
+            }
+            return changesSaved > 0;
         }
 
         /*
