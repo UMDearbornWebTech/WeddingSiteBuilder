@@ -4,6 +4,13 @@
     <title></title>
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 	<meta charset="utf-8" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+    <script type="text/javascript">
+
+        var CallAPI = function(){
+            $.get('api/WeddingCouple/6', function(data){console.log(data);});
+        };
+    </script>
 </head>
 <body>
     <img src="Content/Bride-Groom-Silhouette.jpg"  alt="Bride and Groom" style="width:200px;height:228px;"/>
@@ -16,7 +23,7 @@
             <br>
             Password:<br>
             <input type="password" name="passw">
-            <input type="submit" value="Sign in">
+            <input type="button" value="Sign in" onclick="CallAPI();">
             <br><a href="resetpassword.html">Need help?</a>
     
     </form>
