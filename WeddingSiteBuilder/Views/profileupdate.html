@@ -6,8 +6,13 @@
     <title>Update Profile</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
-
-        var CallAPI = function(){
+        var logOut = function () {
+            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+        };
+        var preview = function () {
+            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+        };
+        var SaveProfile = function () {
             $.get('api/WeddingCouple/6', function(data){console.log(data);});
         };
     </script>
@@ -47,7 +52,7 @@
         <br>
         Confirm Password: <input type="text" name="Password">
         <br>
-        <input type="button" onclick="CallAPI();" value="Save">
+        <input type="button" onclick="SaveProfile();" value="Save">
         <input type="button" onClick="preview();" value="Preview Site">
         <input type="button" onClick="logOut();" value="Log Out">
         <br>

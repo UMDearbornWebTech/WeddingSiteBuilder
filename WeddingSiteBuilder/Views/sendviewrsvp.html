@@ -6,7 +6,12 @@
     <title>Send/Recieve RSVP</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
-
+        var sendRSVP = function () {
+            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+        };
+        var ReSendRSVP = function () {
+            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+        };
         var CallAPI = function(){
             $.get('api/WeddingCouple/6', function(data){console.log(data);});
         };
@@ -26,7 +31,7 @@
         <input type="radio" name="guestof" value="Groom">Groom
         <input type="radio" name="guestof" value="Both">Both
         <br><br>
-        <input type="button" value="Submit" onclick="CallAPI();">
+        <input type="button" value="Submit" onclick="sendRSVP();">
     </form>
 
     <table align="center">
@@ -42,7 +47,7 @@
             <td>Guest 1 Email</td>
             <td>Guest 1 Count</td>
             <td>Guest 1 Status</td>
-            <td><a href="">re-send</a></td>
+            <td><a href="" onclick="ReSendRSVP();">re-send</a></td>
         </tr>
     </table>
 

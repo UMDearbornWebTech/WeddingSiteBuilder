@@ -7,7 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
 
-        var CallAPI = function(){
+        var CreateSite = function () {
             $.get('api/WeddingCouple/10', function(data){console.log(data);});
         };
     </script>
@@ -31,7 +31,7 @@
         Confirm Password:<input type="password" name="passw">
 
         <br><br>
-        <input type="button" value="Submit" onclick="CallAPI();">
+        <input type="button" value="Submit" onclick="CreateSite();">
     </form>
 
 </body>

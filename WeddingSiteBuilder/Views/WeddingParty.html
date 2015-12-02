@@ -6,8 +6,13 @@
     <title>Wedding Party</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
-
-        var CallAPI = function(){
+        var preview = function () {
+            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+        };
+        var logout = function () {
+            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+        };
+        var saveWedParty = function () {
             $.get('api/WeddingCouple/6', function(data){console.log(data);});
         };
     </script>
@@ -53,7 +58,7 @@
     </table>
     <!--Need to query database to get information into the table-->
     <form action=" ">
-        <input type="button" onclick="CallAPI();" value="Save">
+        <input type="button" onclick="saveWedParty();" value="Save">
         <input type="button" onClick="preview();" value="Preview Site">
         <input type="button" onClick="logOut();" value="Log Out">
         <br>
