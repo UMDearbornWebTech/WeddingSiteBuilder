@@ -4,6 +4,15 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <title>Upload Pictures</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+    <script type="text/javascript">
+        var logout = function () {
+            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+        };
+        var uploadPic = function () {
+            $.get('api/WeddingCouple/6', function(data){console.log(data);});
+        };
+    </script>
 </head>
 <body>
     <a href="UserTabs.html"> User Tabs</a> > Upload Pictures
@@ -14,10 +23,11 @@
     <br /><img src="NOPIC.jpg" alt="sample3" ;"><a href=""><br />delete</a>
     <br /><br /> 
     <form action="upload_image.asp">
-        Upload a new picture: <input type="file" name="img"><input type="submit">
+        Upload a new picture: <input type="file" name="img"><input type="button" value="Submit" onclick="uploadPic();" >
+        <input type="button" value="Log Out" onclick="logout();">
     </form>
 
-[Log out]
+
 
 
 </body>
