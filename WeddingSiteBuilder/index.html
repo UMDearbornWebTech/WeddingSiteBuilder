@@ -5,10 +5,26 @@
     <link rel="stylesheet" type="text/css" href="styles/styles.css">
 	<meta charset="utf-8" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+    <style>
+        .hide{
+            display: none;
+        }
+    </style>
     <script type="text/javascript">
-
+        
         var CheckLogin = function () {
-            $.get('api/WeddingCouple/6', function(data){console.log(data);});
+            var uname = $('#username').val();
+            var pword = $('#password').val();
+            var url = 'api/Login?userName=' + uname + '&password=' + pword;
+
+            $.get(url, function (data) {
+                if (data) {
+                    window.location.href = 'Views/usertabs.html'
+                }
+                else {
+                    $('#errorMessage').css('display', 'inline');
+                }
+            });
         };
     </script>
 </head>
@@ -19,13 +35,15 @@
     <p>Sign in to your account.</p>
     <form>
             Email:<br>
-            <input type="email" name="username">
+            <input type="email" name="username" id="username">
             <br>
             Password:<br>
-            <input type="password" name="passw">
+            <input type="password" name="passw" id="password">
             <input type="button" value="Sign in" onclick="CheckLogin();">
             <br><a href="resetpassword.html">Need help?</a>
     
     </form>
+
+    <p id="errorMessage" style="color:red; display:none;">Wrong username and password</p>
 </body>
 </html>

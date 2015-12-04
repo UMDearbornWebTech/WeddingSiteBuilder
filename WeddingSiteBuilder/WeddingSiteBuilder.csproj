@@ -116,6 +116,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="ReadModel\Attendee.cs">
       <DependentUpon>WeddingSiteBuilderModel.tt</DependentUpon>
     </Compile>
