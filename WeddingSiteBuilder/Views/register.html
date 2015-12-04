@@ -13,7 +13,7 @@
             var email = $('#email').val();
             var pword = $('#password').val();
             var who = $('iamthe').val();
-            var url = 'api/Register?firstname=' + fname + '&lastname=' + lname + '&email' + email + '&iamthe' + who + '&password' +pword ;
+            var url = 'api/Register?firstname=' + fname + '&lastname=' + lname + '&email=' + email + '&iamthe=' + who + '&password=' +pword ;
             
             $.get(url, function (data) {
                 alert("Success " + data)
