@@ -6,7 +6,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
-
+        //jquery
         var CreateSite = function () {
             var fname = $('#firstname').val();
             var lname = $('#lastname').val();
@@ -14,7 +14,7 @@
             var pword = $('#password').val();
             var who = $('iamthe').val();
             var url = 'api/Register?firstname=' + fname + '&lastname=' + lname + '&email' + email + '&iamthe' + who + '&password' +pword ;
-
+            
             $.get(url, function (data) {
                 alert("Success " + data)
             });
