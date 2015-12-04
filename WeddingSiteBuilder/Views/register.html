@@ -14,7 +14,7 @@
             var pword = $('#password').val();
             var who = $('iamthe').val();
             var url = 'api/Register?firstname=' + fname + '&lastname=' + lname + '&email=' + email + '&iamthe=' + who + '&password=' +pword ;
-            
+            //after user enters the basic registration information, the profileupdate.html page should display for the user to enter profile info
             $.get(url, function (data) {
                 alert("Success " + data)
             });

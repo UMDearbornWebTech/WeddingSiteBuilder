@@ -6,12 +6,18 @@
     <title>Upload Pictures</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
+
         var logout = function () {
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+            $.get('api/logout');
         };
         var uploadPic = function () {
-            $.get('api/WeddingCouple/6', function(data){console.log(data);});
+            var WeddingID = $('#weddingid').val();//this field is not on the page, but we need to figure out how to have the wedding ID to pass to the API
+            var newPicture = $('#img').val();//this is the picture that the user just browsed to
+
+            var url = 'api/UpLoadPic?wedID=' + WeddingID + '&newPicture=' + newPicture;
+            $.get(url);
         };
+    
     </script>
 </head>
 <body>
@@ -23,7 +29,7 @@
     <br /><img src="NOPIC.jpg" alt="sample3" ;"><a href=""><br />delete</a>
     <br /><br /> 
     <form action="upload_image.asp">
-        Upload a new picture: <input type="file" name="img"><input type="button" value="Submit" onclick="uploadPic();" >
+        Upload a new picture: <input type="file" id="img"><input type="button" value="Submit" onclick="uploadPic();" >
         <input type="button" value="Log Out" onclick="logout();">
     </form>
 

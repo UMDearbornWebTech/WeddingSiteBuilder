@@ -6,15 +6,37 @@
     <title>Update Profile</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
+        
+            var borg1 = $('#brideorgroom1').val();
+            var fname1 = $('#firstname1').val();
+            var lname1 = $('#lastname1').val();
+            var email1 = $('#email1').val();
+            var borg2 = $('#brideorgroom2').val();
+            var fname2 = $('#firstname2').val();
+            var lname2 = $('#lastname2').val();
+            var email2 = $('#email2').val();
+
+
         var logOut = function () {
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+            $.get('api/logout');
         };
         var preview = function () {
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+            
+            
+            var url = 'api/ProfileUpdatePreview?brideorgroom1=' + borg1 + '&firstName1=' + fname1 + '&lastName1=' + lname1 + '&email1=' + email1 + '&brideorgroom2=' + borg2 + + '&firstName2=' + fname2 + '&lastName2=' + lname2 + '&email2=' + email2;
+
+            $.get(url);
+
         };
         var SaveProfile = function () {
-            $.get('api/WeddingCouple/6', function(data){console.log(data);});
+
+            var url = 'api/ProfileUpdate?brideorgroom1=' + borg1 + '&firstName1=' + fname1 + '&lastName1=' + lname1 + '&email1=' + email1 + '&brideorgroom2=' + borg2 + + '&firstName2=' + fname2 + '&lastName2=' + lname2 + '&email2=' + email2;
+            //after saving the usertabs.html page should display
+            $.get(url);
+
         };
+            
+       
     </script>
 </head>
 <body>
@@ -22,35 +44,35 @@
     <form action="">
         <br>
         <select>
-            <option value="Bride">Bride</option>
-            <option value="Grood">Groom</option>
+            <option value="Bride" id="brideorgroom1">Bride</option>
+            <option value="Grood" id="brideorgroom1">Groom</option>
         </select>
         <br>
-        First Name: <input type="text" name="FirstName">
+        First Name: <input type="text" id="FirstName1">
         <br>
-        Last  Name: <input type="text" name="LastName">
+        Last  Name: <input type="text" id="LastName1">
         <br>
-        Email(user login): <input type="text" name="Email">
-
+        Email(user login): <input type="email" id="email1">
+        
         <br>
         <br>
         <select>
-             <option value="Bride">Bride</option>
-             <option value="Grood">Groom</option>
+             <option value="Bride" id="brideorgroom2">Bride</option>
+             <option value="Grood" id="brideorgroom2">Groom</option>
         </select>
         <br>
-        First Name: <input type="text" name="FirstName">
+        First Name: <input type="text" id="FirstName2">
         <br>
-        Last  Name: <input type="text" name="LastName">
+        Last  Name: <input type="text" id="LastName2">
         <br>
-        Email: <input type="text" name="Email">
+        Email: <input type="email" id="email2">
         <br>
        
         <br>
-        <p>Create Password</p>
-        Password: <input type="text" name="Password">
+        <p>Password Upadate:</p>
+        New Password: <input type="password" id="Password">
         <br>
-        Confirm Password: <input type="text" name="Password">
+        Confirm New Password: <input type="password" id="Password">
         <br>
         <input type="button" onclick="SaveProfile();" value="Save">
         <input type="button" onClick="preview();" value="Preview Site">
