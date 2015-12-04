@@ -8,7 +8,16 @@
     <script type="text/javascript">
 
         var CreateSite = function () {
-            $.get('api/WeddingCouple/10', function(data){console.log(data);});
+            var fname = $('#firstname').val();
+            var lname = $('#lastname').val();
+            var email = $('#email').val();
+            var pword = $('#password').val();
+            var who = $('iamthe').val();
+            var url = 'api/Register?firstname=' + fname + '&lastname=' + lname + '&email' + email + '&iamthe' + who + '&password' +pword ;
+
+            $.get(url, function (data) {
+                alert("Success " + data)
+            });
         };
     </script>
    
@@ -16,19 +25,19 @@
 <body>
 
     <form action="profileupdate.html">
-        First Name:<input type="text" name="firstname">
+        First Name:<input type="text" id="firstname">
         <br>
-        Last Name:<input type="text" name="firstname">
+        Last Name:<input type="text" id="lastname">
         <br />
-        Email (user log on):<input type="email" name="guestemail">
+        Email (user log on):<input type="email" id="email">
         <br />
         I am the...
-        <input type="radio" name="iamthe" value="Bride" checked>Bride
-        <input type="radio" name="iamthe" value="Groom">Groom
+        <input type="radio" id="iamthe" value="Bride" checked>Bride
+        <input type="radio" id="iamthe" value="Groom">Groom
         <br>
-        Password:<input type="password" name="passw">
+        Password:<input type="password" id="password">
         <br />
-        Confirm Password:<input type="password" name="passw">
+        Confirm Password:<input type="password" id="password">
 
         <br><br>
         <input type="button" value="Submit" onclick="CreateSite();">
