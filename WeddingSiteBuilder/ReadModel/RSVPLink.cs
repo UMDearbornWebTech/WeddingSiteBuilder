@@ -20,5 +20,9 @@ namespace WeddingSiteBuilder.ReadModel
         public System.Guid GuidToken { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
+        public long RSVPLinkID { get; set; }
+    
+        public virtual Person Person { get; set; }
+        public virtual Wedding Wedding { get; set; }
     }
 }

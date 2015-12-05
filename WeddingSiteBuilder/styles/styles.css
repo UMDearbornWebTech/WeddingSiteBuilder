@@ -6,17 +6,20 @@
        margin-left: auto;
        margin-right: auto;
     }
-	body	{ padding-left: 11em;
-    font-family: Georgia, "Times New Roman",
-          Times, serif;
-    color: purple;
+	body { 
+		padding-left: 11em;
+		font-weight: bold;
+    	font-family: Georgia, "Times New Roman", Times, serif;
+    	color: purple;
     }
 	a.nodec  { text-decoration: none;}
-    a:hover  { text-decoration: underline;}
-	ul	{ font-size:10pt; }
+    a:hover  { text-decoration: underline; cursor:pointer;background-color:Highlight;}
+	ul	{ font-size:12pt; }
 	ol	{ text-decoration: underline; }
-	td, th {border: 1px solid black; padding: 1px; text-align:center}
+	td, th {border: 1px solid black; padding: 5px; text-align:center}
 	table {border-collapse: collapse; background-color: white;}
+    input[type=button]{background-color:lightblue;padding:5px;}    
+
 
 
 }
@@ -155,3 +158,5 @@ select{
 	position:relative;
 	top:1px;
 }
+
+/*hover over a turn it into a finger...cursorpointer*/

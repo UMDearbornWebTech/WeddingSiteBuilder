@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="63272ddcfe9d485b9548d7fdef9abf10" Name="Diagram1">
+      <Diagram DiagramId="63272ddcfe9d485b9548d7fdef9abf10" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="WeddingSiteBuilderModel.Attendee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WeddingSiteBuilderModel.Ceremony" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WeddingSiteBuilderModel.Hotel" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
@@ -14,6 +14,15 @@
         <EntityTypeShape EntityType="WeddingSiteBuilderModel.Registry" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WeddingSiteBuilderModel.RSVPLink" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="WeddingSiteBuilderModel.Wedding" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Attendee_Person" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Attendee_Wedding" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Ceremony_Wedding" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Hotel_Wedding" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_RSVPLink_Person" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Photo_Wedding" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Reception_Wedding" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Registry_Wedding" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_RSVPLink_Wedding" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
