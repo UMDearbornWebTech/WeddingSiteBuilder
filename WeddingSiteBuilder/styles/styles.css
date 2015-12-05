@@ -6,13 +6,15 @@
        margin-left: auto;
        margin-right: auto;
     }
-	body	{ text-align:center; font-family: helvetica, arial, sans-serif; font-size:12pt; color: black;}
+	body	{ text-align:center; font-family: helvetica, arial, sans-serif; font-weight:bold;font-size:12pt; color: black;background-color:beige }
 	a.nodec  { text-decoration: none;}
-    a:hover  { text-decoration: underline;}
-	ul	{ font-size:10pt; }
+    a:hover  { text-decoration: underline; cursor:pointer;background-color:Highlight;}
+	ul	{ font-size:12pt; }
 	ol	{ text-decoration: underline; }
-	td, th {border: 1px solid black; padding: 1px; text-align:center}
+	td, th {border: 1px solid black; padding: 5px; text-align:center}
 	table {border-collapse: collapse; background-color: white;}
+    input[type=button]{background-color:lightblue;padding:5px;}    
+
 
 }
 
@@ -20,3 +22,5 @@
 {
 	body { background-color: white; font-size:14pt; color: black;}
 }
+
+/*hover over a turn it into a finger...cursorpointer*/
