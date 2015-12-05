@@ -18,7 +18,9 @@
 
 
         var logOut = function () {
-            $.get('api/logout');
+
+            window.location.href = '../index.html'
+     
         };
         var preview = function () {
             
@@ -36,6 +38,9 @@
 
         };
         var loadProfile = function () {
+            var prodId = getParameterByName('weddingID');
+            alert(prodId);
+
             $('#brideorgroom1').val('Groom');
             $('#FirstName1').val('John');
             $('#LastName1').val('Smith');
@@ -44,8 +49,7 @@
             $('#FirstName2').val('Britney');
             $('#LastName2').val('Spears');
             $('#email2').val('britney.spears@umich.edu');
-            var prodId = getParameterByName('weddingID');
-            alert(prodId);
+
         }
 
 
@@ -68,11 +72,11 @@
             <option value="Groom">Groom</option>
         </select>
         <br>
-        First Name: <input type="text" id="FirstName1">
+        First Name: <input type="text" id="FirstName1" maxlength="50">
         <br>
-        Last  Name: <input type="text" id="LastName1">
+        Last  Name: <input type="text" id="LastName1" maxlength="50">
         <br>
-        Email(user login): <input type="email" id="email1">
+        Email(user login): <input type="email" id="email1" maxlength="50">
         
         <br>
         <br>
@@ -81,18 +85,18 @@
              <option value="Grood">Groom</option>
         </select>
         <br>
-        First Name: <input type="text" id="FirstName2">
+        First Name: <input type="text" id="FirstName2" maxlength="50">
         <br>
-        Last  Name: <input type="text" id="LastName2">
+        Last  Name: <input type="text" id="LastName2" maxlength="50">
         <br>
-        Email: <input type="email" id="email2">
+        Email: <input type="email" id="email2" maxlength="50">
         <br>
        
         <br>
         <p>Password Upadate:</p>
-        New Password: <input type="password" id="Password">
+        New Password: <input type="password" id="Password" maxlength="50">
         <br>
-        Confirm New Password: <input type="password" id="Password">
+        Confirm New Password: <input type="password" id="Password" maxlength="50">
         <br>
         <input type="button" onclick="SaveProfile();" value="Save">
         <input type="button" onClick="preview();" value="Preview Site">

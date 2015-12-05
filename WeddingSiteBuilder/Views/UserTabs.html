@@ -5,6 +5,11 @@
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <title>Upload Pictures</title>
     <script>
+        var logOut = function () {
+
+            window.location.href = '../index.html'
+
+        };
 
         function getParameterByName(name) {
             name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
@@ -18,6 +23,11 @@
             alert(prodId);
         }
 
+        var redirectLink = function (urlLink) {
+            var prodId = getParameterByName('weddingID');
+            window.location.href = urlLink + '?weddingID=' + prodId;
+        }
+
     </script>
 </head>
 <body onload="loadUserTabs()">
@@ -28,22 +38,22 @@
     
         <table align="center">
             <tr>
-                <td><a href="profileupdate.html">Update User Profile</a></td>
+                <td><a onclick="redirectLink('profileupdate.html')">Update User Profile</a></td>      
             </tr>
             <tr>
-                <td><a href="Venue.html">Venue</a></td>
+                <td><a onclick="redirectLink('Venue.html')">Venue</a></td>
             </tr>
             <tr>
-                <td><a href="weddingparty.html">Wedding Party</a></td>
+                <td><a onclick="redirectLink('weddingparty.html')">Wedding Party</a></td>
             </tr>
             <tr>
-                <td><a href="uploadpictures.html">Upload Pictures</a></td>
+                <td><a onclick="redirectLink('uploadpictures.html')">Upload Pictures</a></td>
             </tr>
             <tr>
-                <td><a href="sendviewrsvp.html">Send/View RSVP</a></td>
+                <td><a onclick="redirectLink('sendviewrsvp.html')">Send/View RSVP</a></td>
             </tr>
             <tr>
-                <td><a href=".html">Log out</a></td>
+                <td><form><input type="button" onClick="logOut();" value="Log Out"></form></td>
             </tr>
         </table>
  
