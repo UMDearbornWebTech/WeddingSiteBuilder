@@ -35,17 +35,37 @@
             $.get(url);
 
         };
-            
+        var loadProfile = function () {
+            $('#brideorgroom1').val('Groom');
+            $('#FirstName1').val('John');
+            $('#LastName1').val('Smith');
+            $('#email1').val('john.smith@umich.edu');
+            $('#brideorgroom2').val('Bride');
+            $('#FirstName2').val('Britney');
+            $('#LastName2').val('Spears');
+            $('#email2').val('britney.spears@umich.edu');
+            var prodId = getParameterByName('weddingID');
+            alert(prodId);
+        }
+
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
        
     </script>
 </head>
-<body>
+<body onload="loadProfile()">
     <h2>Update Couple Profile</h2>
     <form action="">
         <br>
-        <select>
-            <option value="Bride" id="brideorgroom1">Bride</option>
-            <option value="Grood" id="brideorgroom1">Groom</option>
+        <select id="brideorgroom1">
+            <option value="Bride">Bride</option>
+            <option value="Groom">Groom</option>
         </select>
         <br>
         First Name: <input type="text" id="FirstName1">
@@ -56,9 +76,9 @@
         
         <br>
         <br>
-        <select>
-             <option value="Bride" id="brideorgroom2">Bride</option>
-             <option value="Grood" id="brideorgroom2">Groom</option>
+        <select id="brideorgroom2">
+             <option value="Bride">Bride</option>
+             <option value="Grood">Groom</option>
         </select>
         <br>
         First Name: <input type="text" id="FirstName2">

@@ -19,12 +19,13 @@
 
             $.get(url, function (data) {
                 if (data) {
-                    window.location.href = 'Views/usertabs.html'
+                    window.location.href = 'Views/usertabs.html?weddingID=5'
                 }
                 else {
                     $('#errorMessage').css('display', 'inline');
                 }
             });
+
 
 
             // Example Post 
