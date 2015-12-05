@@ -6,67 +6,102 @@
     <title>Wedding Venue</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
-        var preview = function () {
-            //set the ceremony information 
-            var CName = $('#Location1').val();
-            var Caddress = $('#Address1').val();
-            var Ccity = $('#City1').val();
-            var Czip = $('#Zip1').val();
-            var Cdate = $('#datepicker1').val();
 
-            //set the reception information 
-            var RName = $('#Location2').val();
-            var Raddress = $('#Address2').val();
-            var Rcity = $('#City2').val();
-            var Rzip = $('#Zip2').val();
-            var Rdate = $('#datepicket2').val();
+        //set the ceremony information 
+        var CName = $('#Location1').val();
+        var Caddress = $('#Address1').val();
+        var Ccity = $('#City1').val();
+        var Czip = $('#Zip1').val();
+        var Cdate = $('#datepicker1').val();
 
+        //set the reception information 
+        var RName = $('#Location2').val();
+        var Raddress = $('#Address2').val();
+        var Rcity = $('#City2').val();
+        var Rzip = $('#Zip2').val();
+        var Rdate = $('#datepicker2').val();
+
+    //    var preview = function () {
+           
             //assign the url values 
-            var url = 'api/Venue?Location1=' + CName + '&Address1=' + Caddress + '&City1=' + Ccity
-                + '&Zip1=' + Czip + '&datepicker1=' + Cdate + '&Location2=' + RName + '&Address2=' + Raddress + '&City2='
-                + Rcity + '&Zip2=' + Rzip + '&datepicker2=' + Rdate;
+    //        var url = 'api/Venue?Location1=' + CName + '&Address1=' + Caddress + '&City1=' + Ccity
+    //            + '&Zip1=' + Czip + '&datepicker1=' + Cdate + '&Location2=' + RName + '&Address2=' + Raddress + '&City2='
+    ///            + Rcity + '&Zip2=' + Rzip + '&datepicker2=' + Rdate;
+//
+  //          $.get(url);
+       // };
+        
+        //redirect user to the main login page(index.html)
+        var logOut = function () {
 
-            $.get(url, function (data) { console.log(data); });
+            window.location.href = '../index.html'
+
         };
-        var logout = function () {
-            //no variables
-            //redirect to log in page(index)...
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
-        };
+
+        var mainMenu = function () {
+            var prodId = getParameterByName('weddingID');
+            window.location.href = 'UserTabs.html?weddingID=' + prodId;
+        }
+
         var saveVenue = function () {
-            //set the ceremony information 
-            var CName = $('#Location1').val();
-            var Caddress = $('#Address1').val();
-            var Ccity = $('#City1').val();
-            var Czip = $('#Zip1').val();
-            var Cdate = $('#datepicker1').val();
-
-            //set the reception information 
-            var RName = $('#Location2').val();
-            var Raddress = $('#Address2').val();
-            var Rcity = $('#City2').val();
-            var Rzip = $('#Zip2').val();
-            var Rdate = $('#datepicker2').val();
-
+            
             //assign the url values 
             var url = 'api/Venue?Location1=' + CName + '&Address1=' + Caddress + '&City1=' + Ccity
                 + '&Zip1=' + Czip + '&datepicker1=' + Cdate + '&Location2=' + RName + '&Address2=' + Raddress + '&City2='
                 + Rcity + '&Zip2=' + Rzip + '&datepicker2=' + Rdate;
-            $.get(url, function(data){console.log(data);});
+            $.get(url);
         };
+
+        var loadVenue = function () {
+            //ceremony information
+            $('#Location1').val('Church');
+            $('#Address1').val('123 Main St.');
+            $('#City1').val('Detroit');
+            $('#State1').val('MI');
+            $('#Zip1').val('48222');
+            document.getElementById("datepicker1").defaultValue = "2020-02-09";
+
+            //reception information 
+            $('#Location2').val('Ritz Carlton');
+            $('#Address2').val('123 Waikiki Beach Avenue');
+            $('#City2').val('Honolulu');
+            $('#State2').val('HI');
+            $('#Zip2').val('96861');
+            document.getElementById("datepicker2").defaultValue = "2020-02-10";
+            var prodId = getParameterByName('weddingID');
+           
+        };
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        function preview() {
+            var prodId = getParameterByName('weddingID');
+            var str = window.location.href;
+            var n = str.lastIndexOf('/');
+            var result = str.substr(0, n);
+
+            window.open(result + '/weddingpage.html?weddingID=' + prodId);
+        }
+
+
     </script>
 </head>
-<body>
+<body onload="loadVenue()">
 
-    <h2>Cermoney Information</h2>
+    <h2>Cermony Information</h2>
     <form action=" ">
         <br>
-        Location Name: <input type="text" id="Location1">
-        Address 1: <input type="text" id="Address1">
-        City: <input type="text" id="City1">
-        State: <input type="text" id="State1">
-        Zip Code: <input type="text" id="Zip1">
-        Date: <input type="date" id="datepicker1">
+        Location Name: <br /><input type="text" id="Location1"> <br />
+        Address 1: <br /><input type="text" id="Address1"> <br />
+        City: <br /><input type="text" id="City1"><br />
+        State: <br /><input type="text" id="State1"><br />
+        Zip Code: <br /><input type="text" id="Zip1"><br />
+        Date: <br /><input type="date" id="datepicker1" />
 
     </form>
 
@@ -75,16 +110,19 @@
 
     <form action=" ">
         <br>
-        Location Name: <input type="text" id="Location2">
-        Address 1: <input type="text" id="Address2">
-        City: <input type="text" id="City2">
-        State: <input type="text" id="State2">
-        Zip Code: <input type="text" id="Zip2">       
-        Date: <input type="date" id="datepicker2">
+        Location Name: <br /><input type="text" id="Location2"> <br />
+        Address 1: <br /><input type="text" id="Address2"><br />
+        City: <br /><input type="text" id="City2"> <br />
+        State: <br /><input type="text" id="State2"> <br />
+        Zip Code: <br /><input type="text" id="Zip2">    <br />    
+        Date: <br /><input type="date" id="datepicker2"> <br />
  <br>
-        <input type="button" onclick="saveVenue();" value="Save">
-        <input type="button" onClick="preview();" value="Preview Site">
-        <input type="button" onClick="logOut();" value="Log Out">
+        <input type="button" onclick="saveVenue();" value="Save" class="myButton">
+        <input type="button" onClick="preview();" value="Preview Site" class="myButton">
+        <input type="button" onclick="mainMenu();" value="Main Menu" class="myButton">
+        <input type="button" onClick="logOut();" value="Log Out" class="myButton">
+        
+
         <br>
     </form>
 

@@ -4,33 +4,77 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <title>Upload Pictures</title>
+    <script>
+        var logOut = function () {
+
+            window.location.href = '../index.html'
+
+        };
+
+       
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var loadUserTabs = function () {
+            var prodId = getParameterByName('weddingID');
+            var str = window.location.href;
+            var n = str.lastIndexOf('/');
+            var result = str.substr(0, n);
+            document.getElementById("siteURL").innerHTML = "Share your link with family and friends: <br>" + result + '/weddingpage.html?weddingID=' + prodId;
+        }
+
+        function getURL() {
+            var prodId = getParameterByName('weddingID');
+            var str = window.location.href;
+            var n = str.lastIndexOf('/');
+            var result = str.substr(0, n);
+            
+            window.open(result + '/weddingpage.html?weddingID=' + prodId);
+        }
+
+        var redirectLink = function (urlLink) {
+            var prodId = getParameterByName('weddingID');
+            window.location.href = urlLink + '?weddingID=' + prodId;
+
+        }
+
+        
+
+    </script>
 </head>
-<body>
+<body onload="loadUserTabs()">
     <br />
     <p>Log in successful..</p>
     <p>Welcome to your personalized wedding page builder</p>
-    <p>Share your URL with family and friends: http://www......</p>
-    
-        <table align="center">
-            <tr>
-                <td><a href="profileupdate.html">Update User Profile</a></td>
-            </tr>
-            <tr>
-                <td><a href="Venue.html">Venue</a></td>
-            </tr>
-            <tr>
-                <td><a href="weddingparty.html">Wedding Party</a></td>
-            </tr>
-            <tr>
-                <td><a href="uploadpictures.html">Upload Pictures</a></td>
-            </tr>
-            <tr>
-                <td><a href="sendviewrsvp.html">Send/View RSVP</a></td>
-            </tr>
-            <tr>
-                <td><a href=".html">Log out</a></td>
-            </tr>
-        </table>
+    <p id="siteURL"></p> 
+
+
+
+    <table>
+        <tr>
+            <td><a onclick="redirectLink('profileupdate.html')">Update User Profile</a></td>
+        </tr>
+        <tr>
+            <td><a onclick="redirectLink('Venue.html')">Venue</a></td>
+        </tr>
+        <tr>
+            <td><a onclick="redirectLink('weddingparty.html')">Wedding Party</a></td>
+        </tr>
+        <tr>
+            <td><a onclick="redirectLink('uploadpictures.html')">Upload Pictures</a></td>
+        </tr>
+        <tr>
+            <td><a onclick="redirectLink('sendviewrsvp.html')">Send/View RSVP</a></td>
+        </tr>
+    </table>
+                <br /><form> <input type="button" onClick="getURL();" value="Preview Site" class="myButton"> <input type="button" onClick="logOut();" value="Log Out" class="myButton"> </form>
+           
+       
  
    
 </body>

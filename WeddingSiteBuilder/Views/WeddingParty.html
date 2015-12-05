@@ -6,78 +6,102 @@
     <title>Wedding Party</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
+
+        var coupleImg = $('#pic').val();
+        var fname = $('#firstname').val();
+        var lname = $('#lastname').val();
+        var side = $('#side').val();
+        var relationship = $('#relationship').val();
+        var role = $('#role').val();
+        var PersonImg = $('#image').val();
+
         var preview = function () {
-            //not too sure about the image??
-            var coupleImg =$('#pic').val();
-            var fname = $('#firstname').val();
-            var lname = $('#lastname').val();
-            var side = $('#side').val();
-            var relationship = $('#relationship').val();
-            var role = $('#role').val();
-            //img??
-            var PersonImg = $('#image').val();
-            var url = 'api/WeddingParty?pic=' + coupleImg + '&fname=' + firstname + '&lname=' + lastname
-                + '&side=' + side + '&relationship=' + relationship + '&role=' + role + '&image=' + PersonImg;
+            var prodId = getParameterByName('weddingID');
+            var str = window.location.href;
+            var n = str.lastIndexOf('/');
+            var result = str.substr(0, n);
 
-            //dont need to save in database at this point
-            $.get(url, function (data) {
-                console.log(data);
-            });
-        };
-        var logout = function () {
-            //redirect to login page
-            //no variables??
+            window.open(result + '/weddingpage.html?weddingID=' + prodId);
+        //    var url = 'api/WeddingParty?pic=' + coupleImg + '&fname=' + firstname + '&lname=' + lastname
+         //       + '&side=' + side + '&relationship=' + relationship + '&role=' + role + '&image=' + PersonImg;
 
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+        //    $.get(url, function (data) {
+        //        console.log(data);
+        //    });
         };
+
+        //redirect user to the main login page(index.html)
+        var logOut = function () {
+
+            window.location.href = '../index.html'
+
+        };
+
+        var mainMenu = function () {
+            var prodId = getParameterByName('weddingID');
+            window.location.href = 'UserTabs.html?weddingID=' + prodId;
+        }
+
         var saveWedParty = function () {
-            var coupleImg = $('#pic').val();
-            var fname = $('#firstname').val();
-            var lname = $('#lastname').val();
-            var side = $('#side').val();
-            var relationship = $('#relationship').val();
-            var role = $('#role').val();
-            //img??
-            var PersonImg = $('#image').val();
+            
             var url = 'api/WeddingParty?pic=' + coupleImg + '&fname=' + firstname + '&lname=' + lastname
                 + '&side=' + side + '&relationship=' + relationship + '&role=' + role + '&image=' + PersonImg;
 
             $.get(url, function (data) {
-                //save the information to the database
                 console.log(data);
             });
         };
+
+        var loadWeddingParty = function() {
+            $('#pic').val();
+            $('#firstname').val('Jennifer');
+            $('#lastname').val('Lawrence');
+            $('#side').val('bride');
+            $('#relationship').val('Best Friend');
+            $('#role').val('Maid of Honor');
+            var prodId = getParameterByName('weddingID');
+            
+        };
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
     </script>
 </head>
-<body>
+<body onload="loadWeddingParty()">
     <p>Wedding Couple</p>
  
-        Image of the Couple: <input type="file" id="pic" accept="image/*">
-        <input type="submit">
+        Image of the Couple: <br /><input type="file" id="pic" accept="image/*">
+        <input type="submit" class="myButton">
         <br>   
     <textarea rows="20" cols="50"> Tell us your story! </textarea>
     <form action=" ">
         <p>Wedding Party</p>
-        First name:  <input type="text" id="firstname">
+        First name:  <br /><input type="text" id="firstname">
         <br>
-        Last name:   <input type="text" id="lastname">
+        Last name:   <br /><input type="text" id="lastname">
         <br>
         Bride/Groom Side:        
         <input type="radio" id="side" value="Bride" checked>Bride
         <input type="radio" id="side" value="Groom">Groom
         <br>
         <br>
-        Relationship:  <input type="text" id="relationship">
+        Relationship:  <br /><input type="text" id="relationship">
         <br>
-        Role:  <input type="text" id="role">
+        Role: <br /> <input type="text" id="role">
         <br>
-        Image: <input type="file" id="image" accept="image/*">
-        <input type="submit">
+        Image: <br /><input type="file" id="image" accept="image/*">
+        <input type="submit" class="myButton">
         <br>
     </form>
-
+    <br />
         <textarea rows="5" cols="50"> Special Comments.</textarea>
-    <table align="center">
+    <br />
+    <br />
+    <table>
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
@@ -87,14 +111,15 @@
             <th>Comments</th>
         </tr>
     </table>
+
+    <br />
     <!--Need to query database to get information into the table-->
     <form action=" ">
-        <input type="button" onclick="saveWedParty();" value="Save">
-        <input type="button" onClick="preview();" value="Preview Site">
-        <input type="button" onClick="logOut();" value="Log Out">
+        <input type="button" onclick="saveWedParty();" value="Save" class="myButton">
+        <input type="button" onClick="preview();" value="Preview Site" class="myButton">
+        <input type="button" onclick="mainMenu();" value="Main Menu" class="myButton">
+        <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         <br>
-    </form>
-    
-    [Show the link that can be shared with others] **need to discuss how to implement this**
+    </form>    
 </body>
 </html>
