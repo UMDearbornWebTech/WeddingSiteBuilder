@@ -6,7 +6,7 @@
     <title>Update Profile</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
-        
+       
             var borg1 = $('#brideorgroom1').val();
             var fname1 = $('#firstname1').val();
             var lname1 = $('#lastname1').val();
@@ -20,14 +20,19 @@
         var logOut = function () {
 
             window.location.href = '../index.html'
-     
+      window.location.href = '../index.html'
         };
         var preview = function () {
             
-            
-            var url = 'api/ProfileUpdatePreview?brideorgroom1=' + borg1 + '&firstName1=' + fname1 + '&lastName1=' + lname1 + '&email1=' + email1 + '&brideorgroom2=' + borg2 + + '&firstName2=' + fname2 + '&lastName2=' + lname2 + '&email2=' + email2;
+            var prodId = getParameterByName('weddingID');
+            var str = window.location.href;
+            var n = str.lastIndexOf('/');
+            var result = str.substr(0, n);
 
-            $.get(url);
+            window.open(result + '/weddingpage.html?weddingID=' + prodId);
+        //    var url = 'api/ProfileUpdatePreview?brideorgroom1=' + borg1 + '&firstName1=' + fname1 + '&lastName1=' + lname1 + '&email1=' + email1 + '&brideorgroom2=' + borg2 + + '&firstName2=' + fname2 + '&lastName2=' + lname2 + '&email2=' + email2;
+
+        //    $.get(url);
 
         };
         var SaveProfile = function () {
@@ -37,9 +42,15 @@
             $.get(url);
 
         };
+
+        var mainMenu = function () {
+            var prodId = getParameterByName('weddingID');
+            window.location.href = 'UserTabs.html?weddingID=' + prodId;
+        }
+
         var loadProfile = function () {
             var prodId = getParameterByName('weddingID');
-            alert(prodId);
+          
 
             $('#brideorgroom1').val('Groom');
             $('#FirstName1').val('John');
@@ -72,11 +83,10 @@
             <option value="Groom">Groom</option>
         </select>
         <br>
-        First Name: <input type="text" id="FirstName1" maxlength="50">
-        <br>
-        Last  Name: <input type="text" id="LastName1" maxlength="50">
-        <br>
-        Email(user login): <input type="email" id="email1" maxlength="50">
+        First Name: <br /><input type="text" id="FirstName1" maxlength="50"><br />
+        Last  Name: <br /><input type="text" id="LastName1" maxlength="50">
+        <br />
+        Email(user login): <br /><input type="email" id="email1" maxlength="50">
         
         <br>
         <br>
@@ -85,22 +95,22 @@
              <option value="Grood">Groom</option>
         </select>
         <br>
-        First Name: <input type="text" id="FirstName2" maxlength="50">
-        <br>
-        Last  Name: <input type="text" id="LastName2" maxlength="50">
-        <br>
-        Email: <input type="email" id="email2" maxlength="50">
+        First Name: <br /><input type="text" id="FirstName2" maxlength="50"><br />
+        Last  Name: <br /><input type="text" id="LastName2" maxlength="50">
+        <br />
+        Email: <br /><input type="email" id="email2" maxlength="50">
         <br>
        
         <br>
-        <p>Password Upadate:</p>
+        <p>Password Update:</p>
         New Password: <input type="password" id="Password" maxlength="50">
-        <br>
+   
         Confirm New Password: <input type="password" id="Password" maxlength="50">
-        <br>
-        <input type="button" onclick="SaveProfile();" value="Save">
-        <input type="button" onClick="preview();" value="Preview Site">
-        <input type="button" onClick="logOut();" value="Log Out">
+        <br><br />
+        <input type="button" onclick="SaveProfile();" value="Save" class="myButton">
+        <input type="button" onClick="preview();" value="Preview Site" class="myButton">
+        <input type="button" value="Main Menu" onclick="mainMenu();" class="myButton">
+        <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         <br>
         </form>   
 </body>
