@@ -21,27 +21,48 @@
             var url = 'api/ReSendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
             $.get(url);
         };
+        var logOut = function () {
+           window.location.href = '../index.html'
+        };
+
+        var mainMenu = function () {
+            var prodId = getParameterByName('weddingID');
+            window.location.href = 'UserTabs.html?weddingID=' + prodId;
+        }
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        function loadSendViewRSVP() {
+            var prodId = getParameterByName('weddingID');
+        }
         
     </script>
 </head>
-<body>
-    <a href="UserTabs.html"> User Tabs</a> > Send & View RSVP
-    <br />
-
-    <form action="sendrsvp.php">
-        Name:<input type="text" id="guestname">
+<body onload="loadSendViewRSVP()">
+    <p>Please enter the name and email of a guest, and select Save.</p>
+    <form action="">
+        Name:<br /><input type="text" id="guestname">
         <br>
-        Email:<input type="email" id="guestemail">
+        Email:<br /><input type="email" id="guestemail">
         <br>
-        Bride or Groom Guest:<br>
-        <input type="radio" id="guestof" value="Bride" checked>Bride
-        <input type="radio" id="guestof" value="Groom">Groom
-        <input type="radio" id="guestof" value="Both">Both
-        <br><br>
-        <input type="button" value="Submit" onclick="sendRSVP();">
-    </form>
+        Guest of the Bride, Groom or Both
+        <select id="guestof">
+            <option value="Bride" checked>Bride</option>
+            <option value="Groom">Groom</option>
+            <option value="Both">Both</option>
+       </select>
+            <br>
+            <br>
+            <input type="button" value="Save" onclick="sendRSVP();" class="myButton">
+            <input type="button" value="Main Menu" onclick="mainMenu();" class="myButton">
+            <input type="button" value="Log Out" onclick="logOut();" class="myButton">
+</form>
 
-    <table align="center">
+    <table>
         <tr>
             <td>Guest Name</td>
             <td>Email</td>
@@ -50,10 +71,10 @@
             <td>Re-send invitation</td>
         </tr>  <!-- add a loop that displays all guests to whom the invitation was already sent -->
             <tr>
-            <td>Guest 1 Name</td>
-            <td>Guest 1 Email</td>
-            <td>Guest 1 Count</td>
-            <td>Guest 1 Status</td>
+            <td>Mr. and Mrs. Smith</td>
+            <td>mrsmith@umich.edu</td>
+            <td>2</td>
+            <td>Accepted</td>
             <td><a href="" onclick="ReSendRSVP();">re-send</a></td>
         </tr>
     </table>
