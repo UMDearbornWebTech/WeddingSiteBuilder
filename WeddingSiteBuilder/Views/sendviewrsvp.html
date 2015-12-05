@@ -6,15 +6,22 @@
     <title>Send/Recieve RSVP</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
+
+        var gname = $('#guestname').val();
+        var gemail = $('#guestemail').val();
+        var guestrelation = $('#guestof').val();
+        
+
         var sendRSVP = function () {
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+            var url = 'api/sendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
+            $.get(url);
         };
+        //when the user clicks resend rsvp, this api will resend the email to the guest
         var ReSendRSVP = function () {
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+            var url = 'api/ReSendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
+            $.get(url);
         };
-        var CallAPI = function(){
-            $.get('api/WeddingCouple/6', function(data){console.log(data);});
-        };
+        
     </script>
 </head>
 <body>
@@ -22,14 +29,14 @@
     <br />
 
     <form action="sendrsvp.php">
-        Name:<input type="text" name="guestname">
+        Name:<input type="text" id="guestname">
         <br>
-        Email:<input type="email" name="guestemail">
+        Email:<input type="email" id="guestemail">
         <br>
         Bride or Groom Guest:<br>
-        <input type="radio" name="guestof" value="Bride" checked>Bride
-        <input type="radio" name="guestof" value="Groom">Groom
-        <input type="radio" name="guestof" value="Both">Both
+        <input type="radio" id="guestof" value="Bride" checked>Bride
+        <input type="radio" id="guestof" value="Groom">Groom
+        <input type="radio" id="guestof" value="Both">Both
         <br><br>
         <input type="button" value="Submit" onclick="sendRSVP();">
     </form>

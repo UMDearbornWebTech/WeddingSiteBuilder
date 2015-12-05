@@ -7,40 +7,71 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
         var preview = function () {
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+            //not too sure about the image??
+            var coupleImg =$('#pic').val();
+            var fname = $('#firstname').val();
+            var lname = $('#lastname').val();
+            var side = $('#side').val();
+            var relationship = $('#relationship').val();
+            var role = $('#role').val();
+            //img??
+            var PersonImg = $('#image').val();
+            var url = 'api/WeddingParty?pic=' + coupleImg + '&fname=' + firstname + '&lname=' + lastname
+                + '&side=' + side + '&relationship=' + relationship + '&role=' + role + '&image=' + PersonImg;
+
+            //dont need to save in database at this point
+            $.get(url, function (data) {
+                console.log(data);
+            });
         };
         var logout = function () {
+            //redirect to login page
+            //no variables??
+
             $.get('api/WeddingCouple/6', function (data) { console.log(data); });
         };
         var saveWedParty = function () {
-            $.get('api/WeddingCouple/6', function(data){console.log(data);});
+            var coupleImg = $('#pic').val();
+            var fname = $('#firstname').val();
+            var lname = $('#lastname').val();
+            var side = $('#side').val();
+            var relationship = $('#relationship').val();
+            var role = $('#role').val();
+            //img??
+            var PersonImg = $('#image').val();
+            var url = 'api/WeddingParty?pic=' + coupleImg + '&fname=' + firstname + '&lname=' + lastname
+                + '&side=' + side + '&relationship=' + relationship + '&role=' + role + '&image=' + PersonImg;
+
+            $.get(url, function (data) {
+                //save the information to the database
+                console.log(data);
+            });
         };
     </script>
 </head>
 <body>
     <p>Wedding Couple</p>
  
-        Image of the Couple: <input type="file" name="pic" accept="image/*">
+        Image of the Couple: <input type="file" id="pic" accept="image/*">
         <input type="submit">
         <br>   
     <textarea rows="20" cols="50"> Tell us your story! </textarea>
     <form action=" ">
         <p>Wedding Party</p>
-        First name:  <input type="text" name="firstname">
+        First name:  <input type="text" id="firstname">
         <br>
-        Last name:   <input type="text" name="lastname">
+        Last name:   <input type="text" id="lastname">
         <br>
-        Bride/Groom Side:
-        <select>
-            <option value="Bride">Bride Side</option>
-            <option value="Grood">Groom Side</option>
-        </select>
+        Bride/Groom Side:        
+        <input type="radio" id="side" value="Bride" checked>Bride
+        <input type="radio" id="side" value="Groom">Groom
         <br>
-        Relationship:  <input type="text" name="relationship">
         <br>
-        Role:  <input type="text" name="role">
+        Relationship:  <input type="text" id="relationship">
         <br>
-        Image: <input type="file" name="pic" accept="image/*">
+        Role:  <input type="text" id="role">
+        <br>
+        Image: <input type="file" id="image" accept="image/*">
         <input type="submit">
         <br>
     </form>
