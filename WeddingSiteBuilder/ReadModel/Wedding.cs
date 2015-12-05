@@ -23,7 +23,6 @@ namespace WeddingSiteBuilder.ReadModel
             this.Photos = new HashSet<Photo>();
             this.Receptions = new HashSet<Reception>();
             this.Registries = new HashSet<Registry>();
-            this.RSVPLinks = new HashSet<RSVPLink>();
         }
     
         public long WeddingID { get; set; }
@@ -44,7 +43,5 @@ namespace WeddingSiteBuilder.ReadModel
         public virtual ICollection<Reception> Receptions { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Registry> Registries { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RSVPLink> RSVPLinks { get; set; }
     }
 }

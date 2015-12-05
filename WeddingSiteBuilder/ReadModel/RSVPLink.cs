@@ -14,15 +14,13 @@ namespace WeddingSiteBuilder.ReadModel
     
     public partial class RSVPLink
     {
-        public long WeddingID { get; set; }
-        public long PersonID { get; set; }
+        public long RSVPLinkID { get; set; }
+        public long AttendeeID { get; set; }
         public string RSVPNameBlub { get; set; }
         public System.Guid GuidToken { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
-        public long RSVPLinkID { get; set; }
     
-        public virtual Person Person { get; set; }
-        public virtual Wedding Wedding { get; set; }
+        public virtual Attendee Attendee { get; set; }
     }
 }

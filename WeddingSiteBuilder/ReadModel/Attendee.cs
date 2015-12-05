@@ -14,21 +14,29 @@ namespace WeddingSiteBuilder.ReadModel
     
     public partial class Attendee
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Attendee()
+        {
+            this.RSVPLinks = new HashSet<RSVPLink>();
+        }
+    
         public long AttendeeID { get; set; }
         public long PersonID { get; set; }
         public long WeddingID { get; set; }
         public string WeddingRole { get; set; }
         public string Relationship { get; set; }
         public string Side { get; set; }
-        public string Attending { get; set; }
+        public Nullable<bool> Attending { get; set; }
         public int numberofRSVPs { get; set; }
-        public string PartyMemberBlub { get; set; }
+        public Nullable<bool> PartyMember { get; set; }
+        public string PartyMemberBlurb { get; set; }
         public Nullable<bool> RSVPStatus { get; set; }
-        public Nullable<System.Guid> GuidToken { get; set; }
         public System.DateTime CreateDate { get; set; }
-        public Nullable<System.DateTime> LastUpdated { get; set; }
+        public System.DateTime LastUpdated { get; set; }
     
         public virtual Person Person { get; set; }
         public virtual Wedding Wedding { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RSVPLink> RSVPLinks { get; set; }
     }
 }
