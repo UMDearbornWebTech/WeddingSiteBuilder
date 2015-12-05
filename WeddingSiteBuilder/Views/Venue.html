@@ -6,57 +6,79 @@
     <title>Wedding Venue</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
+
+        //set the ceremony information 
+        var CName = $('#Location1').val();
+        var Caddress = $('#Address1').val();
+        var Ccity = $('#City1').val();
+        var Czip = $('#Zip1').val();
+        var Cdate = $('#datepicker1').val();
+
+        //set the reception information 
+        var RName = $('#Location2').val();
+        var Raddress = $('#Address2').val();
+        var Rcity = $('#City2').val();
+        var Rzip = $('#Zip2').val();
+        var Rdate = $('#datepicker2').val();
+
         var preview = function () {
-            //set the ceremony information 
-            var CName = $('#Location1').val();
-            var Caddress = $('#Address1').val();
-            var Ccity = $('#City1').val();
-            var Czip = $('#Zip1').val();
-            var Cdate = $('#datepicker1').val();
-
-            //set the reception information 
-            var RName = $('#Location2').val();
-            var Raddress = $('#Address2').val();
-            var Rcity = $('#City2').val();
-            var Rzip = $('#Zip2').val();
-            var Rdate = $('#datepicket2').val();
-
+           
             //assign the url values 
             var url = 'api/Venue?Location1=' + CName + '&Address1=' + Caddress + '&City1=' + Ccity
                 + '&Zip1=' + Czip + '&datepicker1=' + Cdate + '&Location2=' + RName + '&Address2=' + Raddress + '&City2='
                 + Rcity + '&Zip2=' + Rzip + '&datepicker2=' + Rdate;
 
-            $.get(url, function (data) { console.log(data); });
+            $.get(url);
         };
-        var logout = function () {
-            //no variables
-            //redirect to log in page(index)...
-            $.get('api/WeddingCouple/6', function (data) { console.log(data); });
+
+        //redirect user to the main login page(index.html)
+        var logOut = function () {
+
+            window.location.href = '../index.html'
+
         };
+
+        var mainMenu = function () {
+            window.location.href = 'UserTabs.html'
+        }
+
         var saveVenue = function () {
-            //set the ceremony information 
-            var CName = $('#Location1').val();
-            var Caddress = $('#Address1').val();
-            var Ccity = $('#City1').val();
-            var Czip = $('#Zip1').val();
-            var Cdate = $('#datepicker1').val();
-
-            //set the reception information 
-            var RName = $('#Location2').val();
-            var Raddress = $('#Address2').val();
-            var Rcity = $('#City2').val();
-            var Rzip = $('#Zip2').val();
-            var Rdate = $('#datepicker2').val();
-
+            
             //assign the url values 
             var url = 'api/Venue?Location1=' + CName + '&Address1=' + Caddress + '&City1=' + Ccity
                 + '&Zip1=' + Czip + '&datepicker1=' + Cdate + '&Location2=' + RName + '&Address2=' + Raddress + '&City2='
                 + Rcity + '&Zip2=' + Rzip + '&datepicker2=' + Rdate;
-            $.get(url, function(data){console.log(data);});
+            $.get(url);
         };
+
+        var loadVenue = function () {
+            //ceremony information
+            $('#Location1').val();
+            $('#Address1').val();
+            $('#City1').val();
+            $('#Zip1').val();
+            $('#datepicker1').val();
+
+            //reception information 
+            $('#Location2').val();
+            $('#Address2').val();
+            $('#City2').val();
+            $('#Zip2').val();
+            $('#datepicker2').val();
+            var prodId = getParameterByName('weddingID');
+            alert(prodId);
+        };
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
     </script>
 </head>
-<body>
+<body onload="loadVenue()">
 
     <h2>Cermoney Information</h2>
     <form action=" ">
@@ -85,6 +107,8 @@
         <input type="button" onclick="saveVenue();" value="Save">
         <input type="button" onClick="preview();" value="Preview Site">
         <input type="button" onClick="logOut();" value="Log Out">
+        <input type="button" onclick="mainMenu();" value="Main Menu">
+
         <br>
     </form>
 
