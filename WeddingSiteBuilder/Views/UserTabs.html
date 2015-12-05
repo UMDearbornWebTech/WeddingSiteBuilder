@@ -4,8 +4,23 @@
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <title>Upload Pictures</title>
+    <script>
+
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+        var loadUserTabs = function () {
+            var prodId = getParameterByName('weddingID');
+            alert(prodId);
+        }
+
+    </script>
 </head>
-<body>
+<body onload="loadUserTabs()">
     <br />
     <p>Log in successful..</p>
     <p>Welcome to your personalized wedding page builder</p>
