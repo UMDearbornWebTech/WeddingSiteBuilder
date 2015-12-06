@@ -15,20 +15,34 @@
         var role = $('#role').val();
         var PersonImg = $('#image').val();
 
-        var preview = function () {
-            var prodId = getParameterByName('weddingID');
-            var str = window.location.href;
-            var n = str.lastIndexOf('/');
-            var result = str.substr(0, n);
+        function readCookie(name) {
+            var i, c, ca, nameEQ = name + "=";
+            ca = document.cookie.split(';');
+            for (i = 0; i < ca.length; i++) {
+                c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1, c.length);
+                }
+                if (c.indexOf(nameEQ) == 0) {
+                    return c.substring(nameEQ.length, c.length);
+                }
+            }
+            return '';
+        }
+      //  var preview = function () {
+        //    var prodId = getParameterByName('weddingID');
+          //  var str = window.location.href;
+          //  var n = str.lastIndexOf('/');
+          //  var result = str.substr(0, n);
 
-            window.open(result + '/weddingpage.html?weddingID=' + prodId);
+        //    window.open(result + '/weddingpage.html?weddingID=' + prodId);
         //    var url = 'api/WeddingParty?pic=' + coupleImg + '&fname=' + firstname + '&lname=' + lastname
          //       + '&side=' + side + '&relationship=' + relationship + '&role=' + role + '&image=' + PersonImg;
 
         //    $.get(url, function (data) {
         //        console.log(data);
         //    });
-        };
+      //  };
 
         //redirect user to the main login page(index.html)
         var logOut = function () {
@@ -59,7 +73,19 @@
             $('#side').val('bride');
             $('#relationship').val('Best Friend');
             $('#role').val('Maid of Honor');
-            var prodId = getParameterByName('weddingID');
+            
+            var sId = readCookie('sessionId');
+
+            if (sId == 'True') {
+
+                var prodId = getParameterByName('weddingID');
+                var str = window.location.href;
+                var n = str.lastIndexOf('/');
+                var result = str.substr(0, n);
+            }
+            else {
+                window.location.href = '../index.html'
+            }
             
         };
 
