@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
-    <title>Upload Pictures</title>
+    <title>User Tabs</title>
     <script>
 
         function readCookie(name) {
@@ -23,10 +23,23 @@
 
         var logOut = function () {
 
+            writeCookie('sessionId', "", -1);
             window.location.href = '../index.html'
+           
 
         };
 
+        function writeCookie(name, value, days) {
+            var date, expires;
+            if (days) {
+                date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toGMTString();
+            } else {
+                expires = "";
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
        
 
         function getParameterByName(name) {
