@@ -27,5 +27,8 @@ namespace WeddingSiteBuilder.ReadModel
         public string WebsiteLink { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
+        public long RegistryID { get; set; }
+    
+        public virtual Wedding Wedding { get; set; }
     }
 }

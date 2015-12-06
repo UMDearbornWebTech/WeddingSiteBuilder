@@ -7,10 +7,11 @@
        margin-right: auto;
     }
 
-	body	{ padding-left: 11em;
-    font-family: Georgia, "Times New Roman",
-          Times, serif;
-    color: purple;
+	body { 
+		padding-left: 11em;
+		font-weight: bold;
+    	font-family: Georgia, "Times New Roman", Times, serif;
+    	color: purple;
     }
 
 	a.nodec  { text-decoration: none;}
@@ -100,6 +101,7 @@ select{
 }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 @media print
 {
 	body { background-color: white; font-size:14pt; color: black;}
@@ -107,6 +109,8 @@ select{
 
 /*hover over a turn it into a finger...cursorpointer*/
 =======
+=======
+>>>>>>> 0e7cb9c48d2cdb1f45a05fc04ab0b972d27ad3a7
 .form-style-1 .field-long{
     width: 100%;
 }
@@ -167,4 +171,9 @@ select{
 	position:relative;
 	top:1px;
 }
+<<<<<<< HEAD
 >>>>>>> 803a008d6551fc539d43371e9709f8220ace1fae
+=======
+
+/*hover over a turn it into a finger...cursorpointer*/
+>>>>>>> 0e7cb9c48d2cdb1f45a05fc04ab0b972d27ad3a7

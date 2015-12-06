@@ -27,5 +27,7 @@ namespace WeddingSiteBuilder.ReadModel
         public System.DateTime CeremonyDateTime { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
+    
+        public virtual Wedding Wedding { get; set; }
     }
 }
