@@ -68,25 +68,27 @@
         };
 
         var loadVenue = function () {
-            //ceremony information
-            $('#Location1').val('Church');
-            $('#Address1').val('123 Main St.');
-            $('#City1').val('Detroit');
-            $('#State1').val('MI');
-            $('#Zip1').val('48222');
-            document.getElementById("datepicker1").defaultValue = "2020-02-09";
-
-            //reception information 
-            $('#Location2').val('Ritz Carlton');
-            $('#Address2').val('123 Waikiki Beach Avenue');
-            $('#City2').val('Honolulu');
-            $('#State2').val('HI');
-            $('#Zip2').val('96861');
-            document.getElementById("datepicker2").defaultValue = "2020-02-10";
+            
              var sId = readCookie('sessionId');
 
             if (sId == 'True') {
 
+                //ceremony information
+                $('#Location1').val('Church');
+                $('#Address1').val('123 Main St.');
+                $('#City1').val('Detroit');
+                $('#State1').val('MI');
+                $('#Zip1').val('48222');
+                document.getElementById("datepicker1").defaultValue = "2020-02-09";
+
+                //reception information 
+                $('#Location2').val('Ritz Carlton');
+                $('#Address2').val('123 Waikiki Beach Avenue');
+                $('#City2').val('Honolulu');
+                $('#State2').val('HI');
+                $('#Zip2').val('96861');
+                document.getElementById("datepicker2").defaultValue = "2020-02-10";
+            
                 var prodId = getParameterByName('weddingID');
                 var str = window.location.href;
                 var n = str.lastIndexOf('/');
