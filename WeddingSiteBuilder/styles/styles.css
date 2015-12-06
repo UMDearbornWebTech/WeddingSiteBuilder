@@ -6,12 +6,17 @@
        margin-left: auto;
        margin-right: auto;
     }
+    
+    html{
+        text-align:center;
+    }
 
 	body { 
 		padding-left: 11em;
 		font-weight: bold;
-    	font-family: Georgia, "Times New Roman", Times, serif;
-    	color: purple;
+    		font-family: Georgia, "Times New Roman", Times, serif;
+    		color: gray;
+	  	background-color:lightblue;
     }
 
 	a.nodec  { text-decoration: none;}
