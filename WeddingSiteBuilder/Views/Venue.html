@@ -20,6 +20,21 @@
         var Rcity = $('#City2').val();
         var Rzip = $('#Zip2').val();
         var Rdate = $('#datepicker2').val();
+        
+        function readCookie(name) {
+            var i, c, ca, nameEQ = name + "=";
+            ca = document.cookie.split(';');
+            for (i = 0; i < ca.length; i++) {
+                c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1, c.length);
+                }
+                if (c.indexOf(nameEQ) == 0) {
+                    return c.substring(nameEQ.length, c.length);
+                }
+            }
+            return '';
+        }
 
     //    var preview = function () {
            
@@ -68,7 +83,19 @@
             $('#State2').val('HI');
             $('#Zip2').val('96861');
             document.getElementById("datepicker2").defaultValue = "2020-02-10";
-            var prodId = getParameterByName('weddingID');
+             var sId = readCookie('sessionId');
+
+            if (sId == 'True') {
+
+                var prodId = getParameterByName('weddingID');
+                var str = window.location.href;
+                var n = str.lastIndexOf('/');
+                var result = str.substr(0, n);
+            }
+            else {
+                window.location.href = '../index.html'
+            }
+           
            
         };
 
@@ -118,7 +145,6 @@
         Date: <br /><input type="date" id="datepicker2"> <br />
  <br>
         <input type="button" onclick="saveVenue();" value="Save" class="myButton">
-        <input type="button" onClick="preview();" value="Preview Site" class="myButton">
         <input type="button" onclick="mainMenu();" value="Main Menu" class="myButton">
         <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         

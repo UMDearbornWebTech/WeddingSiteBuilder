@@ -5,6 +5,22 @@
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <title>Upload Pictures</title>
     <script>
+
+        function readCookie(name) {
+            var i, c, ca, nameEQ = name + "=";
+            ca = document.cookie.split(';');
+            for (i = 0; i < ca.length; i++) {
+                c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1, c.length);
+                }
+                if (c.indexOf(nameEQ) == 0) {
+                    return c.substring(nameEQ.length, c.length);
+                }
+            }
+            return '';
+        }
+
         var logOut = function () {
 
             window.location.href = '../index.html'
@@ -21,11 +37,19 @@
         }
 
         var loadUserTabs = function () {
-            var prodId = getParameterByName('weddingID');
-            var str = window.location.href;
-            var n = str.lastIndexOf('/');
-            var result = str.substr(0, n);
-            document.getElementById("siteURL").innerHTML = "Share your link with family and friends: <br>" + result + '/weddingpage.html?weddingID=' + prodId;
+            var sId = readCookie('sessionId');
+
+            if (sId == 'True'){
+
+                var prodId = getParameterByName('weddingID');
+                var str = window.location.href;
+                var n = str.lastIndexOf('/');
+                var result = str.substr(0, n);
+                document.getElementById("siteURL").innerHTML = "Share your link with family and friends: <br>" + result + '/weddingpage.html?weddingID=' + prodId;
+            }
+            else {
+                window.location.href = '../index.html'
+            }
         }
 
         function getURL() {
@@ -49,7 +73,6 @@
 </head>
 <body onload="loadUserTabs()">
     <br />
-    <p>Log in successful..</p>
     <p>Welcome to your personalized wedding page builder</p>
     <p id="siteURL"></p> 
 
@@ -72,7 +95,7 @@
             <td><a onclick="redirectLink('sendviewrsvp.html')">Send/View RSVP</a></td>
         </tr>
     </table>
-                <br /><form> <input type="button" onClick="getURL();" value="Preview Site" class="myButton"> <input type="button" onClick="logOut();" value="Log Out" class="myButton"> </form>
+                <br /><form> <input type="button" onClick="getURL();" value="Check out your site!" class="myButton"> <input type="button" onClick="logOut();" value="Log Out" class="myButton"> </form>
            
        
  
