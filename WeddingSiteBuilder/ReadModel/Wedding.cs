@@ -23,6 +23,9 @@ namespace WeddingSiteBuilder.ReadModel
             this.Photos = new HashSet<Photo>();
             this.Receptions = new HashSet<Reception>();
             this.Registries = new HashSet<Registry>();
+
+            CreateDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
         }
     
         public long WeddingID { get; set; }

@@ -14,12 +14,20 @@ namespace WeddingSiteBuilder.ReadModel
     
     public partial class RSVPLink
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public RSVPLink()
+        {
+            CreateDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
+        }
+
         public long RSVPLinkID { get; set; }
         public long AttendeeID { get; set; }
         public string RSVPNameBlub { get; set; }
         public System.Guid GuidToken { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
+        public bool IsAnswered { get; set; }
     
         public virtual Attendee Attendee { get; set; }
     }

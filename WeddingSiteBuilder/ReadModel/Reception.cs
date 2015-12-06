@@ -14,6 +14,13 @@ namespace WeddingSiteBuilder.ReadModel
     
     public partial class Reception
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Reception()
+        {
+            CreateDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
+        }
+
         public long WeddingID { get; set; }
         public long ReceptionID { get; set; }
         public string LocationName { get; set; }

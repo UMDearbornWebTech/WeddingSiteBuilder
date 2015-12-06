@@ -18,6 +18,8 @@ namespace WeddingSiteBuilder.ReadModel
         public Attendee()
         {
             this.RSVPLinks = new HashSet<RSVPLink>();
+            CreateDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
         }
     
         public long AttendeeID { get; set; }
@@ -27,7 +29,7 @@ namespace WeddingSiteBuilder.ReadModel
         public string Relationship { get; set; }
         public string Side { get; set; }
         public Nullable<bool> Attending { get; set; }
-        public int numberofRSVPs { get; set; }
+        public string numberofRSVPs { get; set; }
         public Nullable<bool> PartyMember { get; set; }
         public string PartyMemberBlurb { get; set; }
         public Nullable<bool> RSVPStatus { get; set; }

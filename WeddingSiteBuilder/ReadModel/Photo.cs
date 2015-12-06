@@ -14,6 +14,13 @@ namespace WeddingSiteBuilder.ReadModel
     
     public partial class Photo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Photo()
+        {
+            CreateDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
+        }
+
         public Nullable<long> WeddingID { get; set; }
         public long PhotoID { get; set; }
         public byte[] PhotoData { get; set; }

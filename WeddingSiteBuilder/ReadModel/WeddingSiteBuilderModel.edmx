@@ -12,11 +12,11 @@
           <Property Name="AttendeeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonID" Type="bigint" Nullable="false" />
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
-          <Property Name="WeddingRole" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Relationship" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WeddingRole" Type="varchar" MaxLength="50" />
+          <Property Name="Relationship" Type="varchar" MaxLength="50" />
           <Property Name="Side" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="Attending" Type="bit" />
-          <Property Name="numberofRSVPs" Type="int" Nullable="false" />
+          <Property Name="numberofRSVPs" Type="varchar" MaxLength="50" />
           <Property Name="PartyMember" Type="bit" />
           <Property Name="PartyMemberBlurb" Type="varchar" MaxLength="250" />
           <Property Name="RSVPStatus" Type="bit" />
@@ -30,13 +30,13 @@
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
           <Property Name="CeremonyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LocationName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
           <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
           <Property Name="CeremonyDateTime" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
@@ -48,13 +48,13 @@
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
           <Property Name="HotelID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HotelName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
           <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
           <Property Name="RoomBlock" Type="varchar" MaxLength="20" />
           <Property Name="TravelTips" Type="varchar" MaxLength="250" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -65,21 +65,21 @@
             <PropertyRef Name="PersonID" />
           </Key>
           <Property Name="PersonID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Prefix" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prefix" Type="varchar" MaxLength="20" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Suffix" Type="varchar" MaxLength="5" />
           <Property Name="NickName" Type="varchar" MaxLength="50" />
-          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
-          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
-          <Property Name="ZipCode" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
         </EntityType>
@@ -100,13 +100,13 @@
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
           <Property Name="ReceptionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LocationName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
           <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
           <Property Name="ReceptionDateTime" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
@@ -123,7 +123,7 @@
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
           <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
           <Property Name="WebsiteLink" Type="varchar" MaxLength="100" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -139,12 +139,13 @@
           <Property Name="GuidToken" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="IsAnswered" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Wedding">
           <Key>
             <PropertyRef Name="WeddingID" />
           </Key>
-          <Property Name="WeddingID" Type="bigint" Nullable="false" />
+          <Property Name="WeddingID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="DestinationWedding" Type="bit" Nullable="false" />
           <Property Name="CoupleStory" Type="varchar" MaxLength="250" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -301,11 +302,11 @@
           <Property Name="AttendeeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PersonID" Type="Int64" Nullable="false" />
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
-          <Property Name="WeddingRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WeddingRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Side" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Attending" Type="Boolean" />
-          <Property Name="numberofRSVPs" Type="Int32" Nullable="false" />
+          <Property Name="numberofRSVPs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PartyMember" Type="Boolean" />
           <Property Name="PartyMemberBlurb" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="RSVPStatus" Type="Boolean" />
@@ -322,13 +323,13 @@
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
           <Property Name="CeremonyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="CeremonyDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
@@ -341,13 +342,13 @@
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
           <Property Name="HotelID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="RoomBlock" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TravelTips" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -359,21 +360,21 @@
             <PropertyRef Name="PersonID" />
           </Key>
           <Property Name="PersonID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Suffix" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Attendees" Relationship="Self.FK_Attendee_Person" FromRole="Person" ToRole="Attendee" />
@@ -396,13 +397,13 @@
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
           <Property Name="ReceptionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ReceptionDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
@@ -420,7 +421,7 @@
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="WebsiteLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -437,13 +438,14 @@
           <Property Name="GuidToken" Type="Guid" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IsAnswered" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="Attendee" Relationship="Self.FK_RSVPLink_Attendee" FromRole="RSVPLink" ToRole="Attendee" />
         </EntityType>
         <EntityType Name="Wedding">
           <Key>
             <PropertyRef Name="WeddingID" />
           </Key>
-          <Property Name="WeddingID" Type="Int64" Nullable="false" />
+          <Property Name="WeddingID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DestinationWedding" Type="Boolean" Nullable="false" />
           <Property Name="CoupleStory" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
@@ -740,6 +742,7 @@
                 <ScalarProperty Name="GuidToken" ColumnName="GuidToken" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="IsAnswered" ColumnName="IsAnswered" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
