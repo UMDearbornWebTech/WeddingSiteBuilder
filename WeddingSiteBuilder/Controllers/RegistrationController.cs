@@ -26,7 +26,7 @@ namespace WeddingSiteBuilder.Controllers
         // POST: api/Registration
         public long Post([FromBody]RegistrationDTO request)
         {
-            long changesSaved = 0;
+            int changesSaved = 0;
             try
             {
                 using (var dbContext = new WeddingSiteBuilderEntities())
@@ -39,20 +39,39 @@ namespace WeddingSiteBuilder.Controllers
                         LastName = request.LastName
                     };
                     dbContext.People.Add(person);
+
+                    var wedding = new Wedding();
+
+                    dbContext.Weddings.Add(wedding);
+
                     changesSaved = dbContext.SaveChanges();
 
+                    var attendee = new Attendee()
+                    {
+                        WeddingID = wedding.WeddingID,
+                        PersonID = person.PersonID,
+                        WeddingRole = request.BrideOrGroom == "Bride" ? "Bride" : "Groom",
+                        Side = request.BrideOrGroom == "Bride" ? "Bride" : "Groom"
+                    };
 
-                    person = dbContext.People.Where(p => p.Email == request.Email).FirstOrDefault();
+                    dbContext.Attendees.Add(attendee);
 
-                    changesSaved = person.PersonID;
+                    changesSaved += dbContext.SaveChanges();
+
+                    if(changesSaved == 3)
+                    {
+                        return wedding.WeddingID;
+                    }
+                    else
+                    {
+                        return 0;
+                    }
                 }
             }
-            catch(Exception e)
+            catch(Exception)
             {
-                var a = e;
+                return 0;
             }
-            
-            return changesSaved;
         }
 
         // PUT: api/Registration/5
