@@ -4,25 +4,24 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="63272ddcfe9d485b9548d7fdef9abf10" Name="Diagram1" ZoomLevel="74">
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Attendee" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Ceremony" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Hotel" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Person" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Photo" Width="1.5" PointX="2.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Reception" Width="1.5" PointX="4.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Registry" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.RSVPLink" Width="1.5" PointX="6.75" PointY="5.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Wedding" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Attendee_Person" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Attendee_Wedding" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Ceremony_Wedding" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Hotel_Wedding" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_RSVPLink_Person" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Photo_Wedding" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Reception_Wedding" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Registry_Wedding" />
-        <AssociationConnector Association="WeddingSiteBuilderModel.FK_RSVPLink_Wedding" />
+      <Diagram DiagramId="79ec574c57cb419bb43881c9f32ced19" Name="Diagram1" ZoomLevel="98">
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Attendee" Width="1.5" PointX="6" PointY="12.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Ceremony" Width="1.5" PointX="3" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Hotel" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Person" Width="1.5" PointX="3.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Photo" Width="1.5" PointX="3" PointY="18.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Reception" Width="1.5" PointX="3" PointY="21.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Registry" Width="1.5" PointX="3" PointY="25.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.RSVPLink" Width="1.5" PointX="8.25" PointY="13.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="WeddingSiteBuilderModel.Wedding" Width="1.5" PointX="0.75" PointY="13" IsExpanded="true" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Attendee_Person" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Attendee_Wedding" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_RSVPLink_Attendee" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Ceremony_Wedding" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Hotel_Wedding" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Photo_Wedding" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Reception_Wedding" ManuallyRouted="false" />
+        <AssociationConnector Association="WeddingSiteBuilderModel.FK_Registry_Wedding" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

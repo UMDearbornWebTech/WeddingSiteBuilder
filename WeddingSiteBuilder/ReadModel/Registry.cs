@@ -14,8 +14,15 @@ namespace WeddingSiteBuilder.ReadModel
     
     public partial class Registry
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Registry()
+        {
+            CreateDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
+        }
+
+        public long RegistryID { get; set; }
         public long WeddingID { get; set; }
-        public long StoreID { get; set; }
         public string StoreName { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
@@ -27,7 +34,6 @@ namespace WeddingSiteBuilder.ReadModel
         public string WebsiteLink { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
-        public long RegistryID { get; set; }
     
         public virtual Wedding Wedding { get; set; }
     }

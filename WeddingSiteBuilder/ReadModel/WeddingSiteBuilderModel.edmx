@@ -12,16 +12,16 @@
           <Property Name="AttendeeID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PersonID" Type="bigint" Nullable="false" />
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
-          <Property Name="WeddingRole" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Relationship" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="WeddingRole" Type="varchar" MaxLength="50" />
+          <Property Name="Relationship" Type="varchar" MaxLength="50" />
           <Property Name="Side" Type="varchar" MaxLength="5" Nullable="false" />
-          <Property Name="Attending" Type="varchar" MaxLength="1" />
-          <Property Name="numberofRSVPs" Type="int" Nullable="false" />
-          <Property Name="PartyMemberBlub" Type="varchar" MaxLength="250" />
+          <Property Name="Attending" Type="bit" />
+          <Property Name="PartyMember" Type="bit" />
+          <Property Name="PartyMemberBlurb" Type="varchar" MaxLength="250" />
           <Property Name="RSVPStatus" Type="bit" />
-          <Property Name="GuidToken" Type="uniqueidentifier" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="LastUpdated" Type="datetime" />
+          <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="NumberofRSVPs" Type="int" />
         </EntityType>
         <EntityType Name="Ceremony">
           <Key>
@@ -30,13 +30,13 @@
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
           <Property Name="CeremonyID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LocationName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
           <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
           <Property Name="CeremonyDateTime" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
@@ -48,13 +48,13 @@
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
           <Property Name="HotelID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="HotelName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
           <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
           <Property Name="RoomBlock" Type="varchar" MaxLength="20" />
           <Property Name="TravelTips" Type="varchar" MaxLength="250" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -65,21 +65,21 @@
             <PropertyRef Name="PersonID" />
           </Key>
           <Property Name="PersonID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Prefix" Type="varchar" MaxLength="20" Nullable="false" />
-          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Prefix" Type="varchar" MaxLength="20" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" />
           <Property Name="MiddleName" Type="varchar" MaxLength="50" />
-          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
           <Property Name="Suffix" Type="varchar" MaxLength="5" />
           <Property Name="NickName" Type="varchar" MaxLength="50" />
-          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
-          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
-          <Property Name="ZipCode" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="50" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="50" />
+          <Property Name="Email" Type="varchar" MaxLength="50" />
+          <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
         </EntityType>
@@ -100,13 +100,13 @@
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
           <Property Name="ReceptionID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="LocationName" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="Address1" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
           <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
+          <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
           <Property Name="ReceptionDateTime" Type="datetime" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
@@ -117,14 +117,13 @@
           </Key>
           <Property Name="RegistryID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="WeddingID" Type="bigint" Nullable="false" />
-          <Property Name="StoreID" Type="bigint" Nullable="false" />
           <Property Name="StoreName" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Address1" Type="varchar" MaxLength="100" />
           <Property Name="Address2" Type="varchar" MaxLength="50" />
           <Property Name="City" Type="varchar" MaxLength="50" />
           <Property Name="StateProv" Type="varchar" MaxLength="50" />
           <Property Name="ZipCode" Type="varchar" MaxLength="50" />
-          <Property Name="Country" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Country" Type="varchar" MaxLength="50" />
           <Property Name="PhoneNumber" Type="varchar" MaxLength="15" />
           <Property Name="WebsiteLink" Type="varchar" MaxLength="100" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
@@ -135,12 +134,12 @@
             <PropertyRef Name="RSVPLinkID" />
           </Key>
           <Property Name="RSVPLinkID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="WeddingID" Type="bigint" Nullable="false" />
-          <Property Name="PersonID" Type="bigint" Nullable="false" />
+          <Property Name="AttendeeID" Type="bigint" Nullable="false" />
           <Property Name="RSVPNameBlub" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="GuidToken" Type="uniqueidentifier" Nullable="false" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="IsAnswered" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="Wedding">
           <Key>
@@ -236,27 +235,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RSVPLink_Person">
-          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+        <Association Name="FK_RSVPLink_Attendee">
+          <End Role="Attendee" Type="Self.Attendee" Multiplicity="1" />
           <End Role="RSVPLink" Type="Self.RSVPLink" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonID" />
+            <Principal Role="Attendee">
+              <PropertyRef Name="AttendeeID" />
             </Principal>
             <Dependent Role="RSVPLink">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_RSVPLink_Wedding">
-          <End Role="Wedding" Type="Self.Wedding" Multiplicity="1" />
-          <End Role="RSVPLink" Type="Self.RSVPLink" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Wedding">
-              <PropertyRef Name="WeddingID" />
-            </Principal>
-            <Dependent Role="RSVPLink">
-              <PropertyRef Name="WeddingID" />
+              <PropertyRef Name="AttendeeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -298,12 +285,8 @@
             <End Role="Wedding" EntitySet="Wedding" />
             <End Role="Registry" EntitySet="Registry" />
           </AssociationSet>
-          <AssociationSet Name="FK_RSVPLink_Person" Association="Self.FK_RSVPLink_Person">
-            <End Role="Person" EntitySet="Person" />
-            <End Role="RSVPLink" EntitySet="RSVPLink" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RSVPLink_Wedding" Association="Self.FK_RSVPLink_Wedding">
-            <End Role="Wedding" EntitySet="Wedding" />
+          <AssociationSet Name="FK_RSVPLink_Attendee" Association="Self.FK_RSVPLink_Attendee">
+            <End Role="Attendee" EntitySet="Attendee" />
             <End Role="RSVPLink" EntitySet="RSVPLink" />
           </AssociationSet>
         </EntityContainer>
@@ -318,217 +301,164 @@
           <Property Name="AttendeeID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PersonID" Type="Int64" Nullable="false" />
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
-          <Property Name="WeddingRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="WeddingRole" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Side" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Attending" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-          <Property Name="numberofRSVPs" Type="Int32" Nullable="false" />
-          <Property Name="PartyMemberBlub" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Attending" Type="Boolean" />
+          <Property Name="PartyMember" Type="Boolean" />
+          <Property Name="PartyMemberBlurb" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="RSVPStatus" Type="Boolean" />
-          <Property Name="GuidToken" Type="Guid" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastUpdated" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Person" Relationship="WeddingSiteBuilderModel.FK_Attendee_Person" FromRole="Attendee" ToRole="Person" />
-          <NavigationProperty Name="Wedding" Relationship="WeddingSiteBuilderModel.FK_Attendee_Wedding" FromRole="Attendee" ToRole="Wedding" />
+          <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Person" Relationship="Self.FK_Attendee_Person" FromRole="Attendee" ToRole="Person" />
+          <NavigationProperty Name="Wedding" Relationship="Self.FK_Attendee_Wedding" FromRole="Attendee" ToRole="Wedding" />
+          <NavigationProperty Name="RSVPLinks" Relationship="Self.FK_RSVPLink_Attendee" FromRole="Attendee" ToRole="RSVPLink" />
+          <Property Name="NumberofRSVPs" Type="Int32" />
         </EntityType>
         <EntityType Name="Ceremony">
           <Key>
             <PropertyRef Name="CeremonyID" />
           </Key>
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
-          <Property Name="CeremonyID" Type="Int64" Nullable="false" />
+          <Property Name="CeremonyID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="CeremonyDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="WeddingSiteBuilderModel.FK_Ceremony_Wedding" FromRole="Ceremony" ToRole="Wedding" />
+          <NavigationProperty Name="Wedding" Relationship="Self.FK_Ceremony_Wedding" FromRole="Ceremony" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
             <PropertyRef Name="HotelID" />
           </Key>
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
-          <Property Name="HotelID" Type="Int64" Nullable="false" />
+          <Property Name="HotelID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="HotelName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="RoomBlock" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="TravelTips" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="WeddingSiteBuilderModel.FK_Hotel_Wedding" FromRole="Hotel" ToRole="Wedding" />
+          <NavigationProperty Name="Wedding" Relationship="Self.FK_Hotel_Wedding" FromRole="Hotel" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
             <PropertyRef Name="PersonID" />
           </Key>
-          <Property Name="PersonID" Type="Int64" Nullable="false" />
-          <Property Name="Prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PersonID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Prefix" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="MiddleName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Suffix" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
           <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Attendees" Relationship="WeddingSiteBuilderModel.FK_Attendee_Person" FromRole="Person" ToRole="Attendee" />
-          <NavigationProperty Name="RSVPLinks" Relationship="WeddingSiteBuilderModel.FK_RSVPLink_Person" FromRole="Person" ToRole="RSVPLink" />
+          <NavigationProperty Name="Attendees" Relationship="Self.FK_Attendee_Person" FromRole="Person" ToRole="Attendee" />
         </EntityType>
         <EntityType Name="Photo">
           <Key>
             <PropertyRef Name="PhotoID" />
           </Key>
           <Property Name="WeddingID" Type="Int64" />
-          <Property Name="PhotoID" Type="Int64" Nullable="false" />
+          <Property Name="PhotoID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PhotoData" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="WeddingSiteBuilderModel.FK_Photo_Wedding" FromRole="Photo" ToRole="Wedding" />
+          <NavigationProperty Name="Wedding" Relationship="Self.FK_Photo_Wedding" FromRole="Photo" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="Reception">
           <Key>
             <PropertyRef Name="ReceptionID" />
           </Key>
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
-          <Property Name="ReceptionID" Type="Int64" Nullable="false" />
+          <Property Name="ReceptionID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="LocationName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="ReceptionDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="WeddingSiteBuilderModel.FK_Reception_Wedding" FromRole="Reception" ToRole="Wedding" />
+          <NavigationProperty Name="Wedding" Relationship="Self.FK_Reception_Wedding" FromRole="Reception" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="Registry">
           <Key>
-            <PropertyRef Name="WeddingID" />
             <PropertyRef Name="RegistryID" />
           </Key>
+          <Property Name="RegistryID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="WeddingID" Type="Int64" Nullable="false" />
-          <Property Name="StoreID" Type="Int64" Nullable="false" />
           <Property Name="StoreName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Address1" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="StateProv" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PhoneNumber" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="WebsiteLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RegistryID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Wedding" Relationship="WeddingSiteBuilderModel.FK_Registry_Wedding" FromRole="Registry" ToRole="Wedding" />
+          <NavigationProperty Name="Wedding" Relationship="Self.FK_Registry_Wedding" FromRole="Registry" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="RSVPLink">
           <Key>
-            <PropertyRef Name="WeddingID" />
-            <PropertyRef Name="PersonID" />
             <PropertyRef Name="RSVPLinkID" />
           </Key>
-          <Property Name="WeddingID" Type="Int64" Nullable="false" />
-          <Property Name="PersonID" Type="Int64" Nullable="false" />
+          <Property Name="RSVPLinkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AttendeeID" Type="Int64" Nullable="false" />
           <Property Name="RSVPNameBlub" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="GuidToken" Type="Guid" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="RSVPLinkID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="Person" Relationship="WeddingSiteBuilderModel.FK_RSVPLink_Person" FromRole="RSVPLink" ToRole="Person" />
-          <NavigationProperty Name="Wedding" Relationship="WeddingSiteBuilderModel.FK_RSVPLink_Wedding" FromRole="RSVPLink" ToRole="Wedding" />
+          <Property Name="IsAnswered" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="Attendee" Relationship="Self.FK_RSVPLink_Attendee" FromRole="RSVPLink" ToRole="Attendee" />
         </EntityType>
         <EntityType Name="Wedding">
           <Key>
             <PropertyRef Name="WeddingID" />
           </Key>
-          <Property Name="WeddingID" Type="Int64" Nullable="false" />
+          <Property Name="WeddingID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="DestinationWedding" Type="Boolean" Nullable="false" />
           <Property Name="CoupleStory" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Attendees" Relationship="WeddingSiteBuilderModel.FK_Attendee_Wedding" FromRole="Wedding" ToRole="Attendee" />
-          <NavigationProperty Name="Ceremonies" Relationship="WeddingSiteBuilderModel.FK_Ceremony_Wedding" FromRole="Wedding" ToRole="Ceremony" />
-          <NavigationProperty Name="Hotels" Relationship="WeddingSiteBuilderModel.FK_Hotel_Wedding" FromRole="Wedding" ToRole="Hotel" />
-          <NavigationProperty Name="Photos" Relationship="WeddingSiteBuilderModel.FK_Photo_Wedding" FromRole="Wedding" ToRole="Photo" />
-          <NavigationProperty Name="Receptions" Relationship="WeddingSiteBuilderModel.FK_Reception_Wedding" FromRole="Wedding" ToRole="Reception" />
-          <NavigationProperty Name="Registries" Relationship="WeddingSiteBuilderModel.FK_Registry_Wedding" FromRole="Wedding" ToRole="Registry" />
-          <NavigationProperty Name="RSVPLinks" Relationship="WeddingSiteBuilderModel.FK_RSVPLink_Wedding" FromRole="Wedding" ToRole="RSVPLink" />
+          <NavigationProperty Name="Attendees" Relationship="Self.FK_Attendee_Wedding" FromRole="Wedding" ToRole="Attendee" />
+          <NavigationProperty Name="Ceremonies" Relationship="Self.FK_Ceremony_Wedding" FromRole="Wedding" ToRole="Ceremony" />
+          <NavigationProperty Name="Hotels" Relationship="Self.FK_Hotel_Wedding" FromRole="Wedding" ToRole="Hotel" />
+          <NavigationProperty Name="Photos" Relationship="Self.FK_Photo_Wedding" FromRole="Wedding" ToRole="Photo" />
+          <NavigationProperty Name="Receptions" Relationship="Self.FK_Reception_Wedding" FromRole="Wedding" ToRole="Reception" />
+          <NavigationProperty Name="Registries" Relationship="Self.FK_Registry_Wedding" FromRole="Wedding" ToRole="Registry" />
         </EntityType>
-        <EntityContainer Name="WeddingSiteBuilderEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Attendees" EntityType="Self.Attendee" />
-          <EntitySet Name="Ceremonies" EntityType="Self.Ceremony" />
-          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
-          <EntitySet Name="People" EntityType="Self.Person" />
-          <EntitySet Name="Photos" EntityType="Self.Photo" />
-          <EntitySet Name="Receptions" EntityType="Self.Reception" />
-          <EntitySet Name="Registries" EntityType="Self.Registry" />
-          <EntitySet Name="RSVPLinks" EntityType="Self.RSVPLink" />
-          <EntitySet Name="Weddings" EntityType="Self.Wedding" />
-          <AssociationSet Name="FK_Attendee_Person" Association="WeddingSiteBuilderModel.FK_Attendee_Person">
-            <End Role="Person" EntitySet="People" />
-            <End Role="Attendee" EntitySet="Attendees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Attendee_Wedding" Association="WeddingSiteBuilderModel.FK_Attendee_Wedding">
-            <End Role="Wedding" EntitySet="Weddings" />
-            <End Role="Attendee" EntitySet="Attendees" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Ceremony_Wedding" Association="WeddingSiteBuilderModel.FK_Ceremony_Wedding">
-            <End Role="Wedding" EntitySet="Weddings" />
-            <End Role="Ceremony" EntitySet="Ceremonies" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Hotel_Wedding" Association="WeddingSiteBuilderModel.FK_Hotel_Wedding">
-            <End Role="Wedding" EntitySet="Weddings" />
-            <End Role="Hotel" EntitySet="Hotels" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RSVPLink_Person" Association="WeddingSiteBuilderModel.FK_RSVPLink_Person">
-            <End Role="Person" EntitySet="People" />
-            <End Role="RSVPLink" EntitySet="RSVPLinks" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Photo_Wedding" Association="WeddingSiteBuilderModel.FK_Photo_Wedding">
-            <End Role="Wedding" EntitySet="Weddings" />
-            <End Role="Photo" EntitySet="Photos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Reception_Wedding" Association="WeddingSiteBuilderModel.FK_Reception_Wedding">
-            <End Role="Wedding" EntitySet="Weddings" />
-            <End Role="Reception" EntitySet="Receptions" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Registry_Wedding" Association="WeddingSiteBuilderModel.FK_Registry_Wedding">
-            <End Role="Wedding" EntitySet="Weddings" />
-            <End Role="Registry" EntitySet="Registries" />
-          </AssociationSet>
-          <AssociationSet Name="FK_RSVPLink_Wedding" Association="WeddingSiteBuilderModel.FK_RSVPLink_Wedding">
-            <End Role="Wedding" EntitySet="Weddings" />
-            <End Role="RSVPLink" EntitySet="RSVPLinks" />
-          </AssociationSet>
-        </EntityContainer>
         <Association Name="FK_Attendee_Person">
-          <End Type="WeddingSiteBuilderModel.Person" Role="Person" Multiplicity="1" />
-          <End Type="WeddingSiteBuilderModel.Attendee" Role="Attendee" Multiplicity="*" />
+          <End Role="Person" Type="Self.Person" Multiplicity="1" />
+          <End Role="Attendee" Type="Self.Attendee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Person">
               <PropertyRef Name="PersonID" />
@@ -539,8 +469,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Attendee_Wedding">
-          <End Type="WeddingSiteBuilderModel.Wedding" Role="Wedding" Multiplicity="1" />
-          <End Type="WeddingSiteBuilderModel.Attendee" Role="Attendee" Multiplicity="*" />
+          <End Role="Wedding" Type="Self.Wedding" Multiplicity="1" />
+          <End Role="Attendee" Type="Self.Attendee" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Wedding">
               <PropertyRef Name="WeddingID" />
@@ -550,9 +480,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RSVPLink_Attendee">
+          <End Role="Attendee" Type="Self.Attendee" Multiplicity="1" />
+          <End Role="RSVPLink" Type="Self.RSVPLink" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Attendee">
+              <PropertyRef Name="AttendeeID" />
+            </Principal>
+            <Dependent Role="RSVPLink">
+              <PropertyRef Name="AttendeeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Ceremony_Wedding">
-          <End Type="WeddingSiteBuilderModel.Wedding" Role="Wedding" Multiplicity="1" />
-          <End Type="WeddingSiteBuilderModel.Ceremony" Role="Ceremony" Multiplicity="*" />
+          <End Role="Wedding" Type="Self.Wedding" Multiplicity="1" />
+          <End Role="Ceremony" Type="Self.Ceremony" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Wedding">
               <PropertyRef Name="WeddingID" />
@@ -563,8 +505,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Hotel_Wedding">
-          <End Type="WeddingSiteBuilderModel.Wedding" Role="Wedding" Multiplicity="1" />
-          <End Type="WeddingSiteBuilderModel.Hotel" Role="Hotel" Multiplicity="*" />
+          <End Role="Wedding" Type="Self.Wedding" Multiplicity="1" />
+          <End Role="Hotel" Type="Self.Hotel" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Wedding">
               <PropertyRef Name="WeddingID" />
@@ -574,21 +516,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RSVPLink_Person">
-          <End Type="WeddingSiteBuilderModel.Person" Role="Person" Multiplicity="1" />
-          <End Type="WeddingSiteBuilderModel.RSVPLink" Role="RSVPLink" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Person">
-              <PropertyRef Name="PersonID" />
-            </Principal>
-            <Dependent Role="RSVPLink">
-              <PropertyRef Name="PersonID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Photo_Wedding">
-          <End Type="WeddingSiteBuilderModel.Wedding" Role="Wedding" Multiplicity="0..1" />
-          <End Type="WeddingSiteBuilderModel.Photo" Role="Photo" Multiplicity="*" />
+          <End Role="Wedding" Type="Self.Wedding" Multiplicity="0..1" />
+          <End Role="Photo" Type="Self.Photo" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Wedding">
               <PropertyRef Name="WeddingID" />
@@ -599,8 +529,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Reception_Wedding">
-          <End Type="WeddingSiteBuilderModel.Wedding" Role="Wedding" Multiplicity="1" />
-          <End Type="WeddingSiteBuilderModel.Reception" Role="Reception" Multiplicity="*" />
+          <End Role="Wedding" Type="Self.Wedding" Multiplicity="1" />
+          <End Role="Reception" Type="Self.Reception" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Wedding">
               <PropertyRef Name="WeddingID" />
@@ -611,8 +541,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Registry_Wedding">
-          <End Type="WeddingSiteBuilderModel.Wedding" Role="Wedding" Multiplicity="1" />
-          <End Type="WeddingSiteBuilderModel.Registry" Role="Registry" Multiplicity="*" />
+          <End Role="Wedding" Type="Self.Wedding" Multiplicity="1" />
+          <End Role="Registry" Type="Self.Registry" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Wedding">
               <PropertyRef Name="WeddingID" />
@@ -622,18 +552,49 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_RSVPLink_Wedding">
-          <End Type="WeddingSiteBuilderModel.Wedding" Role="Wedding" Multiplicity="1" />
-          <End Type="WeddingSiteBuilderModel.RSVPLink" Role="RSVPLink" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Wedding">
-              <PropertyRef Name="WeddingID" />
-            </Principal>
-            <Dependent Role="RSVPLink">
-              <PropertyRef Name="WeddingID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
+        <EntityContainer Name="WeddingSiteBuilderEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Attendees" EntityType="Self.Attendee" />
+          <EntitySet Name="Ceremonies" EntityType="Self.Ceremony" />
+          <EntitySet Name="Hotels" EntityType="Self.Hotel" />
+          <EntitySet Name="People" EntityType="Self.Person" />
+          <EntitySet Name="Photos" EntityType="Self.Photo" />
+          <EntitySet Name="Receptions" EntityType="Self.Reception" />
+          <EntitySet Name="Registries" EntityType="Self.Registry" />
+          <EntitySet Name="RSVPLinks" EntityType="Self.RSVPLink" />
+          <EntitySet Name="Weddings" EntityType="Self.Wedding" />
+          <AssociationSet Name="FK_Attendee_Person" Association="Self.FK_Attendee_Person">
+            <End Role="Person" EntitySet="People" />
+            <End Role="Attendee" EntitySet="Attendees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Attendee_Wedding" Association="Self.FK_Attendee_Wedding">
+            <End Role="Wedding" EntitySet="Weddings" />
+            <End Role="Attendee" EntitySet="Attendees" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RSVPLink_Attendee" Association="Self.FK_RSVPLink_Attendee">
+            <End Role="Attendee" EntitySet="Attendees" />
+            <End Role="RSVPLink" EntitySet="RSVPLinks" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ceremony_Wedding" Association="Self.FK_Ceremony_Wedding">
+            <End Role="Wedding" EntitySet="Weddings" />
+            <End Role="Ceremony" EntitySet="Ceremonies" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Hotel_Wedding" Association="Self.FK_Hotel_Wedding">
+            <End Role="Wedding" EntitySet="Weddings" />
+            <End Role="Hotel" EntitySet="Hotels" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Photo_Wedding" Association="Self.FK_Photo_Wedding">
+            <End Role="Wedding" EntitySet="Weddings" />
+            <End Role="Photo" EntitySet="Photos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Reception_Wedding" Association="Self.FK_Reception_Wedding">
+            <End Role="Wedding" EntitySet="Weddings" />
+            <End Role="Reception" EntitySet="Receptions" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Registry_Wedding" Association="Self.FK_Registry_Wedding">
+            <End Role="Wedding" EntitySet="Weddings" />
+            <End Role="Registry" EntitySet="Registries" />
+          </AssociationSet>
+        </EntityContainer>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -643,6 +604,7 @@
           <EntitySetMapping Name="Attendees">
             <EntityTypeMapping TypeName="WeddingSiteBuilderModel.Attendee">
               <MappingFragment StoreEntitySet="Attendee">
+                <ScalarProperty Name="NumberofRSVPs" ColumnName="NumberofRSVPs" />
                 <ScalarProperty Name="AttendeeID" ColumnName="AttendeeID" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
                 <ScalarProperty Name="WeddingID" ColumnName="WeddingID" />
@@ -650,10 +612,9 @@
                 <ScalarProperty Name="Relationship" ColumnName="Relationship" />
                 <ScalarProperty Name="Side" ColumnName="Side" />
                 <ScalarProperty Name="Attending" ColumnName="Attending" />
-                <ScalarProperty Name="numberofRSVPs" ColumnName="numberofRSVPs" />
-                <ScalarProperty Name="PartyMemberBlub" ColumnName="PartyMemberBlub" />
+                <ScalarProperty Name="PartyMember" ColumnName="PartyMember" />
+                <ScalarProperty Name="PartyMemberBlurb" ColumnName="PartyMemberBlurb" />
                 <ScalarProperty Name="RSVPStatus" ColumnName="RSVPStatus" />
-                <ScalarProperty Name="GuidToken" ColumnName="GuidToken" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
               </MappingFragment>
@@ -757,7 +718,6 @@
               <MappingFragment StoreEntitySet="Registry">
                 <ScalarProperty Name="RegistryID" ColumnName="RegistryID" />
                 <ScalarProperty Name="WeddingID" ColumnName="WeddingID" />
-                <ScalarProperty Name="StoreID" ColumnName="StoreID" />
                 <ScalarProperty Name="StoreName" ColumnName="StoreName" />
                 <ScalarProperty Name="Address1" ColumnName="Address1" />
                 <ScalarProperty Name="Address2" ColumnName="Address2" />
@@ -776,12 +736,12 @@
             <EntityTypeMapping TypeName="WeddingSiteBuilderModel.RSVPLink">
               <MappingFragment StoreEntitySet="RSVPLink">
                 <ScalarProperty Name="RSVPLinkID" ColumnName="RSVPLinkID" />
-                <ScalarProperty Name="WeddingID" ColumnName="WeddingID" />
-                <ScalarProperty Name="PersonID" ColumnName="PersonID" />
+                <ScalarProperty Name="AttendeeID" ColumnName="AttendeeID" />
                 <ScalarProperty Name="RSVPNameBlub" ColumnName="RSVPNameBlub" />
                 <ScalarProperty Name="GuidToken" ColumnName="GuidToken" />
                 <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
                 <ScalarProperty Name="LastUpdated" ColumnName="LastUpdated" />
+                <ScalarProperty Name="IsAnswered" ColumnName="IsAnswered" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -14,6 +14,13 @@ namespace WeddingSiteBuilder.ReadModel
     
     public partial class Hotel
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Hotel()
+        {
+            CreateDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
+        }
+
         public long WeddingID { get; set; }
         public long HotelID { get; set; }
         public string HotelName { get; set; }

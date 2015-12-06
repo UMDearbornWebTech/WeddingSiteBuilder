@@ -14,6 +14,13 @@ namespace WeddingSiteBuilder.ReadModel
     
     public partial class Ceremony
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Ceremony()
+        {
+            CreateDate = DateTime.Now;
+            LastUpdated = DateTime.Now;
+        }
+
         public long WeddingID { get; set; }
         public long CeremonyID { get; set; }
         public string LocationName { get; set; }
