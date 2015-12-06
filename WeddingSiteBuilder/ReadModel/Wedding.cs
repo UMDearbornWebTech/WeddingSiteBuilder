@@ -26,6 +26,7 @@ namespace WeddingSiteBuilder.ReadModel
 
             CreateDate = DateTime.Now;
             LastUpdated = DateTime.Now;
+            DestinationWedding = false;
         }
     
         public long WeddingID { get; set; }
