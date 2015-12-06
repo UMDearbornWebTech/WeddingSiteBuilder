@@ -169,6 +169,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>WeddingSiteBuilderModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Services\EmailService.cs" />
+    <Compile Include="Services\Interfaces\IEmailService.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
