@@ -7,6 +7,33 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
        
+        function writeCookie(name, value, days) {
+            var date, expires;
+            if (days) {
+                date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toGMTString();
+            } else {
+                expires = "";
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
+        function readCookie(name) {
+            var i, c, ca, nameEQ = name + "=";
+            ca = document.cookie.split(';');
+            for (i = 0; i < ca.length; i++) {
+                c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1, c.length);
+                }
+                if (c.indexOf(nameEQ) == 0) {
+                    return c.substring(nameEQ.length, c.length);
+                }
+            }
+            return '';
+        }
+
             var borg1 = $('#brideorgroom1').val();
             var fname1 = $('#firstname1').val();
             var lname1 = $('#lastname1').val();
@@ -19,8 +46,9 @@
 
         var logOut = function () {
 
+            writeCookie('sessionId', "", -1);
             window.location.href = '../index.html'
-      window.location.href = '../index.html'
+     
         };
         var preview = function () {
             
@@ -49,18 +77,23 @@
         }
 
         var loadProfile = function () {
-            var prodId = getParameterByName('weddingID');
-          
+            var sId = readCookie('sessionId');
 
-            $('#brideorgroom1').val('Groom');
-            $('#FirstName1').val('John');
-            $('#LastName1').val('Smith');
-            $('#email1').val('john.smith@umich.edu');
-            $('#brideorgroom2').val('Bride');
-            $('#FirstName2').val('Britney');
-            $('#LastName2').val('Spears');
-            $('#email2').val('britney.spears@umich.edu');
+            if (sId == 'True') {
 
+                var prodId = getParameterByName('weddingID');
+                $('#brideorgroom1').val('Groom');
+                $('#FirstName1').val('John');
+                $('#LastName1').val('Smith');
+                $('#email1').val('john.smith@umich.edu');
+                $('#brideorgroom2').val('Bride');
+                $('#FirstName2').val('Britney');
+                $('#LastName2').val('Spears');
+                $('#email2').val('britney.spears@umich.edu');
+            }
+            else {
+                window.location.href = '../index.html'
+            }
         }
 
 
