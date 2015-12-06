@@ -29,12 +29,12 @@ namespace WeddingSiteBuilder.ReadModel
         public string Relationship { get; set; }
         public string Side { get; set; }
         public Nullable<bool> Attending { get; set; }
-        public string numberofRSVPs { get; set; }
         public Nullable<bool> PartyMember { get; set; }
         public string PartyMemberBlurb { get; set; }
         public Nullable<bool> RSVPStatus { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
+        public Nullable<int> NumberofRSVPs { get; set; }
     
         public virtual Person Person { get; set; }
         public virtual Wedding Wedding { get; set; }

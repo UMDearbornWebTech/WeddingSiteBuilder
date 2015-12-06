@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="WeddingSiteBuilderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="WeddingSiteBuilderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Attendee">
           <Key>
             <PropertyRef Name="AttendeeID" />
@@ -16,12 +16,12 @@
           <Property Name="Relationship" Type="varchar" MaxLength="50" />
           <Property Name="Side" Type="varchar" MaxLength="5" Nullable="false" />
           <Property Name="Attending" Type="bit" />
-          <Property Name="numberofRSVPs" Type="varchar" MaxLength="50" />
           <Property Name="PartyMember" Type="bit" />
           <Property Name="PartyMemberBlurb" Type="varchar" MaxLength="250" />
           <Property Name="RSVPStatus" Type="bit" />
           <Property Name="CreateDate" Type="datetime" Nullable="false" />
           <Property Name="LastUpdated" Type="datetime" Nullable="false" />
+          <Property Name="NumberofRSVPs" Type="int" />
         </EntityType>
         <EntityType Name="Ceremony">
           <Key>
@@ -290,8 +290,7 @@
             <End Role="RSVPLink" EntitySet="RSVPLink" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="WeddingSiteBuilderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -306,7 +305,6 @@
           <Property Name="Relationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Side" Type="String" MaxLength="5" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Attending" Type="Boolean" />
-          <Property Name="numberofRSVPs" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="PartyMember" Type="Boolean" />
           <Property Name="PartyMemberBlurb" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="RSVPStatus" Type="Boolean" />
@@ -315,6 +313,7 @@
           <NavigationProperty Name="Person" Relationship="Self.FK_Attendee_Person" FromRole="Attendee" ToRole="Person" />
           <NavigationProperty Name="Wedding" Relationship="Self.FK_Attendee_Wedding" FromRole="Attendee" ToRole="Wedding" />
           <NavigationProperty Name="RSVPLinks" Relationship="Self.FK_RSVPLink_Attendee" FromRole="Attendee" ToRole="RSVPLink" />
+          <Property Name="NumberofRSVPs" Type="Int32" />
         </EntityType>
         <EntityType Name="Ceremony">
           <Key>
@@ -605,6 +604,7 @@
           <EntitySetMapping Name="Attendees">
             <EntityTypeMapping TypeName="WeddingSiteBuilderModel.Attendee">
               <MappingFragment StoreEntitySet="Attendee">
+                <ScalarProperty Name="NumberofRSVPs" ColumnName="NumberofRSVPs" />
                 <ScalarProperty Name="AttendeeID" ColumnName="AttendeeID" />
                 <ScalarProperty Name="PersonID" ColumnName="PersonID" />
                 <ScalarProperty Name="WeddingID" ColumnName="WeddingID" />
@@ -612,7 +612,6 @@
                 <ScalarProperty Name="Relationship" ColumnName="Relationship" />
                 <ScalarProperty Name="Side" ColumnName="Side" />
                 <ScalarProperty Name="Attending" ColumnName="Attending" />
-                <ScalarProperty Name="numberofRSVPs" ColumnName="numberofRSVPs" />
                 <ScalarProperty Name="PartyMember" ColumnName="PartyMember" />
                 <ScalarProperty Name="PartyMemberBlurb" ColumnName="PartyMemberBlurb" />
                 <ScalarProperty Name="RSVPStatus" ColumnName="RSVPStatus" />
