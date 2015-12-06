@@ -67,16 +67,18 @@
         };
 
         var loadWeddingParty = function() {
-            $('#pic').val();
-            $('#firstname').val('Jennifer');
-            $('#lastname').val('Lawrence');
-            $('#side').val('bride');
-            $('#relationship').val('Best Friend');
-            $('#role').val('Maid of Honor');
+            
             
             var sId = readCookie('sessionId');
 
             if (sId == 'True') {
+                
+                $('#pic').val();
+                $('#firstname').val('Jennifer');
+                $('#lastname').val('Lawrence');
+                $('#side').val('bride');
+                $('#relationship').val('Best Friend');
+                $('#role').val('Maid of Honor');
 
                 var prodId = getParameterByName('weddingID');
                 var str = window.location.href;
