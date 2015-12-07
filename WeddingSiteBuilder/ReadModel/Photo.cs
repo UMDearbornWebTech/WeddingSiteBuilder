@@ -26,7 +26,5 @@ namespace WeddingSiteBuilder.ReadModel
         public byte[] PhotoData { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
-    
-        public virtual Wedding Wedding { get; set; }
     }
 }

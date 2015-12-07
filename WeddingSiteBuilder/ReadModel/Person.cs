@@ -19,7 +19,6 @@ namespace WeddingSiteBuilder.ReadModel
         {
             CreateDate = DateTime.Now;
             LastUpdated = DateTime.Now;
-            this.Attendees = new HashSet<Attendee>();
         }
     
         public long PersonID { get; set; }
@@ -40,8 +39,5 @@ namespace WeddingSiteBuilder.ReadModel
         public string Password { get; set; }
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
-    
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Attendee> Attendees { get; set; }
     }
 }

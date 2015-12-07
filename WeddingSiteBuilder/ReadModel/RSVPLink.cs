@@ -28,7 +28,5 @@ namespace WeddingSiteBuilder.ReadModel
         public System.DateTime CreateDate { get; set; }
         public System.DateTime LastUpdated { get; set; }
         public bool IsAnswered { get; set; }
-    
-        public virtual Attendee Attendee { get; set; }
     }
 }

@@ -17,7 +17,6 @@ namespace WeddingSiteBuilder.ReadModel
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Attendee()
         {
-            this.RSVPLinks = new HashSet<RSVPLink>();
             CreateDate = DateTime.Now;
             LastUpdated = DateTime.Now;
         }
@@ -37,8 +36,5 @@ namespace WeddingSiteBuilder.ReadModel
         public Nullable<int> NumberofRSVPs { get; set; }
     
         public virtual Person Person { get; set; }
-        public virtual Wedding Wedding { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<RSVPLink> RSVPLinks { get; set; }
     }
 }
