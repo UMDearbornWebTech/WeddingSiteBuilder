@@ -311,8 +311,6 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <NavigationProperty Name="Person" Relationship="Self.FK_Attendee_Person" FromRole="Attendee" ToRole="Person" />
-          <NavigationProperty Name="Wedding" Relationship="Self.FK_Attendee_Wedding" FromRole="Attendee" ToRole="Wedding" />
-          <NavigationProperty Name="RSVPLinks" Relationship="Self.FK_RSVPLink_Attendee" FromRole="Attendee" ToRole="RSVPLink" />
           <Property Name="NumberofRSVPs" Type="Int32" />
         </EntityType>
         <EntityType Name="Ceremony">
@@ -332,7 +330,6 @@
           <Property Name="CeremonyDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="Self.FK_Ceremony_Wedding" FromRole="Ceremony" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="Hotel">
           <Key>
@@ -352,7 +349,6 @@
           <Property Name="TravelTips" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="Self.FK_Hotel_Wedding" FromRole="Hotel" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="Person">
           <Key>
@@ -376,7 +372,6 @@
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Attendees" Relationship="Self.FK_Attendee_Person" FromRole="Person" ToRole="Attendee" />
         </EntityType>
         <EntityType Name="Photo">
           <Key>
@@ -387,7 +382,6 @@
           <Property Name="PhotoData" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="Self.FK_Photo_Wedding" FromRole="Photo" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="Reception">
           <Key>
@@ -406,7 +400,6 @@
           <Property Name="ReceptionDateTime" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="Self.FK_Reception_Wedding" FromRole="Reception" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="Registry">
           <Key>
@@ -425,7 +418,6 @@
           <Property Name="WebsiteLink" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Wedding" Relationship="Self.FK_Registry_Wedding" FromRole="Registry" ToRole="Wedding" />
         </EntityType>
         <EntityType Name="RSVPLink">
           <Key>
@@ -438,7 +430,6 @@
           <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="LastUpdated" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="IsAnswered" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Attendee" Relationship="Self.FK_RSVPLink_Attendee" FromRole="RSVPLink" ToRole="Attendee" />
         </EntityType>
         <EntityType Name="Wedding">
           <Key>

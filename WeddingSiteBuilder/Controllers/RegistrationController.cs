@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using WeddingSiteBuilder.DTOs;
 using WeddingSiteBuilder.ReadModel;
@@ -18,9 +16,10 @@ namespace WeddingSiteBuilder.Controllers
         }
 
         // GET: api/Registration/5
-        public string Get(int id)
+        public void Get(int WeddingId)
         {
-            return "value";
+            
+
         }
 
         // POST: api/Registration
