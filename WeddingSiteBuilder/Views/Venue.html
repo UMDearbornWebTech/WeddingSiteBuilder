@@ -6,7 +6,7 @@
     <title>Wedding Venue</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
-
+             
         //set the ceremony information 
         var CName = $('#Location1').val();
         var Caddress = $('#Address1').val();
@@ -21,6 +21,18 @@
         var Rzip = $('#Zip2').val();
         var Rdate = $('#datepicker2').val();
         
+        function writeCookie(name, value, days) {
+            var date, expires;
+            if (days) {
+                date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toGMTString();
+            } else {
+                expires = "";
+            }
+            document.cookie = name + "=" + value + expires + "; path=/";
+        }
+
         function readCookie(name) {
             var i, c, ca, nameEQ = name + "=";
             ca = document.cookie.split(';');
@@ -35,20 +47,10 @@
             }
             return '';
         }
-
-    //    var preview = function () {
-           
-            //assign the url values 
-    //        var url = 'api/Venue?Location1=' + CName + '&Address1=' + Caddress + '&City1=' + Ccity
-    //            + '&Zip1=' + Czip + '&datepicker1=' + Cdate + '&Location2=' + RName + '&Address2=' + Raddress + '&City2='
-    ///            + Rcity + '&Zip2=' + Rzip + '&datepicker2=' + Rdate;
-//
-  //          $.get(url);
-       // };
-        
+      
         //redirect user to the main login page(index.html)
         var logOut = function () {
-
+            writeCookie('sessionId', "", -1);
             window.location.href = '../index.html'
 
         };
@@ -65,7 +67,26 @@
                 + '&Zip1=' + Czip + '&datepicker1=' + Cdate + '&Location2=' + RName + '&Address2=' + Raddress + '&City2='
                 + Rcity + '&Zip2=' + Rzip + '&datepicker2=' + Rdate;
             $.get(url);
+          
+            
         };
+
+        $(document).ready(function(){
+            $("#Save").click(function () {
+                if (CName == "" || CName == null) {
+                    alert("Venue Name Required");
+                    return false;
+                }
+            });
+            });
+        //var validation = function () {
+        //    var x = document.forms["myform"]["Location1"].value;
+        //    if (x == "") {
+        //        //alert("Please enter location");
+        //        document.getElementById("Location1").style.display = "Error";
+        //       return false;
+        //    }
+        //}
 
         var loadVenue = function () {
             
@@ -74,11 +95,11 @@
             if (sId == 'True') {
 
                 //ceremony information
-                $('#Location1').val('Church');
-                $('#Address1').val('123 Main St.');
-                $('#City1').val('Detroit');
-                $('#State1').val('MI');
-                $('#Zip1').val('48222');
+                $('#Location1').val();
+                $('#Address1').val();
+                $('#City1').val();
+                $('#State1').val();
+                $('#Zip1').val();
                 document.getElementById("datepicker1").defaultValue = "2020-02-09";
 
                 //reception information 
@@ -108,24 +129,14 @@
             return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
         }
 
-        function preview() {
-            var prodId = getParameterByName('weddingID');
-            var str = window.location.href;
-            var n = str.lastIndexOf('/');
-            var result = str.substr(0, n);
-
-            window.open(result + '/weddingpage.html?weddingID=' + prodId);
-        }
-
-
     </script>
 </head>
 <body onload="loadVenue()">
 
     <h2>Cermony Information</h2>
-    <form action=" ">
+    <form name = "myform" action=" ">
         <br>
-        Location Name: <br /><input type="text" id="Location1"> <br />
+        Location Name: <br /><input type="text" id="Location1" required> <br />
         Address 1: <br /><input type="text" id="Address1"> <br />
         City: <br /><input type="text" id="City1"><br />
         State: <br /><input type="text" id="State1"><br />
@@ -146,7 +157,7 @@
         Zip Code: <br /><input type="text" id="Zip2">    <br />    
         Date: <br /><input type="date" id="datepicker2"> <br />
  <br>
-        <input type="button" onclick="saveVenue();" value="Save" class="myButton">
+        <input type="submit" onclick="saveVenue();" value="Save" class="myButton" id="Save">
         <input type="button" onclick="mainMenu();" value="Main Menu" class="myButton">
         <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         
