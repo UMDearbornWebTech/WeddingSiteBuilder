@@ -4,6 +4,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using WeddingSiteBuilder.ReadModel;
 
 namespace WeddingSiteBuilder.Controllers
 {
@@ -16,13 +17,23 @@ namespace WeddingSiteBuilder.Controllers
         }
 
         // GET: api/Login?userName=dummy&password=pword
-        public bool Get(string userName, string password)
+        public long Get(string Email, string Password)
         {
-            if(userName == "alexis" && password == "reyes")
+            using (var dbContext = new WeddingSiteBuilderEntities())
             {
-                return true;
+                var existingLogin = dbContext.People.Where(p => p.Email == Email && p.Password == Password).FirstOrDefault();
+                if(existingLogin != null)
+                {
+                    var attendee = dbContext.Attendees.Where(a => a.PersonID == existingLogin.PersonID).FirstOrDefault();
+                    if(attendee != null)
+                    {
+                        return attendee.WeddingID;
+                    }
+                    return 0;
+                }
+
+                return 0;
             }
-            return false;
         }
 
         // POST: api/Login

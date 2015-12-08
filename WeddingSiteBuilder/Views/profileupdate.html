@@ -76,20 +76,34 @@
             window.location.href = 'UserTabs.html?weddingID=' + prodId;
         }
 
+        var getCouple = function (weddingId) {
+            var url = '/api/Attendee?option=couple&WeddingId=' + weddingId;
+
+            $.getJSON()
+        }
+
         var loadProfile = function () {
             var sId = readCookie('sessionId');
-
+            var weddingId = getParameterByName('weddingID');
             if (sId == 'True') {
+                if (weddingId != "") {
+                    var url = '/api/Attendee?option=couple&WeddingId=' + weddingId;
 
-                var prodId = getParameterByName('weddingID');
-                $('#brideorgroom1').val('Groom');
-                $('#FirstName1').val('John');
-                $('#LastName1').val('Smith');
-                $('#email1').val('john.smith@umich.edu');
-                $('#brideorgroom2').val('Bride');
-                $('#FirstName2').val('Britney');
-                $('#LastName2').val('Spears');
-                $('#email2').val('britney.spears@umich.edu');
+                    $.getJSON(url, function (data) {
+                        if (data.length > 0) {
+                            $('#brideorgroom1').val(data[0].WeddingRole);
+                            $('#FirstName1').val(data[0].Person.FirstName);
+                            $('#LastName1').val(data[0].Person.LastName);
+                            $('#email1').val(data[0].Person.Email);
+                        }
+                        if (data.length > 1) {
+                            $('#brideorgroom2').val(data[1].WeddingRole);
+                            $('#FirstName2').val(data[1].Person.FirstName);
+                            $('#LastName2').val(data[1].Person.LastName);
+                            $('#email2').val(data[1].Person.Email);
+                        }
+                    });
+                }
             }
             else {
                 window.location.href = '../index.html'

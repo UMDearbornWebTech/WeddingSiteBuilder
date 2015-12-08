@@ -27,14 +27,14 @@
         var CheckLogin = function () {
             var uname = $('#username').val();
             var pword = $('#password').val();
-            var url = 'api/Login?userName=' + uname + '&password=' + pword;
+            var url = 'api/Login?Email=' + uname + '&Password=' + pword;
 
             $.get(url, function (data) {
-                if (data) {
+                if (data != 0) {
 
                     var activeSession = 'True';
                     writeCookie('sessionId', activeSession, 3);
-                    window.location.href = 'Views/usertabs.html?weddingID=5';
+                    window.location.href = 'Views/usertabs.html?weddingID='+ data;
                 }
                 else {
                     $('#errorMessage').css('display', 'inline');
@@ -76,6 +76,6 @@
     
     </form>
 
-    <p id="errorMessage" style="color:red; display:none;">Wrong username and password</p>
+    <p id="errorMessage" style="color:red; display:none;">Wrong email and password</p>
 </body>
 </html>
