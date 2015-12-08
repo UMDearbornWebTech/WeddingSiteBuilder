@@ -73,12 +73,29 @@ namespace WeddingSiteBuilder.Controllers
                             if (!string.IsNullOrWhiteSpace(request.Blurb)) existingAttendee.PartyMemberBlurb = request.Blurb;
                             existingAttendee.PartyMember = request.PartyMember;
 
-                            var changesSaved = dbContext.SaveChanges();
-                            return (changesSaved > 0);
+                            try
+                            {
+                                var changesSaved = dbContext.SaveChanges();
+                                return true;
+                            }
+                            catch (Exception)
+                            {
+                                return false;
+                            }
+                            
                         }
                     }
-                    else if (!(string.IsNullOrWhiteSpace(request.FirstName) || string.IsNullOrWhiteSpace(request.LastName) || (request.Side.ToLower() != "bride" && request.Side.ToLower() != "groom")))
+                    else if (!(string.IsNullOrWhiteSpace(request.FirstName) || string.IsNullOrWhiteSpace(request.LastName) || (request.Role.ToLower() != "bride" && request.Role.ToLower() != "groom")))
                     {
+                        if (request.Role.ToLower() == "bride" || request.Role.ToLower() == "groom")
+                        {
+                            request.Side = request.Role;
+                        }
+                        else if (!(request.Side.ToLower() == "bride" || request.Side.ToLower() == "groom"))
+                        {
+                            request.Side = "Bride";
+                        }
+
                         var attendee = new Attendee()
                         {
                             Side = request.Side,

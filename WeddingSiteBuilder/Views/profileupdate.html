@@ -63,12 +63,62 @@
         //    $.get(url);
 
         };
+
+        var GetAttendee = function (option) {
+            var body = {};
+            body.Role = $('#brideorgroom' + option).val();
+            body.FirstName = $('#FirstName' + option).val();
+            body.LastName = $('#LastName' + option).val();
+            body.Email = $('#email' + option).val();
+            body.AttendeeId = $('#AttendeeId' + option).val();
+
+            if (body.FirstName != "" && body.LastName != "" && body.Email != "") {
+                return body;
+            }
+            return null;
+        }
+
         var SaveProfile = function () {
+            var weddingId = getParameterByName('weddingID');
+            if (weddingId != "") {
+                var body = GetAttendee("1");
+                if (body) {
+                    body.WeddingId = weddingId
 
-            var url = 'api/ProfileUpdate?brideorgroom1=' + borg1 + '&firstName1=' + fname1 + '&lastName1=' + lname1 + '&email1=' + email1 + '&brideorgroom2=' + borg2 + + '&firstName2=' + fname2 + '&lastName2=' + lname2 + '&email2=' + email2;
-            //after saving the usertabs.html page should display
-            $.get(url);
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/Attendee",
+                        contentType: "application/json",
+                        data: JSON.stringify(body),
+                        success: function (data) {
+                            if (data) {
+                                alert("Saved Person"); // Let's do something better than an alert every time we save someone
+                            }
+                            else
+                                alert("Looks like something went wrong"); // Let's do better than this for failures
+                        }
+                    });
+                }
 
+                body = GetAttendee("2");
+                if (body) {
+                    body.WeddingId = weddingId;
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/Attendee",
+                        contentType: "application/json",
+                        data: JSON.stringify(body),
+                        success: function (data) {
+                            if (data) {
+                                alert("Saved Person"); // Let's do something better than an alert every time we save someone
+                            }
+                            else
+                                alert("Looks like something went wrong"); // Let's do better than this for failures
+                        }
+                    });
+                }
+            }
         };
 
         var mainMenu = function () {
@@ -78,18 +128,32 @@
 
         var loadProfile = function () {
             var sId = readCookie('sessionId');
-
+            var weddingId = getParameterByName('weddingID');
             if (sId == 'True') {
+                if (weddingId != "") {
+                    var url = '/api/Attendee?option=couple&WeddingId=' + weddingId;
 
-                var prodId = getParameterByName('weddingID');
-                $('#brideorgroom1').val('Groom');
-                $('#FirstName1').val('John');
-                $('#LastName1').val('Smith');
-                $('#email1').val('john.smith@umich.edu');
-                $('#brideorgroom2').val('Bride');
-                $('#FirstName2').val('Britney');
-                $('#LastName2').val('Spears');
-                $('#email2').val('britney.spears@umich.edu');
+                    $.getJSON(url, function (data) {
+                        if (data.length > 0) {
+                            $('#brideorgroom1').val(data[0].WeddingRole);
+                            $('#FirstName1').val(data[0].Person.FirstName);
+                            $('#LastName1').val(data[0].Person.LastName);
+                            $('#email1').val(data[0].Person.Email);
+                            $('#AttendeeId1').val(data[0].AttendeeID);
+                            if (data[0].WeddingRole == "Bride")
+                                $("brideorgroom2").val('Groom');
+                            else
+                                $("brideorgroom2").val('Bride');
+                        }
+                        if (data.length > 1) {
+                            $('#brideorgroom2').val(data[1].WeddingRole);
+                            $('#FirstName2').val(data[1].Person.FirstName);
+                            $('#LastName2').val(data[1].Person.LastName);
+                            $('#email2').val(data[1].Person.Email);
+                            $('#AttendeeId2').val(data[1].AttendeeID);
+                        }
+                    });
+                }
             }
             else {
                 window.location.href = '../index.html'
@@ -118,6 +182,7 @@
         <br>
         First Name: <br /><input type="text" id="FirstName1" maxlength="50"><br />
         Last  Name: <br /><input type="text" id="LastName1" maxlength="50">
+        <input type="hidden" id="AttendeeId1" />
         <br />
         Email(user login): <br /><input type="email" id="email1" maxlength="50">
         
@@ -130,6 +195,7 @@
         <br>
         First Name: <br /><input type="text" id="FirstName2" maxlength="50"><br />
         Last  Name: <br /><input type="text" id="LastName2" maxlength="50">
+        <input type="hidden" id="AttendeeId2" />
         <br />
         Email: <br /><input type="email" id="email2" maxlength="50">
         <br>
