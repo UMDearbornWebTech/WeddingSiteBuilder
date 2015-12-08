@@ -126,12 +126,6 @@
             window.location.href = 'UserTabs.html?weddingID=' + prodId;
         }
 
-        var getCouple = function (weddingId) {
-            var url = '/api/Attendee?option=couple&WeddingId=' + weddingId;
-
-            $.getJSON()
-        }
-
         var loadProfile = function () {
             var sId = readCookie('sessionId');
             var weddingId = getParameterByName('weddingID');
