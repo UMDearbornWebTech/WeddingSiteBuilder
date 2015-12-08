@@ -35,22 +35,49 @@
         }
 
         var CreateSite = function () {
-            var fname = $('#firstname').val();
-            var lname = $('#lastname').val();
-            var email = $('#email').val();
-            var pword = $('#password').val();
-            var who = $('iamthe').val();
-            var url = 'api/Register?firstname=' + fname + '&lastname=' + lname + '&email=' + email + '&iamthe=' + who + '&password=' +pword ;
+            
+
+
+            var body = {};
+            body.fname = $('#firstname').val();
+            body.lname = $('#lastname').val();
+            body.email = $('#email').val();
+            body.pword = $('#password').val();
+            //body.who = $('').val();
+
+            body.who = document.getElementById("iamthe").value
+            alert(body.who);
+            //url = 'api/Register?firstname=' + fname + '&lastname=' + lname + '&email=' + email + '&iamthe=' + who + '&password=' +pword ;
             //after user enters the basic registration information, the profileupdate.html page should display for the user to enter profile info
 
             var activeSession = 'True';
             writeCookie('sessionId', activeSession, 3);
 
-            window.location.href = 'usertabs.html?weddingID=10'
-            $.get(url, function (data) {
-                alert("Success " + data)
-                
+                        
+                        
+                        
+                         
+
+            var formData = { Email:"mike@mike.mike",Password:"mike",FirstName: "mike",LastName:"mikel" };
+
+            $.ajax({
+                type: "POST",
+                contentType: "application/json",
+                url: "api/Registration",
+                data: formData, //JSON.stringify(body),
+                success: function (data) {
+                    alert(data);
+                    window.location.href = 'usertabs.html?weddingID=' + data;
+                },
+                error: alert('error')
             });
+
+
+           
+            //$.get(url, function (data) {
+            //    alert("Success " + data)
+                
+
         };
     </script>
    
@@ -65,9 +92,11 @@
         Email (user log on):<br /><input type="email" id="email" maxlength="50">
         <br />
         I am the...
-        <input type="radio" id="iamthe" value="Bride" checked>Bride
-        <input type="radio" id="iamthe" value="Groom">Groom
-        <br>
+        <select id="iamthe">
+            <option  value="Bride" checked>Bride
+            <option  value="Groom">Groom
+        </select>
+            <br>
         Password:<br /><input type="password" id="password" maxlength="50">
         <br />
         Confirm Password:<br /><input type="password" id="password" maxlength="50">
