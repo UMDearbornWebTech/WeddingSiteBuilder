@@ -105,6 +105,7 @@
       <LastGenOutput>WeddingSiteBuilderModel.cs</LastGenOutput>
     </Content>
     <Content Include="styles\styles.css" />
+    <Content Include="Views\respondtorsvp.html" />
     <Content Include="Views\weddingpage.html" />
     <Content Include="Views\profileupdate.html" />
     <Content Include="Views\register.html" />
