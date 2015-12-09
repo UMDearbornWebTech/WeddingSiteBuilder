@@ -44,6 +44,7 @@ namespace WeddingSiteBuilder.Controllers
                         if (!string.IsNullOrWhiteSpace(request.LocationName)) reception.LocationName = request.LocationName;
                         if (!string.IsNullOrWhiteSpace(request.Address1)) reception.Address1 = request.Address1;
                         if (!string.IsNullOrWhiteSpace(request.City)) reception.City = request.City;
+                        if (!string.IsNullOrWhiteSpace(request.State)) reception.StateProv = request.State;
                         if (!string.IsNullOrWhiteSpace(request.Zip)) reception.ZipCode = request.Zip;
                         if (request.Date != null) reception.ReceptionDateTime = request.Date.Value;
 
@@ -55,6 +56,7 @@ namespace WeddingSiteBuilder.Controllers
                         LocationName = request.LocationName,
                         Address1 = request.Address1,
                         City = request.City,
+                        StateProv = request.State,
                         ZipCode = request.Zip,
                         ReceptionDateTime = request.Date.HasValue ? request.Date.Value : DateTime.Now
                     });
