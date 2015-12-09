@@ -8,6 +8,7 @@
         public string LastName { get; set; }
         public bool PartyMember { get; set; }
         public string Email { get; set; }
+        public string Relationship { get; set; }
         public string Side { get; set; }
         public string Role { get; set; }
         public string Blurb { get; set; }

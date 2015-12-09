@@ -61,6 +61,7 @@ namespace WeddingSiteBuilder.Controllers
                             if (!string.IsNullOrWhiteSpace(request.FirstName)) existingAttendee.Person.FirstName = request.FirstName;
                             if (!string.IsNullOrWhiteSpace(request.LastName)) existingAttendee.Person.LastName = request.LastName;
                             if (!string.IsNullOrWhiteSpace(request.Email)) existingAttendee.Person.Email = request.Email;
+                            if (!string.IsNullOrWhiteSpace(request.Relationship)) existingAttendee.Relationship = request.Relationship;
                             if (!string.IsNullOrWhiteSpace(request.Role)) existingAttendee.WeddingRole = request.Role;
                             if (request.Role.ToLower() == "bride" || request.Role.ToLower() == "groom")
                             {
@@ -100,6 +101,7 @@ namespace WeddingSiteBuilder.Controllers
                         {
                             Side = request.Side,
                             WeddingRole = request.Role,
+                            Relationship = request.Relationship,
                             PartyMemberBlurb = request.Blurb,
                             PartyMember = request.PartyMember,
                             WeddingID = request.WeddingId,
