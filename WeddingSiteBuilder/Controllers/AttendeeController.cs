@@ -18,7 +18,7 @@ namespace WeddingSiteBuilder.Controllers
         }
 
         // GET: api/Attendee/5
-        public List<Attendee> Get(int WeddingId, string option)
+        public List<Attendee> Get(long WeddingId, string option)
         {
             var attendees = new List<Attendee>();
 
@@ -86,7 +86,7 @@ namespace WeddingSiteBuilder.Controllers
                             
                         }
                     }
-                    else if (!(string.IsNullOrWhiteSpace(request.FirstName) || string.IsNullOrWhiteSpace(request.LastName) || (request.Role.ToLower() != "bride" && request.Role.ToLower() != "groom")))
+                    else if (!(string.IsNullOrWhiteSpace(request.FirstName) || string.IsNullOrWhiteSpace(request.LastName)))
                     {
                         if (request.Role.ToLower() == "bride" || request.Role.ToLower() == "groom")
                         {
