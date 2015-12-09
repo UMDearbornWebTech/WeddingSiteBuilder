@@ -1,0 +1,29 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Please respond to RSVP</title>
+	<meta charset="utf-8" />
+    <link rel="stylesheet" type="text/css" href="../styles/styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+    <script type="text/javascript">
+        
+        var SubmitRSVP = function () {
+            alert('Thank you for you responding to the RSVP');
+            window.top.close();
+        }
+        </script>
+</head>
+<body>
+    <form><br />
+        Name:<br /><input type="text" id="guestname"><br>
+        Count:<br /><input type="text"  id="guestcount">
+        <br /><select id="acceptreject">
+            <option value="accept" checked>Accept
+            <option value="reject">Reject
+        </select>
+        <input type="button" value="Submit" onclick="SubmitRSVP();" class="myButton">
+        <br>
+
+    </form>
+</body>
+</html>

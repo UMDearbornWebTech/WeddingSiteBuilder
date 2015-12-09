@@ -78,6 +78,83 @@
             return null;
         }
 
+        var CheckFields = function () {
+
+            var fName1 = $('#FirstName1').val();
+            var lName1 = $('#LastName1').val();
+            var Email1 = $('#email1').val();
+            var usererror1 = false;
+
+            var fName2 = $('#FirstName2').val();
+            var lName2 = $('#LastName2').val();
+            var Email2 = $('#email2').val();
+            var usererror2 = false;
+
+          
+            if (fName2 != '' ) {
+                
+                if (lName2 == null || lName2 == '' || Email2 == null || Email2 == '') {
+                    usererror2 = true;
+                }
+            } else if (lName2 != '') {
+                
+                if (fName2 == null || fName2 == '' || Email2 == null || Email2 == '') {
+                    usererror2 = true;
+                }
+            } else if (Email2 != '') {
+                alert('email');
+                if (fName2 == null || fName2 == '' || lName2 == null || lName2 == '') {
+                    usererror2 = true;
+                }
+            } else {
+                usererror2 = false;
+            }
+
+            //if ((fName2 == null || fName2 == '') && (lName2 == null || lName2 == '') && (Email2 == null || Email2 == '')) {
+            //    usererror2 = true;
+            //    $('#errorfname2').css('display', 'inline');
+            //    $('#errorlname2').css('display', 'inline');
+            //    $('#erroremail2').css('display', 'inline');
+            //} else {
+            //    $('#errorfname2').css('display', 'none');
+            //    $('#errorlname2').css('display', 'none');
+            //    $('#erroremail2').css('display', 'none');
+            //}
+
+            if (fName1 == null || fName1 == '') {
+                usererror1 = true;
+                $('#errorfname1').css('display', 'inline');
+            } else {
+                $('#errorfname1').css('display', 'none');
+            }
+
+            if (lName1 == null || lName1 == '') {
+                usererror1 = true;
+                $('#errorlname1').css('display', 'inline');
+            } else {
+                $('#errorlname1').css('display', 'none');
+            }
+
+            if (Email1 == null || Email1 == '') {
+                usererror1 = true;
+                $('#erroremail1').css('display', 'inline');
+            } else {
+                $('#erroremail1').css('display', 'none');
+            }
+
+            if (usererror1 == true) {
+                alert('Error: Please ensure that you have entered the bride/groom 1 information')
+            } else if(usererror2 == true) {
+                alert('Since you have entered at least 1 field for second bride/groom, you must enter all fields');
+
+            } else {
+                SaveProfile();
+            }
+
+
+           
+        }
+
         var SaveProfile = function () {
             var weddingId = getParameterByName('weddingID');
             if (weddingId != "") {
@@ -92,7 +169,7 @@
                         data: JSON.stringify(body),
                         success: function (data) {
                             if (data) {
-                                alert("Saved Person"); // Let's do something better than an alert every time we save someone
+                                alert("Record has been saved"); // Let's do something better than an alert every time we save someone
                             }
                             else
                                 alert("Looks like something went wrong"); // Let's do better than this for failures
@@ -111,13 +188,13 @@
                         data: JSON.stringify(body),
                         success: function (data) {
                             if (data) {
-                                alert("Saved Person"); // Let's do something better than an alert every time we save someone
+                            //    alert("Saved Person"); // Let's do something better than an alert every time we save someone
                             }
                             else
                                 alert("Looks like something went wrong"); // Let's do better than this for failures
                         }
                     });
-                }
+                } 
             }
         };
 
@@ -180,11 +257,11 @@
             <option value="Groom">Groom</option>
         </select>
         <br>
-        First Name: <br /><input type="text" id="FirstName1" maxlength="50"><br />
-        Last  Name: <br /><input type="text" id="LastName1" maxlength="50">
+        First Name: <br /><input type="text" id="FirstName1" maxlength="50"><p id="errorfname1" style="color:red; display:none;">*</p><br />
+        Last  Name: <br /><input type="text" id="LastName1" maxlength="50"><p id="errorlname1" style="color:red; display:none;">*</p>
         <input type="hidden" id="AttendeeId1" />
         <br />
-        Email(user login): <br /><input type="email" id="email1" maxlength="50">
+        Email(user login): <br /><input type="email" id="email1" maxlength="50"><p id="erroremail1" style="color:red; display:none;">*</p>
         
         <br>
         <br>
@@ -193,11 +270,11 @@
              <option value="Grood">Groom</option>
         </select>
         <br>
-        First Name: <br /><input type="text" id="FirstName2" maxlength="50"><br />
-        Last  Name: <br /><input type="text" id="LastName2" maxlength="50">
+        First Name: <br /><input type="text" id="FirstName2" maxlength="50"><p id="errorfname2" style="color:red; display:none;">*</p><br />
+        Last  Name: <br /><input type="text" id="LastName2" maxlength="50"><p id="errorlname2" style="color:red; display:none;">*</p>
         <input type="hidden" id="AttendeeId2" />
         <br />
-        Email: <br /><input type="email" id="email2" maxlength="50">
+        Email: <br /><input type="email" id="email2" maxlength="50"><p id="erroremail2" style="color:red; display:none;">*</p>
         <br>
        
         <br>
@@ -206,7 +283,7 @@
         
         Confirm New Password: <input type="password" id="Password" maxlength="50">-->
         <br><br />
-        <input type="button" onclick="SaveProfile();" value="Save" class="myButton">
+        <input type="button" onclick="CheckFields();" value="Save" class="myButton">
         <input type="button" value="Main Menu" onclick="mainMenu();" class="myButton">
         <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         <br>
