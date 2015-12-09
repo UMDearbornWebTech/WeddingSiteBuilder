@@ -5,15 +5,7 @@
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
     <title>Wedding Party</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
-    <script type="text/javascript">
-
-        var coupleImg = $('#pic').val();
-        var fname = $('#firstname').val();
-        var lname = $('#lastname').val();
-        var side = $('#side').val();
-        var relationship = $('#relationship').val();
-        var role = $('#role').val();
-        var PersonImg = $('#image').val();
+    <script type="text/javascript">      
 
         function writeCookie(name, value, days) {
             var date, expires;
@@ -42,59 +34,100 @@
             return '';
         }
 
+       // var coupleImg = $('#pic').val();
+        var fname = $('#firstname').val();
+        var lname = $('#lastname').val();
+        var side = $('#side').val();
+        var relationship = $('#relationship').val();
+        var role = $('#role').val();
+        var comments = $('#comments').val();
+       // var PersonImg = $('#image').val();
+
         //redirect user to the main login page(index.html)
         var logOut = function () {
-
             window.location.href = '../index.html'
-
         };
 
         var mainMenu = function () {
-            var prodId = getParameterByName('weddingID');
-            window.location.href = 'UserTabs.html?weddingID=' + prodId;
+            var weddingID = getParameterByName('weddingID');
+            window.location.href = 'UserTabs.html?weddingID=' + weddingID;
+        }
+
+
+        var getWeddingParty = function () {
+            var body = {};
+            body.FirstName = $('#fname' ).val();
+            body.LastName = $('#lname' ).val();
+            body.Side = $('#side' ).val();
+            body.Relationship = $('#relationship' ).val();
+            body.Role = $('#role' ).val();
+            body.PartyMemberBlurb = $('#comments').val();
+            body.PartyMember = true;
+            return body;
         }
 
         var saveWedParty = function () {
-            
-            var url = 'api/WeddingParty?pic=' + coupleImg + '&fname=' + firstname + '&lname=' + lastname
-                + '&side=' + side + '&relationship=' + relationship + '&role=' + role + '&image=' + PersonImg;
+            var weddingId = getParameterByName('weddingID');
+            if (weddingId != "") {
+                var body = getWeddingParty();
+                if (body) {
+                    body.WeddingId = weddingId
 
-            $.get(url, function (data) {
-                console.log(data);
-            });
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/Attendee",
+                        contentType: "application/json",
+                        data: JSON.stringify(body),
+                        success: function (data) {
+                            if (data) {
+                                alert("Saved Successfully");
+                            }
+                            else {
+                                alert("Looks like something went wrong!");
+                            }
+                        }
+                    })
+                }
+            }
+            
         };
 
-        var loadWeddingParty = function() {
-            
-            
+        var loadWeddingParty = function () {
+
             var sId = readCookie('sessionId');
-
+            var weddingId = getParameterByName('weddingID');
             if (sId == 'True') {
-                
-                $('#pic').val();
-                $('#firstname').val('Jennifer');
-                $('#lastname').val('Lawrence');
-                $('#side').val('bride');
-                $('#relationship').val('Best Friend');
-                $('#role').val('Maid of Honor');
+                if (weddingId != "") {
+                    var url = '/api/Attendee?option=party&WeddingId=' + weddingId;
 
-                var prodId = getParameterByName('weddingID');
-                var str = window.location.href;
-                var n = str.lastIndexOf('/');
-                var result = str.substr(0, n);
-            }
-            else {
-                window.location.href = '../index.html'
-            }
-            
-        };
+                    $.getJSON(url, function (data) {
+                        var tr;
+                        for (var i = 0; i < data.length; i++) {
+                            var table = $('#table');
+                            table.append("<tr id='row" + i + "'></tr>");
+                            var row = $('#row'+i);
+                            row.append("<td>" + data[i].Person.FirstName + "</td>");
+                            row.append("<td>" + data[i].Person.LastName + "</td>");
+                            row.append("<td>" + data[i].Side + "</td>");
+                            row.append("<td>" + data[i].Role + "</td>");
+                            row.append("<td>" + data[i].Relationship + "</td>");
+                            row.append("<td>" + data[i].PartyMemberBlurb+ "</td>");
+                        }
+                    });
+                }
+                else {
+                    window.location.href = '../index.html'
+                }
 
-        function getParameterByName(name) {
-            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                results = regex.exec(location.search);
-            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            };
         }
+            function getParameterByName(name) {
+                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                    results = regex.exec(location.search);
+                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+            }
+        
     </script>
 </head>
 <body onload="loadWeddingParty()">
@@ -106,13 +139,15 @@
     <textarea rows="20" cols="50"> Tell us your story! </textarea>
     <form action=" ">
         <p>Wedding Party</p>
-        First name:  <br /><input type="text" id="firstname">
+        First name:  <br /><input type="text" id="fname">
         <br>
-        Last name:   <br /><input type="text" id="lastname">
+        Last name:   <br /><input type="text" id="lname">
         <br>
-        Bride/Groom Side:        
-        <input type="radio" id="side" value="Bride" checked>Bride
-        <input type="radio" id="side" value="Groom">Groom
+        Bride/Groom Side: 
+        <select id="side">
+            <option value="Bride">Bride</option>
+            <option value="Groom">Groom</option>
+        </select>
         <br>
         <br>
         Relationship:  <br /><input type="text" id="relationship">
@@ -123,10 +158,10 @@
         <br>
     </form>
     <br />
-        <textarea rows="5" cols="50"> Special Comments.</textarea>
+        <textarea rows="5" cols="50" id="comments"> Special Comments.</textarea>
     <br />
     <br />
-    <table>
+    <table id="table">
         <tr>
             <th>First Name</th>
             <th>Last Name</th>
