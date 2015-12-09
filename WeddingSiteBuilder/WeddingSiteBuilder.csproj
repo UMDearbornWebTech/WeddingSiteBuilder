@@ -118,12 +118,15 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AttendeeController.cs" />
+    <Compile Include="Controllers\CeremonyController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\PersonController.cs" />
+    <Compile Include="Controllers\ReceptionController.cs" />
     <Compile Include="Controllers\RegistrationController.cs" />
     <Compile Include="Controllers\WeddingController.cs" />
     <Compile Include="Controllers\WeddingCoupleController.cs" />
     <Compile Include="DTOs\AttendeeDTO.cs" />
+    <Compile Include="DTOs\EventDTO.cs" />
     <Compile Include="DTOs\RegistrationDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
