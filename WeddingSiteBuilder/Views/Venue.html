@@ -133,9 +133,9 @@
                         $('#Location1').val(data.LocationName);
                         $('#Address1').val(data.Address1);
                         $('#City1').val(data.City);
-                        $('#State1').val(data.State);
-                        $('#Zip1').val(data.Zip);
-                        $('#datepicker1').val(data.Date);
+                        $('#State1').val(data.StateProv);
+                        $('#Zip1').val(data.ZipCode);
+                        $('#datepicker1').val(data.CeremonyDateTime);
 
                     });
                      $.getJSON(url, function (data) {
@@ -143,9 +143,9 @@
                             $('#Location2').val(data.LocationName);
                             $('#Address2').val(data.Address1);
                             $('#City2').val(data.City);
-                            $('#State2').val(data.State);
-                            $('#Zip2').val(data.Zip);
-                            $('#datepicker2').val(data.Date);
+                            $('#State2').val(data.StateProv);
+                            $('#Zip2').val(data.ZipCode);
+                            $('#datepicker2').val(data.ReceptionDateTime);
                         
                     });
                 }                              
