@@ -13,10 +13,39 @@ namespace WeddingSiteBuilder.Controllers
 {
     public class RSVPController : ApiController
     {
-        // GET: api/RSVP
-        public IEnumerable<string> Get()
+        // GET: api/RSVP/yeah
+        public AttendeeWithRSVP Get(Guid Id)
         {
-            return new string[] { "value1", "value2" };
+            using(var dbContext = new WeddingSiteBuilderEntities())
+            {
+                var rsvp = dbContext.RSVPLinks.FirstOrDefault(r => r.GuidToken == Id);
+                var att = dbContext.Attendees.FirstOrDefault(a => a.AttendeeID == rsvp.AttendeeID);
+                if (rsvp == null || att == null) return null;
+                var attendee = new AttendeeWithRSVP
+                {
+                    Attendee = new AttendeeModel(att),
+                    RSVP = new RSVPLinkModel(rsvp)
+                };
+
+                return attendee;
+            }
+        }
+
+        public bool Post(long RSVPLinkId, int Count, bool Accepted)
+        {
+            using (var dbContext = new WeddingSiteBuilderEntities())
+            {
+                var rsvp = dbContext.RSVPLinks.FirstOrDefault(r => r.RSVPLinkID == RSVPLinkId);
+                if (rsvp == null) return false;
+
+                var attendee = dbContext.Attendees.FirstOrDefault(a => a.AttendeeID == rsvp.AttendeeID);
+                attendee.NumberofRSVPs = Count;
+                attendee.Attending = Accepted;
+                rsvp.IsAnswered = true;
+
+                dbContext.SaveChanges();
+                return true;
+            }
         }
 
         // GET: api/RSVP/5
@@ -33,9 +62,16 @@ namespace WeddingSiteBuilder.Controllers
                         .ToList()
                         .ForEach(a =>
                         {
-                            var attendee = (AttendeeWithRSVP)a;
-                            attendee.RSVP = dbContext.RSVPLinks.FirstOrDefault(r => r.AttendeeID == a.AttendeeID);
-                            attendees.Add(attendee);
+                            var rsvp = dbContext.RSVPLinks.FirstOrDefault(r => r.AttendeeID == a.AttendeeID);
+                            if (rsvp != null)
+                            {
+                                var attendee = new AttendeeWithRSVP
+                                {
+                                    Attendee = new AttendeeModel(a),
+                                    RSVP = new RSVPLinkModel(rsvp)
+                                };
+                                attendees.Add(attendee);
+                            }
                         });
                     return attendees;
                 }
@@ -62,31 +98,59 @@ namespace WeddingSiteBuilder.Controllers
                         Email = request.Email
                     }
                 };
-
-                dbContext.Attendees.Add(attendee);
-                var changesSaved = dbContext.SaveChanges();
-
-                var rsvp = new RSVPLink()
+                try
                 {
-                    AttendeeID = attendee.AttendeeID,
-                    GuidToken = new Guid()
-                };
+                    dbContext.Attendees.Add(attendee);
+                    var changesSaved = dbContext.SaveChanges();
 
-                dbContext.RSVPLinks.Add(rsvp);
-                changesSaved += dbContext.SaveChanges();
+                    var rsvp = new RSVPLink()
+                    {
+                        AttendeeID = attendee.AttendeeID,
+                        GuidToken = Guid.NewGuid(),
+                        RSVPNameBlub = string.Empty,
+                        IsAnswered = false
+                    };
 
-                var attendeeWithRSVP = (AttendeeWithRSVP)attendee;
-                attendeeWithRSVP.RSVP = rsvp;
+                    dbContext.RSVPLinks.Add(rsvp);
+                    changesSaved += dbContext.SaveChanges();
 
-                SendRSVPEmail(attendeeWithRSVP, dbContext);
+                    var attendeeWithRSVP = new AttendeeWithRSVP
+                    {
+                        Attendee = new AttendeeModel(attendee),
+                        RSVP = new RSVPLinkModel(rsvp)
+                    };
 
-                return attendeeWithRSVP;
+                    SendRSVPEmail(attendee, rsvp, dbContext);
+
+                    return attendeeWithRSVP;
+                }
+                catch(Exception)
+                {
+                    return null;
+                }
             }
         }
 
         // PUT: api/RSVP/5
-        public void Put(int id, [FromBody]string value)
+        public bool Put(int id)
         {
+            try
+            {
+                using (var dbContext = new WeddingSiteBuilderEntities())
+                {
+                    var rsvp = dbContext.RSVPLinks.FirstOrDefault(r => r.RSVPLinkID == id);
+                    var att = dbContext.Attendees.FirstOrDefault(a => a.AttendeeID == rsvp.AttendeeID);
+                    if (rsvp == null || att == null) return false;
+
+                    SendRSVPEmail(att, rsvp, dbContext);
+                    return true;
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+            
         }
 
         // DELETE: api/RSVP/5
@@ -94,28 +158,28 @@ namespace WeddingSiteBuilder.Controllers
         {
         }
 
-        private void SendRSVPEmail(AttendeeWithRSVP request, WeddingSiteBuilderEntities dbContext)
+        private void SendRSVPEmail(Attendee attendee, RSVPLink rsvp, WeddingSiteBuilderEntities dbContext)
         {
-            var couple = dbContext.Attendees.Where(a => a.WeddingID == request.WeddingID && (a.WeddingRole == "Bride" || a.WeddingRole == "Groom")).ToList();
+            var couple = dbContext.Attendees.Where(a => a.WeddingID == attendee.WeddingID && (a.WeddingRole == "Bride" || a.WeddingRole == "Groom")).ToList();
             string subject;
 
             if(couple.Count() == 1)
             {
                 var herOrHis = couple.FirstOrDefault().WeddingRole == "Bride" ? "her" : "his";
-                subject = "Hey " + request.Person.FirstName + ", let {0} know if you'll be coming to " + herOrHis + " wedding";
+                subject = "Hey " + attendee.Person.FirstName + ", let {0} know if you'll be coming to " + herOrHis + " wedding";
             }
             else 
             {
-                subject = "Hey " + request.Person.FirstName + ", let {0} and {1} know if you'll be coming to their wedding";
+                subject = "Hey " + attendee.Person.FirstName + ", let {0} and {1} know if you'll be coming to their wedding";
             }
 
             var message = new StringBuilder();
             message.AppendLine("RSVP for the wedding by clicking on the link below.");
-            message.AppendLine(string.Format("http://localhost:59998/Views/sendviewrsvp.html?token={0}", request.RSVP.GuidToken));
+            message.AppendLine(string.Format("http://localhost:59998/Views/sendviewrsvp.html?token={0}", rsvp.GuidToken));
 
             EmailService.Instance.SendEmail(
-                request.Person.Email,
-                couple.Count() == 1 ? string.Format(subject, couple.FirstOrDefault().Person.FirstName) : string.Format(subject, couple.LastOrDefault().Person.FirstName),
+                attendee.Person.Email,
+                couple.Count() == 1 ? string.Format(subject, couple.FirstOrDefault().Person.FirstName) : string.Format(subject, couple.FirstOrDefault().Person.FirstName, couple.LastOrDefault().Person.FirstName),
                 message.ToString());
         }
     }

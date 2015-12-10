@@ -2,8 +2,9 @@
 
 namespace WeddingSiteBuilder.DTOs
 {
-    public class AttendeeWithRSVP : Attendee 
+    public class AttendeeWithRSVP 
     {
-        public RSVPLink RSVP { get; set; }
+        public AttendeeModel Attendee { get; set; }
+        public RSVPLinkModel RSVP { get; set; }
     }
 }

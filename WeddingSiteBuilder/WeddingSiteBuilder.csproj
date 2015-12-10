@@ -127,9 +127,11 @@
     <Compile Include="Controllers\WeddingController.cs" />
     <Compile Include="Controllers\WeddingCoupleController.cs" />
     <Compile Include="DTOs\AttendeeDTO.cs" />
+    <Compile Include="DTOs\AttendeeModel.cs" />
     <Compile Include="DTOs\AttendeeWithRSVP.cs" />
     <Compile Include="DTOs\EventDTO.cs" />
     <Compile Include="DTOs\RegistrationDTO.cs" />
+    <Compile Include="DTOs\RSVPLinkModel.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
