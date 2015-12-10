@@ -34,14 +34,12 @@
             return '';
         }
 
-       // var coupleImg = $('#pic').val();
         var fname = $('#firstname').val();
         var lname = $('#lastname').val();
         var side = $('#side').val();
         var relationship = $('#relationship').val();
         var role = $('#role').val();
         var comments = $('#comments').val();
-       // var PersonImg = $('#image').val();
 
         //redirect user to the main login page(index.html)
         var logOut = function () {
@@ -64,6 +62,42 @@
             body.Blurb = $('#comments').val();
             body.PartyMember = true;
             return body;
+        }
+
+        var CheckFields = function () {
+
+            var fname = $('#firstname').val();
+            var lname = $('#lastname').val();
+            var side = $('#side').val();
+            var relationship = $('#relationship').val();
+            var role = $('#role').val();
+            var comments = $('#comments').val();
+            var errorExists = false;
+
+            if (fname != '') {
+                if (lname == "" || lname == null) {
+                    $('#errorlName').css('display', 'inline');
+                    errorExists = true;
+                }
+                if (side == "" || side == null) {
+                    $('#errorside').css('display', 'inline');
+                    errorExists = true;
+                }
+                if (relationship == "" || relationship == null) {
+                    $('#errorRelationship').css('display', 'inline');
+                    errorExists = true;
+                }
+                if (role == "" || role == null) {
+                    $('#errorRole').css('display', 'inline');
+                    errorExists = true;
+                }             
+            }
+            if (errorExists == true) {
+                alert("Please ensure all fields are filled in correctly");
+            }
+            else {
+                saveWedParty();
+            }
         }
 
         var saveWedParty = function () {
@@ -131,31 +165,22 @@
     </script>
 </head>
 <body onload="loadWeddingParty()">
-    <p>Wedding Couple</p>
- 
-        Image of the Couple: <br /><input type="file" id="pic" accept="image/*">
-        
-        <br>   
-    <textarea rows="20" cols="50"> Tell us your story! </textarea>
+    <p>Wedding Couple</p><br>   
+    <textarea rows="10" cols="20"> Tell us your story! </textarea>
     <form action=" ">
         <p>Wedding Party</p>
-        First name:  <br /><input type="text" id="fname">
-        <br>
-        Last name:   <br /><input type="text" id="lname">
-        <br>
+        First name:  <br /><input type="text" id="fname"><p id="errorfName" style="color:red; display:none;">*</p> <br>
+        Last name:   <br /><input type="text" id="lname"><p id="errorlName" style="color:red; display:none;">*</p><br>
         Bride/Groom Side: 
         <select id="side">
             <option value="Bride">Bride</option>
             <option value="Groom">Groom</option>
-        </select>
+        </select><p id="errorside" style="color:red; display:none;">*</p>
         <br>
         <br>
-        Relationship:  <br /><input type="text" id="relationship">
-        <br>
-        Role: <br /> <input type="text" id="role">
-        <br>
-        Image: <br /><input type="file" id="image" accept="image/*">
-        <br>
+        Relationship:  <br /><input type="text" id="relationship"><p id="errorRelationship" style="color:red; display:none;">*</p><br>
+        Role: <br /> <input type="text" id="role"><p id="errorRole" style="color:red; display:none;">*</p><br>
+       
     </form>
     <br />
         <textarea rows="5" cols="50" id="comments"> Special Comments.</textarea>
@@ -175,7 +200,7 @@
     <br />
     <!--Need to query database to get information into the table-->
     <form action=" ">
-        <input type="button" onclick="saveWedParty();" value="Save" class="myButton">
+        <input type="button" onclick="CheckFields();" value="Save" class="myButton">
         <input type="button" onclick="mainMenu();" value="Main Menu" class="myButton">
         <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         <br>
