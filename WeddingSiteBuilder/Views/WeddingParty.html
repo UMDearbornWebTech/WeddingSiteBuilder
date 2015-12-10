@@ -74,24 +74,26 @@
             var comments = $('#comments').val();
             var errorExists = false;
 
-            if (fname != '') {
-                if (lname == "" || lname == null) {
-                    $('#errorlName').css('display', 'inline');
-                    errorExists = true;
-                }
-                if (side == "" || side == null) {
-                    $('#errorside').css('display', 'inline');
-                    errorExists = true;
-                }
-                if (relationship == "" || relationship == null) {
-                    $('#errorRelationship').css('display', 'inline');
-                    errorExists = true;
-                }
-                if (role == "" || role == null) {
-                    $('#errorRole').css('display', 'inline');
-                    errorExists = true;
-                }             
+            if (fname == "" || fname == null) {
+                $('#errorfName').css('display', 'inline');
+                errorExists = true;
             }
+            if (lname == "" || lname == null) {
+                $('#errorlName').css('display', 'inline');
+                errorExists = true;
+            }
+            if (side == "" || side == null) {
+                $('#errorside').css('display', 'inline');
+                errorExists = true;
+            }
+            if (relationship == "" || relationship == null) {
+                $('#errorRelationship').css('display', 'inline');
+                errorExists = true;
+            }
+            if (role == "" || role == null) {
+                $('#errorRole').css('display', 'inline');
+                errorExists = true;
+            }             
             if (errorExists == true) {
                 alert("Please ensure all fields are filled in correctly");
             }
@@ -165,8 +167,6 @@
     </script>
 </head>
 <body onload="loadWeddingParty()">
-    <p>Wedding Couple</p><br>   
-    <textarea rows="10" cols="20"> Tell us your story! </textarea>
     <form action=" ">
         <p>Wedding Party</p>
         First name:  <br /><input type="text" id="fname"><p id="errorfName" style="color:red; display:none;">*</p> <br>
