@@ -33,19 +33,20 @@
             }
             return '';
         }
-        var gname = $('#guestname').val();
+        var gfname = $('#guestfname').val();
+        var glname = $('#guestfname').val();
         var gemail = $('#guestemail').val();
         var guestrelation = $('#guestof').val();
         
 
         var sendRSVP = function () {
-            var url = 'api/sendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
-            $.get(url);
+           // var url = 'api/sendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
+            //$.get(url);
         };
         //when the user clicks resend rsvp, this api will resend the email to the guest
         var ReSendRSVP = function () {
-            var url = 'api/ReSendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
-            $.get(url);
+            //var url = 'api/ReSendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
+            //$.get(url);
         };
         var logOut = function () {
             writeCookie('sessionId', "", -1);
@@ -81,15 +82,17 @@
 <body onload="loadSendViewRSVP()">
     <p>Please enter the name and email of a guest, and select Save.</p>
     <form action="">
-        Name:<br /><input type="text" id="guestname">
+        First Name:<br /><input type="text" id="guestfname">
+        <br>
+        Last Name:<br /><input type="text" id="guestlname">
         <br>
         Email:<br /><input type="email" id="guestemail">
         <br>
-        Guest of the Bride, Groom or Both
+        Guest of the: 
         <select id="guestof">
             <option value="Bride" checked>Bride</option>
             <option value="Groom">Groom</option>
-            <option value="Both">Both</option>
+           
        </select>
             <br>
             <br>
@@ -100,14 +103,16 @@
 
     <table>
         <tr>
-            <td>Guest Name</td>
+            <td>Guest First Name</td>
+            <td>Guest Last Name</td>
             <td>Email</td>
             <td>Count</td>
             <td>Status</td>
             <td>Re-send invitation</td>
         </tr>  <!-- add a loop that displays all guests to whom the invitation was already sent -->
             <tr>
-            <td>Mr. and Mrs. Smith</td>
+            <td>Joe</td>
+            <td>Smith</td>
             <td>mrsmith@umich.edu</td>
             <td>2</td>
             <td>Accepted</td>

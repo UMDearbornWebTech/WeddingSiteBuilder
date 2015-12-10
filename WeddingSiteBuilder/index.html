@@ -41,24 +41,7 @@
                 }
             });
 
-
-
-            // Example Post 
-            //var body = {};
-            //body.FirstName = 'Amir';
-            //body.LastName = 'Riwes';
-            //body.PersonId = 2;
-
-            //$.ajax({
-            //    type: "POST",
-            //    url: "/api/Person",
-            //    contentType: "application/json",
-            //    data: JSON.stringify(body),
-            //    success: function (data) {
-            //        $('#username').val(data.FirstName);
-            //    }
-            //});
-
+            
         };
     </script>
 </head>
@@ -72,8 +55,7 @@
             Email:<br /><input type="email" name="username" id="username"><br>
             Password:<br /><input type="password" name="passw" id="password"><br />
             <input type="button" value="Sign in" onclick="CheckLogin();" class="myButton">
-            <br><a href="resetpassword.html">Need password help?</a>
-    
+               
     </form>
 
     <p id="errorMessage" style="color:red; display:none;">Wrong email and password</p>
