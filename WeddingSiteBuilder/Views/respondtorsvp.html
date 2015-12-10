@@ -12,13 +12,14 @@
             var token = getParameterByName('token');
             var guid = $.getJSON("/api/RSVP/" + token, function (data) {
                 $("#token").val(data.RSVP.RSVPLinkID);
+                $("#wedding").val(data.Attendee.WeddingID);
             });
 
             
         }
         var SubmitRSVP = function () {
             var Count = $("#guestcount").val();
-            var accrej = $("#acceptreject").val();
+            var accrej = $("#acceptreject").val() == 'accept';
 
             $.ajax({
                 type: "POST",
@@ -27,23 +28,29 @@
                 success: function (data) {
                     if (data) {
                         alert("Thank you for responding to the RSVP");
+
+                        var weddingId = $("#wedding").val();
+                        var str = window.location.href;
+                        var n = str.lastIndexOf('/');
+                        var result = str.substr(0, n);
+
+                        window.location.href = result + '/weddingpage.html?weddingID=' + weddingId;
                     }
                     else {
                         alert("Looks like something went wrong!");
                     }
                 }
             });
-                alert('Thank you for you responding to the RSVP');
-                window.top.close();
-            }
+        }
 
-            function getParameterByName(name) {
-                name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
-                var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
-                    results = regex.exec(location.search);
-                return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
-            }
-        </script>
+        function getParameterByName(name) {
+            name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+            var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+                results = regex.exec(location.search);
+            return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+        }
+
+    </script>
 </head>
 <body onload="rsvpLoad()">
     <form><br />
@@ -51,6 +58,7 @@
     <p>Please enter the guest count and select if you'll be able to attend:</p>
         Count:<br /><input type="text"  id="guestcount">
         <input type="hidden" id="token" />
+        <input type="hidden" id="wedding" />
         <br /><select id="acceptreject">
             <option value="accept" checked>Accept
             <option value="reject">Reject
