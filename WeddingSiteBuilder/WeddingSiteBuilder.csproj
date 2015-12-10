@@ -104,6 +104,7 @@
       <DependentUpon>WeddingSiteBuilderModel.edmx</DependentUpon>
       <LastGenOutput>WeddingSiteBuilderModel.cs</LastGenOutput>
     </Content>
+    <Content Include="styles\style2.css" />
     <Content Include="styles\styles.css" />
     <Content Include="Views\respondtorsvp.html" />
     <Content Include="Views\weddingpage.html" />
