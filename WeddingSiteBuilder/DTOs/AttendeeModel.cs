@@ -16,6 +16,7 @@ namespace WeddingSiteBuilder.DTOs
         public string PartyMemberBlurb { get; set; }
         public bool? RSVPStatus { get; set; }
         public int? NumberofRSVPs { get; set; }
+        public PersonModel Person { get; set; }
 
         public AttendeeModel(Attendee att)
         {
@@ -30,6 +31,7 @@ namespace WeddingSiteBuilder.DTOs
             PartyMemberBlurb = att.PartyMemberBlurb;
             RSVPStatus = att.RSVPStatus;
             NumberofRSVPs = att.NumberofRSVPs;
+            Person = new PersonModel(att.Person);
         }
     }
 }

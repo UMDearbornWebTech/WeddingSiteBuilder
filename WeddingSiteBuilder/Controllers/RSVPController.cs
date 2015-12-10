@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 using WeddingSiteBuilder.DTOs;
 using WeddingSiteBuilder.ReadModel;
@@ -13,7 +11,7 @@ namespace WeddingSiteBuilder.Controllers
 {
     public class RSVPController : ApiController
     {
-        // GET: api/RSVP/yeah
+        // GET: api/RSVP/1652c050-6c56-48be-98f1-a899e387078f
         public AttendeeWithRSVP Get(Guid Id)
         {
             using(var dbContext = new WeddingSiteBuilderEntities())
@@ -30,7 +28,7 @@ namespace WeddingSiteBuilder.Controllers
                 return attendee;
             }
         }
-
+        // Post: api/RSVP?RSVPLinkId=3&Count=2&Accepted=false
         public bool Post(long RSVPLinkId, int Count, bool Accepted)
         {
             using (var dbContext = new WeddingSiteBuilderEntities())
@@ -175,7 +173,7 @@ namespace WeddingSiteBuilder.Controllers
 
             var message = new StringBuilder();
             message.AppendLine("RSVP for the wedding by clicking on the link below.");
-            message.AppendLine(string.Format("http://localhost:59998/Views/sendviewrsvp.html?token={0}", rsvp.GuidToken));
+            message.AppendLine(string.Format("http://localhost:59998/Views/respondtorsvp.html?token={0}", rsvp.GuidToken));
 
             EmailService.Instance.SendEmail(
                 attendee.Person.Email,

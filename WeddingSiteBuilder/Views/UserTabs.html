@@ -71,7 +71,7 @@
             var n = str.lastIndexOf('/');
             var result = str.substr(0, n);
             
-            window.open(result + '/weddingpage.html?weddingID=' + prodId);
+            window.location.href = result + '/weddingpage.html?weddingID=' + prodId;
         }
 
         var redirectLink = function (urlLink) {
