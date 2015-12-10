@@ -4,15 +4,42 @@
     <title>Welcome to my Wedding Page</title>
 	<meta charset="utf-8" />
     <link rel="stylesheet" type="text/css" href="../styles/styles.css">
-    <script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
+    <script type="text/javascript">
 
 
+        var loadProfile = function () {
+            //var sId = readCookie('sessionId');
+           // var weddingId = getParameterByName('weddingID');
+            var weddingId = 6;
+                if (weddingId != "") {
+                    var url = '/api/Attendee?option=couple&WeddingId=' + weddingId;
 
+                    $.getJSON(url, function (data) {
+                        if (data.length > 0) {
+                           
+                            $('#FirstName1').html(data[0].Person.FirstName);
+
+                            //$('#FirstName1').val(data[0].Person.FirstName);
+                           // $('#LastName1').val(data[0].Person.LastName);
+                           // $('#email1').val(data[0].Person.Email);
+                           // $('#AttendeeId1').val(data[0].AttendeeID);
+                           
+                        }
+                       
+                    });
+                }
+            
+            
+        }
     </script>
    
 </head>
-<body>
+<body onload="loadProfile()">
 Your personalized wedding page <br />
+
+    <p id="FirstName1"></p>
+
     Name of couple <br />
     Story of the couple <br />
     Venue Information <br />
