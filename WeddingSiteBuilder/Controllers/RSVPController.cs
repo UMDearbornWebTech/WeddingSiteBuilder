@@ -173,7 +173,7 @@ namespace WeddingSiteBuilder.Controllers
 
             var message = new StringBuilder();
             message.AppendLine("RSVP for the wedding by clicking on the link below.");
-            message.AppendLine(string.Format("http://localhost:59998/Views/respondtorsvp.html?token={0}", rsvp.GuidToken));
+            message.AppendLine(string.Format("http://weddingsitebuilder.azurewebsites.net/Views/respondtorsvp.html?token={0}", rsvp.GuidToken));
 
             EmailService.Instance.SendEmail(
                 attendee.Person.Email,
