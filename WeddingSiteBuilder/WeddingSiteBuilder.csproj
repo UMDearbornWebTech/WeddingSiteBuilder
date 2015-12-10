@@ -110,7 +110,6 @@
     <Content Include="Views\profileupdate.html" />
     <Content Include="Views\register.html" />
     <Content Include="Views\sendviewrsvp.html" />
-    <Content Include="Views\UploadPictures.html" />
     <Content Include="Views\UserTabs.html" />
     <Content Include="Views\Venue.html" />
     <Content Include="Views\WeddingParty.html" />

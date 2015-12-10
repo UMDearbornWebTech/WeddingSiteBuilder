@@ -7,6 +7,36 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
        
+        var CheckEmail = function (userinputform, email1, email2) {
+
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            var address = document.forms[userinputform].elements[email1].value;
+            var address2 = document.forms[userinputform].elements[email2].value;
+            var emailerror = false;
+
+            if (reg.test(address) == false) {
+            
+                emailerror = true;
+              
+            } else {
+                emailerror = false;
+            }
+            if (address2 != '') {
+                if (reg.test(address2) == false){
+                    
+                
+                    emailerror = true;
+                    
+                }
+            }
+            if (emailerror == true) {
+                alert('Invalid Email Address.  Please enter a valid one');
+            } else {
+                CheckFields();
+            }
+
+        }
+
         function writeCookie(name, value, days) {
             var date, expires;
             if (days) {
@@ -58,10 +88,7 @@
             var result = str.substr(0, n);
 
             window.open(result + '/weddingpage.html?weddingID=' + prodId);
-        //    var url = 'api/ProfileUpdatePreview?brideorgroom1=' + borg1 + '&firstName1=' + fname1 + '&lastName1=' + lname1 + '&email1=' + email1 + '&brideorgroom2=' + borg2 + + '&firstName2=' + fname2 + '&lastName2=' + lname2 + '&email2=' + email2;
-
-        //    $.get(url);
-
+        
         };
 
         var GetAttendee = function (option) {
@@ -102,7 +129,7 @@
                     usererror2 = true;
                 }
             } else if (Email2 != '') {
-                alert('email');
+               
                 if (fName2 == null || fName2 == '' || lName2 == null || lName2 == '') {
                     usererror2 = true;
                 }
@@ -110,16 +137,6 @@
                 usererror2 = false;
             }
 
-            //if ((fName2 == null || fName2 == '') && (lName2 == null || lName2 == '') && (Email2 == null || Email2 == '')) {
-            //    usererror2 = true;
-            //    $('#errorfname2').css('display', 'inline');
-            //    $('#errorlname2').css('display', 'inline');
-            //    $('#erroremail2').css('display', 'inline');
-            //} else {
-            //    $('#errorfname2').css('display', 'none');
-            //    $('#errorlname2').css('display', 'none');
-            //    $('#erroremail2').css('display', 'none');
-            //}
 
             if (fName1 == null || fName1 == '') {
                 usererror1 = true;
@@ -188,7 +205,7 @@
                         data: JSON.stringify(body),
                         success: function (data) {
                             if (data) {
-                            //    alert("Saved Person"); // Let's do something better than an alert every time we save someone
+                            //    alert("Saved Person"); 
                             }
                             else
                                 alert("Looks like something went wrong"); // Let's do better than this for failures
@@ -250,7 +267,7 @@
 </head>
 <body onload="loadProfile()">
     <h2>Update Couple Profile</h2>
-    <form action="">
+    <form action="" id="userinputform">
         <br>
         <select id="brideorgroom1">
             <option value="Bride">Bride</option>
@@ -278,12 +295,9 @@
         <br>
        
         <br>
-        <!--<p>Password Update:</p>
-        New Password: <input type="password" id="Password" maxlength="50">
         
-        Confirm New Password: <input type="password" id="Password" maxlength="50">-->
         <br><br />
-        <input type="button" onclick="CheckFields();" value="Save" class="myButton">
+        <input type="button" onclick="CheckEmail('userinputform', 'email1', 'email2');" value="Save" class="myButton">
         <input type="button" value="Main Menu" onclick="mainMenu();" class="myButton">
         <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         <br>

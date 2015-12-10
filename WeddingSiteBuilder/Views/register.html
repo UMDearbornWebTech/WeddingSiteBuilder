@@ -33,96 +33,115 @@
             }
             return '';
         }
-        var CheckFields = function () {
-            var fName = $('#firstname').val();
-            var lName = $('#lastname').val();
-            var Email = $('#email').val();
-            var Password = $('#password').val();
-            var Passwordc = $('#passwordc').val();
-            //var Passwordc = $('#passwordc').val();
-            //var BrideOrGroom = document.getElementsByName('iamthe')[0].value;
-            var fieldisempty = false;
-            var passworderror = false;
+        
+       
+        var CheckEmail = function (userinputform,email) {
+               
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            var address = document.forms[userinputform].elements[email].value;
+               
 
-            if (fName == null || fName == '') {
-                $('#errorfname').css('display', 'inline');
-                fieldisempty = true;
-            } else {
-                $('#errorfname').css('display', 'none');
+            if (reg.test(address) == false) {
+                alert('Invalid Email Address.  Please enter a valid one');
+                document.forms[userinputform].elements[email].focus();
+                return false;
+            } else{
+                CheckFields();
+                    }
+           
+            }
+            var CheckFields = function () {
                 
-            }
 
-            if (lName == null || lName == '') {
-                $('#errorlname').css('display', 'inline');
-                fieldisempty = true;
-            } else {
-                $('#errorlname').css('display', 'none');
+                var fName = $('#firstname').val();
+                var lName = $('#lastname').val();
+                var Email = $('#email').val();
+                var Password = $('#password').val();
+                var Passwordc = $('#passwordc').val();
+                //var Passwordc = $('#passwordc').val();
+                //var BrideOrGroom = document.getElementsByName('iamthe')[0].value;
+                var fieldisempty = false;
+                var passworderror = false;
 
-            }
-
-            if (Email == null || Email == '') {
-                $('#erroremail').css('display', 'inline');
-                fieldisempty = true;
-            } else {
-                $('#erroremail').css('display', 'none');
-
-            }
-
-            if (Password == null || Password == '' || Passwordc == null || Passwordc == '' || Passwordc != Password) {
-                $('#errorpassword').css('display', 'inline');
-                $('#errorpasswordc').css('display', 'inline');
-                fieldisempty = true;
-                passworderror = true;
-            } else {
-                $('#errorpassword').css('display', 'none');
-                $('#errorpasswordc').css('display', 'none');
-            }
-
-
-            if (passworderror == true || fieldisempty == true) {
+                if (fName == null || fName == '') {
+                    $('#errorfname').css('display', 'inline');
+                    fieldisempty = true;
+                } else {
+                    $('#errorfname').css('display', 'none');
                 
-                alert("Error:re-enter fields with '*' and password & password confirm need to be the same");
-            } else {
-                CreateSite();
-            }
-
-            
-        } //end of checkfields function
-
-        var CreateSite = function () {
-            
-            var body = {};
-            body.FirstName = $('#firstname').val();
-            body.LastName = $('#lastname').val();
-            body.Email = $('#email').val();
-            body.Password = $('#password').val();
-            body.BrideOrGroom = $('#iamthe').val();
-
-
-            var activeSession = 'True';
-            writeCookie('sessionId', activeSession, 3);
-
-            
-            $.ajax({
-                type: "POST",
-                contentType: "application/json",
-                url: "/api/Registration",
-                data: JSON.stringify(body),
-                success: function (data) {
-                    window.location.href = 'usertabs.html?weddingID=' + data;
-                },
-                failure: function(data){
-                    alert("Sorry it looks like that didn't work. Why don't you try again");
-                    console.error(data);
                 }
-            });
-        };
+
+                if (lName == null || lName == '') {
+                    $('#errorlname').css('display', 'inline');
+                    fieldisempty = true;
+                } else {
+                    $('#errorlname').css('display', 'none');
+
+                }
+
+                if (Email == null || Email == '') {
+                    $('#erroremail').css('display', 'inline');
+                    fieldisempty = true;
+                } else {
+                    $('#erroremail').css('display', 'none');
+
+                }
+
+                if (Password == null || Password == '' || Passwordc == null || Passwordc == '' || Passwordc != Password) {
+                    $('#errorpassword').css('display', 'inline');
+                    $('#errorpasswordc').css('display', 'inline');
+                    fieldisempty = true;
+                    passworderror = true;
+                } else {
+                    $('#errorpassword').css('display', 'none');
+                    $('#errorpasswordc').css('display', 'none');
+                }
+
+
+                if (passworderror == true || fieldisempty == true) {
+                
+                    alert("Error:re-enter fields with '*' and password & password confirm need to be the same");
+                } else {
+                    CreateSite();
+                }
+
+            
+            } //end of checkfields function
+
+            var CreateSite = function () {
+            
+                var body = {};
+                body.FirstName = $('#firstname').val();
+                body.LastName = $('#lastname').val();
+                body.Email = $('#email').val();
+                body.Password = $('#password').val();
+                body.BrideOrGroom = $('#iamthe').val();
+
+
+                var activeSession = 'True';
+                writeCookie('sessionId', activeSession, 3);
+
+            
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: "/api/Registration",
+                    data: JSON.stringify(body),
+                    success: function (data) {
+                        window.location.href = 'usertabs.html?weddingID=' + data;
+                    },
+                    failure: function(data){
+                        alert("Sorry it looks like that didn't work. Why don't you try again");
+                        console.error(data);
+                    }
+                });
+            };
     </script>
    
 </head>
 <body>
 
-    <form action="profileupdate.html">
+    <form action="profileupdate.html" id="userinputform">
         First Name:<br /><input type="text" id="firstname" maxlength="50"><p id="errorfname" style="color:red; display:none;">*</p>
         <br>
         Last Name:<br /><input type="text" id="lastname" maxlength="50"><p id="errorlname" style="color:red; display:none;">*</p>
@@ -140,7 +159,7 @@
         Confirm Password:<br /><input type="password" id="passwordc" maxlength="50"><p id="errorpasswordc" style="color:red; display:none;">*</p>
 
         <br><br>
-        <input type="button" value="Submit" onclick="CheckFields();" class="myButton">
+        <input type="button" value="Submit" onclick="CheckEmail('userinputform', 'email');" class="myButton">
     </form>
 
 </body>
