@@ -6,21 +6,7 @@
     <title>Wedding Venue</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
-             
-        //set the ceremony information 
-        var CName = $('#Location1').val();
-        var Caddress = $('#Address1').val();
-        var Ccity = $('#City1').val();
-        var Czip = $('#Zip1').val();
-        var Cdate = $('#datepicker1').val();
-
-        //set the reception information 
-        var RName = $('#Location2').val();
-        var Raddress = $('#Address2').val();
-        var Rcity = $('#City2').val();
-        var Rzip = $('#Zip2').val();
-        var Rdate = $('#datepicker2').val();
-        
+                    
         function writeCookie(name, value, days) {
             var date, expires;
             if (days) {
@@ -47,78 +33,126 @@
             }
             return '';
         }
-      
-        //redirect user to the main login page(index.html)
+        //set the ceremony information 
+        var CName = $('#Location1').val();
+        var Caddress = $('#Address1').val();
+        var Ccity = $('#City1').val();
+        var CState = $('#State1').val();
+        var Czip = $('#Zip1').val();
+        var Cdate = $('#datepicker1').val();
+
+        //set the reception information 
+        var RName = $('#Location2').val();
+        var Raddress = $('#Address2').val();
+        var Rcity = $('#City2').val();
+        var RState = $('#State2').val();
+        var Rzip = $('#Zip2').val();
+        var Rdate = $('#datepicker2').val();
+
         var logOut = function () {
             writeCookie('sessionId', "", -1);
             window.location.href = '../index.html'
 
         };
 
+        var getInfo = function (option) {
+
+            var body = {};
+            body.LocationName = $('#Location' + option).val();
+            body.Address1 = $('#Address' + option).val();
+            body.City = $('#City' + option).val();
+            body.Zip = $('#Location' + option).val();
+            body.State = $('#State' + option).val();
+            body.Date = $('#datepicker' + option).val();
+
+            return body;
+        }
+
         var mainMenu = function () {
             var prodId = getParameterByName('weddingID');
             window.location.href = 'UserTabs.html?weddingID=' + prodId;
         }
 
-        var saveVenue = function () {
-            
-            //assign the url values 
-            var url = 'api/Venue?Location1=' + CName + '&Address1=' + Caddress + '&City1=' + Ccity
-                + '&Zip1=' + Czip + '&datepicker1=' + Cdate + '&Location2=' + RName + '&Address2=' + Raddress + '&City2='
-                + Rcity + '&Zip2=' + Rzip + '&datepicker2=' + Rdate;
-            $.get(url);
-          
-            
-        };
+       
 
-        $(document).ready(function(){
-            $("#Save").click(function () {
-                if (CName == "" || CName == null) {
-                    alert("Venue Name Required");
-                    return false;
+        var saveVenue = function (option) {
+            var weddingId = getParameterByName('weddingID');
+            if (weddingId != "") {
+                var body = getInfo("C");
+                if (body) {
+                    body.WeddingId = weddingId
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/Ceremony",
+                        contentType: "application/json",
+                        data: JSON.stringify(body),
+                        success: function (data) {
+                            if (data) {
+                                alert("Saved Ceremony Information");
+                            }
+                            else {
+                                alert("Looks like something went wrong");
+                            }
+                        }
+
+                    });
                 }
-            });
-            });
-        //var validation = function () {
-        //    var x = document.forms["myform"]["Location1"].value;
-        //    if (x == "") {
-        //        //alert("Please enter location");
-        //        document.getElementById("Location1").style.display = "Error";
-        //       return false;
-        //    }
-        //}
+
+                body = getInfo("R");
+                if (body) {
+                    body.WeddingId = weddingId
+
+                    $.ajax({
+                        type: "POST",
+                        url: "/api/Reception",
+                        contentType: "application/json",
+                        data: JSON.stringify(body),
+                        success: function (data) {
+                            if (data) {
+                                alert("Saved Ceremony Information");
+                            }
+                            else {
+                                alert("Looks like something went wrong");
+                            }
+                        }
+                    });
+                }
+            }            
+        };
 
         var loadVenue = function () {
             
-             var sId = readCookie('sessionId');
-
+            var sId = readCookie('sessionId');
+            var weddingId = getParameterByName('weddingID');
             if (sId == 'True') {
+                if (weddingId != "") {
+                    var url = '/api/Ceremony?&WeddingId=' + weddingId;
 
-                //ceremony information
-                $('#Location1').val();
-                $('#Address1').val();
-                $('#City1').val();
-                $('#State1').val();
-                $('#Zip1').val();
-                document.getElementById("datepicker1").defaultValue = "2020-02-09";
+                    $.getJSON(url, function (data) {
+                        $('#Location1').val(data.LocationName);
+                        $('#Address1').val(data.Address1);
+                        $('#City1').val(data.City);
+                        $('#State1').val(data.StateProv);
+                        $('#Zip1').val(data.ZipCode);
+                        $('#datepicker1').val(data.CeremonyDateTime);
 
-                //reception information 
-                $('#Location2').val('Ritz Carlton');
-                $('#Address2').val('123 Waikiki Beach Avenue');
-                $('#City2').val('Honolulu');
-                $('#State2').val('HI');
-                $('#Zip2').val('96861');
-                document.getElementById("datepicker2").defaultValue = "2020-02-10";
-            
-                var prodId = getParameterByName('weddingID');
-                var str = window.location.href;
-                var n = str.lastIndexOf('/');
-                var result = str.substr(0, n);
+                    });
+                     $.getJSON(url, function (data) {
+
+                            $('#Location2').val(data.LocationName);
+                            $('#Address2').val(data.Address1);
+                            $('#City2').val(data.City);
+                            $('#State2').val(data.StateProv);
+                            $('#Zip2').val(data.ZipCode);
+                            $('#datepicker2').val(data.ReceptionDateTime);
+                        
+                    });
+                }                              
             }
             else {
                 window.location.href = '../index.html'
-            }
-           
+            }          
            
         };
 
@@ -133,14 +167,14 @@
 </head>
 <body onload="loadVenue()">
 
-    <h2>Cermony Information</h2>
+    <h2>Ceremony Information</h2>
     <form name = "myform" action=" ">
         <br>
-        Location Name: <br /><input type="text" id="Location1" required> <br />
-        Address 1: <br /><input type="text" id="Address1"> <br />
-        City: <br /><input type="text" id="City1"><br />
-        State: <br /><input type="text" id="State1"><br />
-        Zip Code: <br /><input type="text" id="Zip1"><br />
+        Location Name: <br /><input type="text" id="Location1"> <p id="errorL1" style="color:red; display:none;">*</p><br />
+        Address 1: <br /><input type="text" id="Address1"><p id="errorA1" style="color:red; display:none;">*</p> <br />
+        City: <br /><input type="text" id="City1"><p id="errorC1" style="color:red; display:none;">*</p><br />
+        State: <br /><input type="text" id="State1"><p id="errorS1" style="color:red; display:none;">*</p><br />
+        Zip Code: <br /><input type="text" id="Zip1"><p id="errorZ1" style="color:red; display:none;">*</p><br />
         Date: <br /><input type="date" id="datepicker1" />
 
     </form>
@@ -150,14 +184,14 @@
 
     <form action=" ">
         <br>
-        Location Name: <br /><input type="text" id="Location2"> <br />
-        Address 1: <br /><input type="text" id="Address2"><br />
-        City: <br /><input type="text" id="City2"> <br />
-        State: <br /><input type="text" id="State2"> <br />
-        Zip Code: <br /><input type="text" id="Zip2">    <br />    
-        Date: <br /><input type="date" id="datepicker2"> <br />
+        Location Name: <br /><input type="text" id="Location2"><p id="errorL2" style="color:red; display:none;">*</p> <br />
+        Address 1: <br /><input type="text" id="Address2"><p id="errorA2" style="color:red; display:none;">*</p><br />
+        City: <br /><input type="text" id="City2"><p id="errorC2" style="color:red; display:none;">*</p> <br />
+        State: <br /><input type="text" id="State2"><p id="errorS2" style="color:red; display:none;">*</p> <br />
+        Zip Code: <br /><input type="text" id="Zip2">  <p id="errorZ2" style="color:red; display:none;">*</p>  <br />    
+        Date: <br /><input type="date" id="datepicker2"><p id="errorD2" style="color:red; display:none;">*</p> <br />
  <br>
-        <input type="submit" onclick="saveVenue();" value="Save" class="myButton" id="Save">
+        <input type="button" onclick="saveVenue();" value="Save" class="myButton" id="Save">
         <input type="button" onclick="mainMenu();" value="Main Menu" class="myButton">
         <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         

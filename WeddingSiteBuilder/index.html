@@ -31,7 +31,6 @@
 
             $.get(url, function (data) {
                 if (data != 0) {
-
                     var activeSession = 'True';
                     writeCookie('sessionId', activeSession, 3);
                     window.location.href = 'Views/usertabs.html?weddingID='+ data;
