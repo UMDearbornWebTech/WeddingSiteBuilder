@@ -130,6 +130,7 @@
     <Compile Include="DTOs\AttendeeModel.cs" />
     <Compile Include="DTOs\AttendeeWithRSVP.cs" />
     <Compile Include="DTOs\EventDTO.cs" />
+    <Compile Include="DTOs\PersonModel.cs" />
     <Compile Include="DTOs\RegistrationDTO.cs" />
     <Compile Include="DTOs\RSVPLinkModel.cs" />
     <Compile Include="Global.asax.cs">

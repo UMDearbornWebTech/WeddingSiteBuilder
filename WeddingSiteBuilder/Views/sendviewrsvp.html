@@ -61,28 +61,21 @@
                 alert('Fill in the rest of those fields');
         };
         //when the user clicks resend rsvp, this api will resend the email to the guest
-        var ReSendRSVP = function () {
+        var ResendRSVP = function (rsvpId) {
             $.ajax({
                 type: "PUT",
                 contentType: "application/json",
-                url: '/api/RSVP/'+,
-                data: JSON.stringify(body),
+                url: '/api/RSVP/' + rsvpId,
                 success: function (data) {
-                    window.location.href = 'sendviewrsvp.html?weddingID=' + data;
-                },
-                failure: function (data) {
-                    alert("Sorry it looks like that didn't work. Why don't you try again");
-                    console.error(data);
+                    if (data) {
+                        alert('RSVP Resent');
+                    }
+                    else {
+                        alert("Sorry it looks like that didn't work. Why don't you try again");
+                    }
                 }
             });
         };
-
-        var LoadRSVPs = function() {
-            var weddingId = getParameterByName('weddingID');
-            $.getJSON('/api/RSVP?WeddingId=' + weddingId, function(data){
-                
-            })
-        }
 
         var logOut = function () {
             writeCookie('sessionId', "", -1);
@@ -110,15 +103,20 @@
                     for (var i = 0; i < data.length; i++) {
                         var table = $('#RSVPs');
                         table.append("<tr id='row" + i + "'></tr>");
-                        var row = $('#row'+i);
+                        var row = $('#row' + i);
+                        var num = data[i].Attendee.NumberOfRSVPs;
+                        if (num == undefined) num = 'N/A';
+                        var attending = data[i].Attendee.Attending;
+                        if (attending == null) attending = 'Has Not Responded';
+
                         row.append("<td>" + data[i].Attendee.Person.FirstName + "</td>");
                         row.append("<td>" + data[i].Attendee.Person.LastName + "</td>");
                         row.append("<td>" + data[i].Attendee.Person.Email + "</td>");
-                        row.append("<td>" + data[i].Attendee.NumberOfRSVPs + "</td>");
-                        row.append("<td>" + data[i].Attendee.Attending + "</td>");
-                        row.append("<td><button onclick='ResendRSVP(" + data[i].RSVP.RSVPLinkID + ")'></button></td>");
+                        row.append("<td>" + num + "</td>");
+                        row.append("<td>" + attending + "</td>");
+                        row.append("<td><button onclick='ResendRSVP(" + data[i].RSVP.RSVPLinkID + ")'>Resend</button></td>");
                     }
-                })
+                });
             }
             else
             {

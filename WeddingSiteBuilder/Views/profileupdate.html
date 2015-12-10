@@ -80,16 +80,6 @@
             window.location.href = '../index.html'
      
         };
-        var preview = function () {
-            
-            var prodId = getParameterByName('weddingID');
-            var str = window.location.href;
-            var n = str.lastIndexOf('/');
-            var result = str.substr(0, n);
-
-            window.open(result + '/weddingpage.html?weddingID=' + prodId);
-        
-        };
 
         var GetAttendee = function (option) {
             var body = {};
