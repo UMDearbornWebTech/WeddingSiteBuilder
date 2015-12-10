@@ -15,118 +15,109 @@
         }
 
         var loadCouple = function () {
-            //var sId = readCookie('sessionId');
             var weddingId = getParameterByName('weddingID');
-            //var weddingId = 6;
-                if (weddingId != "") {
-                    var url = '/api/Attendee?option=couple&WeddingId=' + weddingId;
+            if (weddingId != "") {
+                var url = '/api/Attendee?option=couple&WeddingId=' + weddingId;
 
-                    $.getJSON(url, function (data) {
-                        if (data.length > 0) {
-                            $('#brideorgroom1').html(data[0].WeddingRole);
-                            $('#FirstName1').html(data[0].Person.FirstName);
-                            $('#LastName1').html(data[0].Person.LastName);
-                            $('#email1').html(data[0].Person.Email);
-                            $('#AttendeeId1').val(data[0].AttendeeID);
+                $.getJSON(url, function (data) {
+                    if (data.length > 0) {
+                        $('#brideorgroom1').html(data[0].WeddingRole);
+                        $('#Name1').html(data[0].Person.FirstName + ' ' + data[0].Person.LastName);
+                        $('#AttendeeId1').val(data[0].AttendeeID);
  
-                            $('#brideorgroom2').html(data[1].WeddingRole);
-                            $('#FirstName2').html(data[1].Person.FirstName);
-                            $('#LastName2').html(data[1].Person.LastName);
-                            $('#email2').html(data[1].Person.Email);
-                            $('#AttendeeId2').val(data[1].AttendeeID);
+                        $('#brideorgroom2').html(data[1].WeddingRole);
+                        $('#Name2').html(data[1].Person.FirstName + ' ' + data[1].Person.LastName);
+                        $('#AttendeeId2').val(data[1].AttendeeID);
                             
-                        }
-                        loadVenue();
-                    });
-                }
-            
-            
+                    }
+                    loadVenue();
+                });
+            }
         }
 
         var loadVenue = function () {
-
-            //var sId = readCookie('sessionId');
             var weddingId = getParameterByName('weddingID');
-            
-                if (weddingId != "") {
-                    var url = '/api/Ceremony?&WeddingId=' + weddingId;
+            if (weddingId != "") {
+                var url = '/api/Ceremony?&WeddingId=' + weddingId;
 
-                    $.getJSON(url, function (data) {
-                        $('#Location1').html(data.LocationName);
-                        $('#Address1').html(data.Address1);
-                        $('#City1').html(data.City);
-                        $('#State1').html(data.StateProv);
-                        $('#Zip1').html(data.ZipCode);
-                        $('#datepicker1').val(data.CeremonyDateTime);
+                $.getJSON(url, function (data) {
+                    $('#Location1').html(data.LocationName);
+                    $('#Address1').html(data.Address1);
+                    $('#City1').html(data.City);
+                    $('#State1').html(data.StateProv);
+                    $('#Zip1').html(data.ZipCode);
+                    $('#datepicker1').html(data.CeremonyDateTime);
 
-                    });
-                    $.getJSON(url, function (data) {
+                });
+                var url = '/api/Reception?&WeddingId=' + weddingId;
+                $.getJSON(url, function (data) {
 
-                        $('#Location2').html(data.LocationName);
-                        $('#Address2').html(data.Address1);
-                        $('#City2').html(data.City);
-                        $('#State2').html(data.StateProv);
-                        $('#Zip2').html(data.ZipCode);
-                        $('#datepicker2').html(data.ReceptionDateTime);
+                    $('#Location2').html(data.LocationName);
+                    $('#Address2').html(data.Address1);
+                    $('#City2').html(data.City);
+                    $('#State2').html(data.StateProv);
+                    $('#Zip2').html(data.ZipCode);
+                    $('#datepicker2').html(data.ReceptionDateTime);
 
-                    });
-                    loadWeddingParty();
-                }
-            
-            
-
+                });
+                loadWeddingParty();
+            }
         };
 
         var loadWeddingParty = function () {
-
-            //var sId = readCookie('sessionId');
             var weddingId = getParameterByName('weddingID');
-            //if (sId == 'True') {
-                if (weddingId != "") {
-                    var url = '/api/Attendee?option=party&WeddingId=' + weddingId;
+            if (weddingId != "") {
+                var url = '/api/Attendee?option=party&WeddingId=' + weddingId;
 
-                    $.getJSON(url, function (data) {
-                        var tr;
-                        for (var i = 0; i < data.length; i++) {
-                            var table = $('#table');
-                            table.append("<tr id='row" + i + "'></tr>");
-                            var row = $('#row' + i);
-                            row.append("<td>" + data[i].Person.FirstName + "</td>");
-                            row.append("<td>" + data[i].Person.LastName + "</td>");
-                            row.append("<td>" + data[i].Side + "</td>");
-                            row.append("<td>" + data[i].Relationship + "</td>");
-                            row.append("<td>" + data[i].WeddingRole + "</td>");
-                            row.append("<td>" + data[i].PartyMemberBlurb + "</td>");
-                        }
+                $.getJSON(url, function (data) {
+                    var tr;
+                    for (var i = 0; i < data.length; i++) {
+                        var table = $('#table');
+                        table.append("<tr id='row" + i + "'></tr>");
+                        var row = $('#row' + i);
+                        row.append("<td>" + data[i].Person.FirstName + "</td>");
+                        row.append("<td>" + data[i].Person.LastName + "</td>");
+                        row.append("<td>" + data[i].Side + "</td>");
+                        row.append("<td>" + data[i].Relationship + "</td>");
+                        row.append("<td>" + data[i].WeddingRole + "</td>");
+                        row.append("<td>" + data[i].PartyMemberBlurb + "</td>");
+                    }
                         
-                    });
-                }
-                else {
-                    window.location.href = '../index.html'
-                }
-
-           // };
+                });
+            }
+            else {
+                window.location.href = '../index.html'
+            }
         }
 
     </script>
    
 </head>
 <body onload="loadCouple()">
-<h1>Welcome to my personalized Wedding Page</h1> <br />
+<h1>Welcome to the personalized Wedding Page</h1> <br />
     <div id="brideorgroom1"></div>
     ________________________
-    <div id="FirstName1"></div>
-    <div id="LastName1"></div>
-    <div id="email1"></div>
+    <div id="Name1"></div>
    
 <br /><br /><br />
     <div id="brideorgroom2"></div>
     ________________________
-    <div id="FirstName2"></div>
-    <div id="LastName2"></div>
-    <div id="email2"></div>
+    <div id="Name2"></div>
 <br /><br /><br />
-
+    <p>Wedding Party</p>
+    <br />
+    <table id="table">
+        <!--wedding party table to populate-->
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Side</th>
+            <th>Relationship</th>
+            <th>Role</th>
+            <th>Comments</th>
+        </tr>
+    </table>
+    <br /><br />
     <p>Ceremony Information</p>
     <div id="Location1"></div>
     <div id="Address1"></div>
@@ -143,17 +134,6 @@
     <div id="Zip2"></div>
     <div id="datepicker2"></div>
     <br />
-    <p>Wedding Party</p>
-    <br />
-    <table id="table"> <!--wedding party table to populate-->
-        <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-            <th>Side</th>
-            <th>Relationship</th>
-            <th>Role</th>
-            <th>Comments</th>
-        </tr>
-    </table><br />
+    
 </body>
 </html>
