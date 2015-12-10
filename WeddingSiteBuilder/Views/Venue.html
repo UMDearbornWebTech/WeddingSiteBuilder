@@ -61,11 +61,14 @@
             body.LocationName = $('#Location' + option).val();
             body.Address1 = $('#Address' + option).val();
             body.City = $('#City' + option).val();
-            body.Zip = $('#Location' + option).val();
+            body.Zip = $('#Zip' + option).val();
             body.State = $('#State' + option).val();
             body.Date = $('#datepicker' + option).val();
 
-            return body;
+            if (body.LocationName != "" && body.Address1 != "" && body.City != "" && body.Zip != "" && body.State != "" && body.Date != "") {
+                return body;
+            }
+            return null;
         }
 
         var mainMenu = function () {
@@ -73,12 +76,87 @@
             window.location.href = 'UserTabs.html?weddingID=' + prodId;
         }
 
-       
+        var CheckFields = function () {
+            var CName = $('#Location1').val();
+            var Caddress = $('#Address1').val();
+            var Ccity = $('#City1').val();
+            var CState = $('#State1').val();
+            var Czip = $('#Zip1').val();
+            var Cdate = document.getElementById("datepicker1").value;
+
+            //set the reception information 
+            var RName = $('#Location2').val();
+            var Raddress = $('#Address2').val();
+            var Rcity = $('#City2').val();
+            var RState = $('#State2').val();
+            var Rzip = $('#Zip2').val();
+            var Rdate = document.getElementById("datepicker2").value;
+
+            var errorExists = false;
+
+
+            if (CName === "" || CName === null) {
+                $('#errorL1').css('display', 'inline');
+                errorExists = true;
+            }
+            if (Caddress == "" || Caddress == null) {
+                $('#errorA1').css('display', 'inline');
+                errorExists = true;
+            }
+            if (Ccity == "" || Ccity == null) {
+                $('#errorC1').css('display', 'inline');
+                errorExists = true;
+            }
+            if (CState == "" || CState == null) {
+                $('#errorS1').css('display', 'inline');
+                errorExists = true;
+            }
+            if (Czip == "" || Czip == null) {
+                $('#errorZ1').css('display', 'inline');
+                errorExists = true;
+            }
+            if (Cdate == "" || Cdate == null) {
+                $('#errorD1').css('display', 'inline');
+                errorExists = true;
+            }
+            if (RName == "" || RName == null) {
+                $('#errorL2').css('display', 'inline');
+                errorExists = true;
+            }
+            if (Raddress == "" || Raddress == null) {
+                $('#errorA2').css('display', 'inline');
+                errorExists = true;
+            }
+            if (Rcity == "" || Rcity == null) {
+                $('#errorS2').css('display', 'inline');
+                errorExists = true;
+            }
+            if (RState == "" || RState == null) {
+                $('#errorZ1').css('display', 'inline');
+                errorExists = true;
+            }
+            if (Rzip == "" || Rzip == null) {
+                $('#errorZ2').css('display', 'inline');
+                errorExists = true;
+            }
+            if (Rdate == "" || Rdate == null) {
+                $('#errorD2').css('display', 'inline');
+                errorExists = true;
+            }
+
+            if (errorExists == true) {
+                alert("Please ensure all fields are filled in correctly");
+            }
+            else {
+                saveVenue();
+            }
+
+        }
 
         var saveVenue = function (option) {
             var weddingId = getParameterByName('weddingID');
             if (weddingId != "") {
-                var body = getInfo("C");
+                var body = getInfo("1");
                 if (body) {
                     body.WeddingId = weddingId
 
@@ -99,7 +177,7 @@
                     });
                 }
 
-                body = getInfo("R");
+                body = getInfo("2");
                 if (body) {
                     body.WeddingId = weddingId
 
@@ -130,23 +208,25 @@
                     var url = '/api/Ceremony?&WeddingId=' + weddingId;
 
                     $.getJSON(url, function (data) {
-                        $('#Location1').val(data.LocationName);
-                        $('#Address1').val(data.Address1);
-                        $('#City1').val(data.City);
-                        $('#State1').val(data.StateProv);
-                        $('#Zip1').val(data.ZipCode);
-                        $('#datepicker1').val(data.CeremonyDateTime);
+                        if (data != null) {
+                            $('#Location1').val(data.LocationName);
+                            $('#Address1').val(data.Address1);
+                            $('#City1').val(data.City);
+                            $('#State1').val(data.StateProv);
+                            $('#Zip1').val(data.ZipCode);
+                            $('#datepicker1').val(data.CeremonyDateTime);
+                        }
 
                     });
                      $.getJSON(url, function (data) {
-
-                            $('#Location2').val(data.LocationName);
-                            $('#Address2').val(data.Address1);
-                            $('#City2').val(data.City);
-                            $('#State2').val(data.StateProv);
-                            $('#Zip2').val(data.ZipCode);
-                            $('#datepicker2').val(data.ReceptionDateTime);
-                        
+                         if (data != null) {
+                             $('#Location2').val(data.LocationName);
+                             $('#Address2').val(data.Address1);
+                             $('#City2').val(data.City);
+                             $('#State2').val(data.StateProv);
+                             $('#Zip2').val(data.ZipCode);
+                             $('#datepicker2').val(data.ReceptionDateTime);
+                         }
                     });
                 }                              
             }
@@ -175,7 +255,7 @@
         City: <br /><input type="text" id="City1"><p id="errorC1" style="color:red; display:none;">*</p><br />
         State: <br /><input type="text" id="State1"><p id="errorS1" style="color:red; display:none;">*</p><br />
         Zip Code: <br /><input type="text" id="Zip1"><p id="errorZ1" style="color:red; display:none;">*</p><br />
-        Date: <br /><input type="date" id="datepicker1" />
+        Date & Time: <br /><input type="datetime-local" id="datepicker1"><p id="errorD1" style="color:red; display:none;">*</p><br />
 
     </form>
 
@@ -189,9 +269,9 @@
         City: <br /><input type="text" id="City2"><p id="errorC2" style="color:red; display:none;">*</p> <br />
         State: <br /><input type="text" id="State2"><p id="errorS2" style="color:red; display:none;">*</p> <br />
         Zip Code: <br /><input type="text" id="Zip2">  <p id="errorZ2" style="color:red; display:none;">*</p>  <br />    
-        Date: <br /><input type="date" id="datepicker2"><p id="errorD2" style="color:red; display:none;">*</p> <br />
+        Date & Time: <br /><input type="datetime-local" id="datepicker2"><p id="errorD2" style="color:red; display:none;">*</p> <br />
  <br>
-        <input type="button" onclick="saveVenue();" value="Save" class="myButton" id="Save">
+        <input type="button" onclick="CheckFields();" value="Save" class="myButton" id="Save">
         <input type="button" onclick="mainMenu();" value="Main Menu" class="myButton">
         <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         
