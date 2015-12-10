@@ -7,6 +7,37 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-alpha1/jquery.js"></script>
     <script type="text/javascript">
        
+        var CheckEmail = function (userinputform, email1, email2) {
+
+            var reg = /^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/;
+            var address = document.forms[userinputform].elements[email1].value;
+            var address2 = document.forms[userinputform].elements[email2].value;
+            var emailerror = false;
+
+            if (reg.test(address) == false) {
+                //alert('Invalid Email Address.  Please enter a valid one');
+                //document.forms[userinputform].elements[email1].focus();
+                emailerror = true;
+                //return false;
+            } else {
+                emailerror = false;
+            }
+            if (address2 != '') {
+                if (reg.test(address2) == false){
+                    
+                    //document.forms[userinputform].elements[email2].focus();
+                    emailerror = true;
+                    //return false;
+                }
+            }
+            if (emailerror == true) {
+                alert('Invalid Email Address.  Please enter a valid one');
+            } else {
+                CheckFields();
+            }
+
+        }
+
         function writeCookie(name, value, days) {
             var date, expires;
             if (days) {
@@ -102,7 +133,7 @@
                     usererror2 = true;
                 }
             } else if (Email2 != '') {
-                alert('email');
+               
                 if (fName2 == null || fName2 == '' || lName2 == null || lName2 == '') {
                     usererror2 = true;
                 }
@@ -110,16 +141,6 @@
                 usererror2 = false;
             }
 
-            //if ((fName2 == null || fName2 == '') && (lName2 == null || lName2 == '') && (Email2 == null || Email2 == '')) {
-            //    usererror2 = true;
-            //    $('#errorfname2').css('display', 'inline');
-            //    $('#errorlname2').css('display', 'inline');
-            //    $('#erroremail2').css('display', 'inline');
-            //} else {
-            //    $('#errorfname2').css('display', 'none');
-            //    $('#errorlname2').css('display', 'none');
-            //    $('#erroremail2').css('display', 'none');
-            //}
 
             if (fName1 == null || fName1 == '') {
                 usererror1 = true;
@@ -250,7 +271,7 @@
 </head>
 <body onload="loadProfile()">
     <h2>Update Couple Profile</h2>
-    <form action="">
+    <form action="" id="userinputform">
         <br>
         <select id="brideorgroom1">
             <option value="Bride">Bride</option>
@@ -283,7 +304,7 @@
         
         Confirm New Password: <input type="password" id="Password" maxlength="50">-->
         <br><br />
-        <input type="button" onclick="CheckFields();" value="Save" class="myButton">
+        <input type="button" onclick="javascript: return CheckEmail('userinputform', 'email1', 'email2');" value="Save" class="myButton">
         <input type="button" value="Main Menu" onclick="mainMenu();" class="myButton">
         <input type="button" onClick="logOut();" value="Log Out" class="myButton">
         <br>
