@@ -96,7 +96,6 @@ namespace WeddingSiteBuilder.Controllers
 
         private void SendRSVPEmail(AttendeeWithRSVP request, WeddingSiteBuilderEntities dbContext)
         {
-
             var couple = dbContext.Attendees.Where(a => a.WeddingID == request.WeddingID && (a.WeddingRole == "Bride" || a.WeddingRole == "Groom")).ToList();
             string subject;
 

@@ -61,7 +61,7 @@
             body.Side = $('#side' ).val();
             body.Relationship = $('#relationship' ).val();
             body.Role = $('#role' ).val();
-            body.PartyMemberBlurb = $('#comments').val();
+            body.Blurb = $('#comments').val();
             body.PartyMember = true;
             return body;
         }
@@ -109,8 +109,8 @@
                             row.append("<td>" + data[i].Person.FirstName + "</td>");
                             row.append("<td>" + data[i].Person.LastName + "</td>");
                             row.append("<td>" + data[i].Side + "</td>");
-                            row.append("<td>" + data[i].Role + "</td>");
                             row.append("<td>" + data[i].Relationship + "</td>");
+                            row.append("<td>" + data[i].WeddingRole + "</td>");
                             row.append("<td>" + data[i].PartyMemberBlurb+ "</td>");
                         }
                     });
