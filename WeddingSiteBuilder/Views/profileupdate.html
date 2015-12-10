@@ -15,19 +15,18 @@
             var emailerror = false;
 
             if (reg.test(address) == false) {
-                //alert('Invalid Email Address.  Please enter a valid one');
-                //document.forms[userinputform].elements[email1].focus();
+            
                 emailerror = true;
-                //return false;
+              
             } else {
                 emailerror = false;
             }
             if (address2 != '') {
                 if (reg.test(address2) == false){
                     
-                    //document.forms[userinputform].elements[email2].focus();
+                
                     emailerror = true;
-                    //return false;
+                    
                 }
             }
             if (emailerror == true) {
@@ -89,10 +88,7 @@
             var result = str.substr(0, n);
 
             window.open(result + '/weddingpage.html?weddingID=' + prodId);
-        //    var url = 'api/ProfileUpdatePreview?brideorgroom1=' + borg1 + '&firstName1=' + fname1 + '&lastName1=' + lname1 + '&email1=' + email1 + '&brideorgroom2=' + borg2 + + '&firstName2=' + fname2 + '&lastName2=' + lname2 + '&email2=' + email2;
-
-        //    $.get(url);
-
+        
         };
 
         var GetAttendee = function (option) {
@@ -209,7 +205,7 @@
                         data: JSON.stringify(body),
                         success: function (data) {
                             if (data) {
-                            //    alert("Saved Person"); // Let's do something better than an alert every time we save someone
+                            //    alert("Saved Person"); 
                             }
                             else
                                 alert("Looks like something went wrong"); // Let's do better than this for failures
@@ -299,10 +295,7 @@
         <br>
        
         <br>
-        <!--<p>Password Update:</p>
-        New Password: <input type="password" id="Password" maxlength="50">
         
-        Confirm New Password: <input type="password" id="Password" maxlength="50">-->
         <br><br />
         <input type="button" onclick="CheckEmail('userinputform', 'email1', 'email2');" value="Save" class="myButton">
         <input type="button" value="Main Menu" onclick="mainMenu();" class="myButton">
