@@ -33,21 +33,57 @@
             }
             return '';
         }
-        var gfname = $('#guestfname').val();
-        var glname = $('#guestfname').val();
-        var gemail = $('#guestemail').val();
-        var guestrelation = $('#guestof').val();
-        
 
         var sendRSVP = function () {
-           // var url = 'api/sendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
-            //$.get(url);
+            var body = {};
+            body.Side = $('#guestof').val();
+            body.FirstName = $('#guestfname').val();
+            body.LastName = $('#guestlname').val();
+            body.Email = $('#guestemail').val();
+            body.WeddingId = getParameterByName('weddingID');
+            if (body.Side != "" && body.FirstName != "" && body.LastName != "" && body.Email != "" && body.WeddingId != "") {
+                var url = '/api/RSVP';
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json",
+                    url: url,
+                    data: JSON.stringify(body),
+                    success: function (data) {
+                        window.location.href = 'sendviewrsvp.html?weddingID=' + data;
+                    },
+                    failure: function (data) {
+                        alert("Sorry it looks like that didn't work. Why don't you try again");
+                        console.error(data);
+                    }
+                });
+            }
+            else
+                alert('Fill in the rest of those fields');
         };
         //when the user clicks resend rsvp, this api will resend the email to the guest
         var ReSendRSVP = function () {
-            //var url = 'api/ReSendRSVP?guestname=' + gname + '&guestemail=' + gemail + '&guestrelation=' + guestrelation;
-            //$.get(url);
+            $.ajax({
+                type: "PUT",
+                contentType: "application/json",
+                url: '/api/RSVP/'+,
+                data: JSON.stringify(body),
+                success: function (data) {
+                    window.location.href = 'sendviewrsvp.html?weddingID=' + data;
+                },
+                failure: function (data) {
+                    alert("Sorry it looks like that didn't work. Why don't you try again");
+                    console.error(data);
+                }
+            });
         };
+
+        var LoadRSVPs = function() {
+            var weddingId = getParameterByName('weddingID');
+            $.getJSON('/api/RSVP?WeddingId=' + weddingId, function(data){
+                
+            })
+        }
+
         var logOut = function () {
             writeCookie('sessionId', "", -1);
             window.location.href = '../index.html'
@@ -69,7 +105,20 @@
             var sId = readCookie('sessionId');
 
             if (sId == 'True') {
-                var prodId = getParameterByName('weddingID');
+                var weddingId = getParameterByName('weddingID');
+                $.getJSON('/api/RSVP?WeddingId=' + weddingId, function(data){
+                    for (var i = 0; i < data.length; i++) {
+                        var table = $('#RSVPs');
+                        table.append("<tr id='row" + i + "'></tr>");
+                        var row = $('#row'+i);
+                        row.append("<td>" + data[i].Attendee.Person.FirstName + "</td>");
+                        row.append("<td>" + data[i].Attendee.Person.LastName + "</td>");
+                        row.append("<td>" + data[i].Attendee.Person.Email + "</td>");
+                        row.append("<td>" + data[i].Attendee.NumberOfRSVPs + "</td>");
+                        row.append("<td>" + data[i].Attendee.Attending + "</td>");
+                        row.append("<td><button onclick='ResendRSVP(" + data[i].RSVP.RSVPLinkID + ")'></button></td>");
+                    }
+                })
             }
             else
             {
@@ -101,7 +150,7 @@
             <input type="button" value="Log Out" onclick="logOut();" class="myButton">
 </form>
 
-    <table>
+    <table id="RSVPs">
         <tr>
             <td>Guest First Name</td>
             <td>Guest Last Name</td>
@@ -110,14 +159,6 @@
             <td>Status</td>
             <td>Re-send invitation</td>
         </tr>  <!-- add a loop that displays all guests to whom the invitation was already sent -->
-            <tr>
-            <td>Joe</td>
-            <td>Smith</td>
-            <td>mrsmith@umich.edu</td>
-            <td>2</td>
-            <td>Accepted</td>
-            <td><a href="" onclick="ReSendRSVP();">re-send</a></td>
-        </tr>
     </table>
 
 
